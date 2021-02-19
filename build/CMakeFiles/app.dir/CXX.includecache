@@ -11,6 +11,8 @@ iostream
 -
 
 ../include/functions.hpp
+iostream
+-
 SFML/Graphics.hpp
 -
 SFML/System.hpp
@@ -31,6 +33,8 @@ functions.hpp
 /home/fn/graphical_GreenHouse/src/functions.hpp
 
 /home/fn/graphical_GreenHouse/src/main.cpp
+iostream
+-
 flower.hpp
 /home/fn/graphical_GreenHouse/src/flower.hpp
 functions.hpp
