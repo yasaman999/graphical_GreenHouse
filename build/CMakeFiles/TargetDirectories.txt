@@ -1,0 +1,3 @@
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/build/CMakeFiles/app.dir

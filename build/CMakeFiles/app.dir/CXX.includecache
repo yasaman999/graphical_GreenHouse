@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/flower.hpp
+iostream
+-
+
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.cpp
+flower.hpp
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/main.cpp
+flower.hpp
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/ordinaryflower.cpp
+flower.hpp
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/rareflower.cpp
+flower.hpp
+/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+
