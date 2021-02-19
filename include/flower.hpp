@@ -2,7 +2,7 @@
 #define FLOWER_HPP
 #include <iostream>
 typedef unsigned int ui;
-class Flower 
+class Flower
 {
 private:
     ui soil = 1;
@@ -16,6 +16,8 @@ private:
 public:
     Flower() {}  //constructor
     ~Flower() {} //distructor
+    virtual void set_name(std::string);
+    virtual std::string get_name() const;
 
 protected:
     virtual float get_PurchasePriceOfBulb() const;
@@ -26,28 +28,26 @@ protected:
     virtual void set_salePriceOfBulb(float);
     virtual void set_returnPrice(float);
     virtual void set_salePriceOfFlowers(float);
-    virtual void set_name(std::string);
-    virtual std::string get_name() const;
 };
 //endl of Flower class
 class OrdinaryFlower final : public Flower //be final class
 {
 private:
 public:
-    OrdinaryFlower() {}//constructor
-    ~OrdinaryFlower() {}//destructor
+    OrdinaryFlower() {}  //constructor
+    ~OrdinaryFlower() {} //destructor
+    virtual void set_name(std::string) override;
+    virtual std::string get_name() const override;
 
 protected:
     virtual void set_PurchasePriceOfBulb();
     virtual void set_salePriceOfBulb();
     virtual void set_returnPrice();
     virtual void set_salePriceOfFlowers();
-    virtual void set_name(std::string) override;
-    virtual std::string get_name() const override;
 };
 //end of OrdinaryFlower class
 
-class RareFlower final : public Flower//be final class
+class RareFlower final : public Flower //be final class
 {
 private:
     bool needToSpray = false;
@@ -56,15 +56,30 @@ public:
     RareFlower() {}
     ~RareFlower() {}
     void set_needToSpray();
+    virtual void set_name(std::string) override;
+    virtual std::string get_name() const override;
 
 protected:
     virtual void set_PurchasePriceOfBulb();
     virtual void set_salePriceOfBulb();
     virtual void set_returnPrice();
     virtual void set_salePriceOfFlowers();
-    virtual void set_name(std::string) override;
-    virtual std::string get_name() const override;
 };
 //end of RareFlower class
+class decorativeFlower final :public Flower
+{
+private:
+public:
+    decorativeFlower() {}
+    ~decorativeFlower() {}
+    virtual void set_name(std::string) override;
+    virtual std::string get_name() const override;
 
+protected:
+    virtual void set_PurchasePriceOfBulb();
+    virtual void set_salePriceOfBulb();
+    virtual void set_returnPrice();
+    virtual void set_salePriceOfFlowers();
+};
+//end of class decorativeFlower
 #endif // FLOWER_HPP

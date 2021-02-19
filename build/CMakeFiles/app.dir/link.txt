@@ -1,1 +1,1 @@
-/usr/bin/c++    -rdynamic CMakeFiles/app.dir/src/main.cpp.o CMakeFiles/app.dir/src/flower.cpp.o CMakeFiles/app.dir/src/ordinaryflower.cpp.o CMakeFiles/app.dir/src/rareflower.cpp.o  -o app 
+/usr/bin/c++    -rdynamic CMakeFiles/app.dir/src/main.cpp.o CMakeFiles/app.dir/src/flower.cpp.o CMakeFiles/app.dir/src/ordinaryflower.cpp.o CMakeFiles/app.dir/src/rareflower.cpp.o CMakeFiles/app.dir/src/decorativeFlower.cpp.o CMakeFiles/app.dir/src/functions.cpp.o  -o app -lsfml-window -lsfml-system -lsfml-graphics 

@@ -10,19 +10,37 @@
 iostream
 -
 
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.cpp
-flower.hpp
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+../include/functions.hpp
+SFML/Graphics.hpp
+-
+SFML/System.hpp
+-
+SFML/Window.hpp
+-
 
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/main.cpp
+/home/fn/graphical_GreenHouse/src/decorativeFlower.cpp
 flower.hpp
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+/home/fn/graphical_GreenHouse/src/flower.hpp
 
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/ordinaryflower.cpp
+/home/fn/graphical_GreenHouse/src/flower.cpp
 flower.hpp
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+/home/fn/graphical_GreenHouse/src/flower.hpp
 
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/rareflower.cpp
+/home/fn/graphical_GreenHouse/src/functions.cpp
+functions.hpp
+/home/fn/graphical_GreenHouse/src/functions.hpp
+
+/home/fn/graphical_GreenHouse/src/main.cpp
 flower.hpp
-/mnt/c/Users/Parsian.system/Desktop/FinalProject/src/flower.hpp
+/home/fn/graphical_GreenHouse/src/flower.hpp
+functions.hpp
+/home/fn/graphical_GreenHouse/src/functions.hpp
+
+/home/fn/graphical_GreenHouse/src/ordinaryflower.cpp
+flower.hpp
+/home/fn/graphical_GreenHouse/src/flower.hpp
+
+/home/fn/graphical_GreenHouse/src/rareflower.cpp
+flower.hpp
+/home/fn/graphical_GreenHouse/src/flower.hpp
 
