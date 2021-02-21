@@ -1,3 +1,3 @@
-/home/fn/graphical_GreenHouse/build/CMakeFiles/rebuild_cache.dir
-/home/fn/graphical_GreenHouse/build/CMakeFiles/app.dir
-/home/fn/graphical_GreenHouse/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Parsian.system/Desktop/f/graphical_GreenHouse/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/Parsian.system/Desktop/f/graphical_GreenHouse/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/Parsian.system/Desktop/f/graphical_GreenHouse/build/CMakeFiles/app.dir

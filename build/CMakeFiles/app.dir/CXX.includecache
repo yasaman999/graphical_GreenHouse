@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/flower.hpp
-iostream
--
-
 ../include/functions.hpp
 iostream
 -
@@ -20,31 +16,7 @@ SFML/System.hpp
 SFML/Window.hpp
 -
 
-/home/fn/graphical_GreenHouse/src/decorativeFlower.cpp
-flower.hpp
-/home/fn/graphical_GreenHouse/src/flower.hpp
-
-/home/fn/graphical_GreenHouse/src/flower.cpp
-flower.hpp
-/home/fn/graphical_GreenHouse/src/flower.hpp
-
-/home/fn/graphical_GreenHouse/src/functions.cpp
+/mnt/c/Users/Parsian.system/Desktop/f/graphical_GreenHouse/src/functions.cpp
 functions.hpp
-/home/fn/graphical_GreenHouse/src/functions.hpp
-
-/home/fn/graphical_GreenHouse/src/main.cpp
-iostream
--
-flower.hpp
-/home/fn/graphical_GreenHouse/src/flower.hpp
-functions.hpp
-/home/fn/graphical_GreenHouse/src/functions.hpp
-
-/home/fn/graphical_GreenHouse/src/ordinaryflower.cpp
-flower.hpp
-/home/fn/graphical_GreenHouse/src/flower.hpp
-
-/home/fn/graphical_GreenHouse/src/rareflower.cpp
-flower.hpp
-/home/fn/graphical_GreenHouse/src/flower.hpp
+/mnt/c/Users/Parsian.system/Desktop/f/graphical_GreenHouse/src/functions.hpp
 
