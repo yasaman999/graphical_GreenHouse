@@ -71,8 +71,9 @@ void setStoreMenu(sf::RenderWindow& window, sf::Texture& storeMenuTexture, sf::S
 {
   storeMenuTexture.loadFromFile("../image/strip6.png");
   storeMenuSprite.setTexture(storeMenuTexture);
-  storeMenuSprite.setPosition(sf::Vector2f(50.5, 700));
+  storeMenuSprite.setPosition(sf::Vector2f(50.5, 650));
 }
+
 void setRectangles(sf::RenderWindow& window, sf::Texture * rectanglesTexture, sf::Sprite * rectanglesSprite, sf::Font& font, sf::Text* text1)
 {
   for (size_t i = 0; i < 24; i++)
@@ -81,7 +82,7 @@ void setRectangles(sf::RenderWindow& window, sf::Texture * rectanglesTexture, sf
   }
   for (size_t i = 0; i < 24; i++)
   {
-    text1[i].setFillColor(sf::Color::Black);
+    text1[i].setFillColor(sf::Color::White);
   }
 
   for(size_t i = 0; i < 12; i++)
@@ -125,6 +126,42 @@ void setRectangles(sf::RenderWindow& window, sf::Texture * rectanglesTexture, sf
 
 
 
+
+
+}
+
+void clickOnItemsOfTable(sf::RenderWindow& window ,sf::Sprite * rectanglesSprite , sf::Event & event, Store * mainStore)
+{
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[6].getPosition().x + rectanglesSprite[6].getGlobalBounds().width/2 + 6&&
+      sf::Mouse::getPosition(window).x <=  rectanglesSprite[6].getPosition().x + rectanglesSprite[6].getGlobalBounds().width &&
+      sf::Mouse::getPosition(window).y >= rectanglesSprite[6].getPosition().y &&
+      sf::Mouse::getPosition(window).y <=rectanglesSprite[6].getPosition().y +rectanglesSprite[6].getGlobalBounds().height)
+      {
+        (mainStore->ordinaryBulb)++;
+        cout<<"ordinary : "<<mainStore->ordinaryBulb<<endl;
+      }
+  }
+}
+
+void setTitleOfTables(sf::Sprite* rectanglesSprite,sf::Text & storeText, sf::Text & salesRoomText ,sf::Font & font)
+{
+  //set font :
+  storeText.setFont(font);
+  salesRoomText.setFont(font);
+  //set string :
+  storeText.setString("Anbare gol ha");
+  salesRoomText.setString("liste forooshgah");
+  //set color :
+  storeText.setFillColor(sf::Color::Black);
+  salesRoomText.setFillColor(sf::Color::Black);
+  //set origin
+  storeText.setOrigin(sf::Vector2f(storeText.getGlobalBounds().width/2,0));
+  salesRoomText.setOrigin(sf::Vector2f(salesRoomText.getGlobalBounds().width/2,0));
+  //set position :
+  storeText.setPosition(sf::Vector2f(rectanglesSprite[0].getPosition().x-rectanglesSprite[0].getGlobalBounds().width/2,rectanglesSprite[0].getPosition().y-50));
+  salesRoomText.setPosition(sf::Vector2f(rectanglesSprite[6].getPosition().x+rectanglesSprite[6].getGlobalBounds().width/2,rectanglesSprite[6].getPosition().y-50));
 
 
 }

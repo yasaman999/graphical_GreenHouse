@@ -1,14 +1,28 @@
 #ifndef STORE_H
 #define STORE_H
 #include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+
 typedef unsigned int ui;
-class Store
+class Store// a singleton class
 {
+  friend void clickOnItemsOfTable(sf::RenderWindow & window ,sf::Sprite * , sf::Event & , Store *);
+
 public:
-  void increase(std::string);
-  void decrease(std::string);
+  // void increase(std::string);
+  // void decrease(std::string);
+
+  static Store * oneStore();
+  ~Store();
 
 private:
+  //private constructor for singleton
+  Store();
+
+  static Store * storePtr;
+
   ui NumberOfWaterUnits = 0;
   ui NumberOfSoilUnits = 0;
   ui spray = 0;
