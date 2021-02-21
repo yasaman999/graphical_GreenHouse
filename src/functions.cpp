@@ -1,5 +1,7 @@
 #include "functions.hpp"
+#include <cstring>
 using namespace std;
+typedef unsigned int ui;
 void setBackground(sf::RenderWindow &window, sf::Texture &backgroundTexture, sf::Sprite &backgroundSprite)
 {
     backgroundTexture.loadFromFile("../image/background.png");
@@ -130,20 +132,95 @@ void setRectangles(sf::RenderWindow& window, sf::Texture * rectanglesTexture, sf
 
 }
 
-void clickOnItemsOfTable(sf::RenderWindow& window ,sf::Sprite * rectanglesSprite , sf::Event & event, Store * mainStore)
+
+void rightColumnOfSalesRoom(sf::RenderWindow & window,sf::Event & event,sf::Sprite * rectanglesSprite,int index , Store * mainStore ,sf::Text * StoreMenuTexts)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
-    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[6].getPosition().x + rectanglesSprite[6].getGlobalBounds().width/2 + 6&&
-      sf::Mouse::getPosition(window).x <=  rectanglesSprite[6].getPosition().x + rectanglesSprite[6].getGlobalBounds().width &&
-      sf::Mouse::getPosition(window).y >= rectanglesSprite[6].getPosition().y &&
-      sf::Mouse::getPosition(window).y <=rectanglesSprite[6].getPosition().y +rectanglesSprite[6].getGlobalBounds().height)
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x + rectanglesSprite[index].getGlobalBounds().width/2 + index&&
+      sf::Mouse::getPosition(window).x <=  rectanglesSprite[index].getPosition().x + rectanglesSprite[index].getGlobalBounds().width &&
+      sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
+      sf::Mouse::getPosition(window).y <=rectanglesSprite[index].getPosition().y +rectanglesSprite[index].getGlobalBounds().height)
       {
-        (mainStore->ordinaryBulb)++;
-        cout<<"ordinary : "<<mainStore->ordinaryBulb<<endl;
+        if(index==6)
+        {
+          (mainStore->ordinaryBulb)++;
+          cout<<"ordinary : "<<mainStore->ordinaryBulb<<endl;
+        }
+        else if(index==7)
+        {
+          (mainStore->decorativeBulb)++;
+          cout<<"decorativeBulb : "<<mainStore->decorativeBulb<<endl;
+
+        }
+        else if(index==8)
+        {
+          (mainStore->NumberOfSoilUnits)++;
+          cout<<"NumberOfSoilUnits : "<<mainStore->NumberOfSoilUnits<<endl;
+          ui x=mainStore->NumberOfSoilUnits;
+          StoreMenuTexts[1].setString(to_string(x));
+
+        }
+
       }
   }
 }
+void leftColumnOfSalesRoom(sf::RenderWindow & window,sf::Event & event,sf::Sprite * rectanglesSprite,int index , Store * mainStore ,sf::Text * StoreMenuTexts)
+{
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x &&
+      sf::Mouse::getPosition(window).x <=  rectanglesSprite[index].getPosition().x + rectanglesSprite[index].getGlobalBounds().width/2 &&
+      sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
+      sf::Mouse::getPosition(window).y <=rectanglesSprite[index].getPosition().y +rectanglesSprite[index].getGlobalBounds().height)
+      {
+        if(index==6)
+        {
+          (mainStore->rareBulb)++;
+          cout<<"rareBulb : "<<mainStore->rareBulb<<endl;
+        }
+        else if(index==7)
+        {
+          (mainStore->spray)++;
+          cout<<"spray : "<<mainStore->spray<<endl;
+          ui x=mainStore->spray;
+          StoreMenuTexts[2].setString(to_string(x));
+
+        }
+        else if(index==8)
+        {
+          (mainStore->NumberOfWaterUnits)++;
+          cout<<"NumberOfWaterUnits : "<<mainStore->NumberOfWaterUnits<<endl;
+          ui x=mainStore->NumberOfWaterUnits;
+          StoreMenuTexts[1].setString(to_string(x));
+
+        }
+
+      }
+  }
+}
+
+
+
+void clickOnItemsOfTable(sf::RenderWindow& window ,sf::Sprite * rectanglesSprite , sf::Event & event, Store * mainStore, sf::Text * StoreMenuTexts)
+{
+  rightColumnOfSalesRoom(window,event,rectanglesSprite,6,mainStore,StoreMenuTexts);
+  rightColumnOfSalesRoom(window,event,rectanglesSprite,7,mainStore,StoreMenuTexts);
+  rightColumnOfSalesRoom(window,event,rectanglesSprite,8,mainStore,StoreMenuTexts);
+  leftColumnOfSalesRoom(window,event,rectanglesSprite,6,mainStore,StoreMenuTexts);
+  leftColumnOfSalesRoom(window,event,rectanglesSprite,7,mainStore,StoreMenuTexts);
+  leftColumnOfSalesRoom(window,event,rectanglesSprite,8,mainStore,StoreMenuTexts);
+
+
+}
+
+
+
+
+
+
+
+
 
 void setTitleOfTables(sf::Sprite* rectanglesSprite,sf::Text & storeText, sf::Text & salesRoomText ,sf::Font & font)
 {

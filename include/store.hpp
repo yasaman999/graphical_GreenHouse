@@ -8,7 +8,8 @@
 typedef unsigned int ui;
 class Store// a singleton class
 {
-  friend void clickOnItemsOfTable(sf::RenderWindow & window ,sf::Sprite * , sf::Event & , Store *);
+  friend void rightColumnOfSalesRoom(sf::RenderWindow &,sf::Event & , sf::Sprite * ,int  , Store * , sf::Text *);
+  friend void leftColumnOfSalesRoom(sf::RenderWindow & ,sf::Event &,sf::Sprite *,int , Store *, sf::Text *);
 
 public:
   // void increase(std::string);

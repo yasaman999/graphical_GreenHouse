@@ -30,11 +30,22 @@ int main()
     sf::Text text1[24];
     //make one object from Store class
     Store * mainStore=Store::oneStore();
+    //StoreMenuTexts
+    sf::Text StoreMenuTexts[4];
+    for (size_t i = 0; i < 4; i++)
+    {
+      StoreMenuTexts[i].setFont(font);
+    }
+    for (size_t i = 0; i < 4; i++)
+    {
+      StoreMenuTexts[i].setFillColor(sf::Color::Black);
+    }
+
 
     bool clickOnSalesRoom;
-    // sf::RectangleShape test;
-    // test.setPosition(mainWindow.getSize().x - 610, 0);
-    // test.setSize(sf::Vector2f(2, 200));
+    sf::RectangleShape test;
+    test.setPosition( storeMenuSprite.getPosition().x+storeMenuSprite.getGlobalBounds().width-200, storeMenuSprite.getPosition().y +5);
+    test.setSize(sf::Vector2f(2, 200));
     while (mainWindow.isOpen())
     {
 
@@ -47,7 +58,7 @@ int main()
             clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture, rectanglesSprite, text1, font, clickOnSalesRoom);
             if (clickOnSalesRoom)
             {
-              clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent,mainStore);  
+              clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent,mainStore,StoreMenuTexts);
             }
 
         }
@@ -79,7 +90,7 @@ int main()
 
         }
 
-        // mainWindow.draw(test);
+        mainWindow.draw(test);
     }
 
     return 0;
