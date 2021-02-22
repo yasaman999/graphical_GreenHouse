@@ -1,13 +1,13 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/app.dir/src/decorativeFlower.cpp.o"
-  "CMakeFiles/app.dir/src/flower.cpp.o"
-  "CMakeFiles/app.dir/src/functions.cpp.o"
   "CMakeFiles/app.dir/src/main.cpp.o"
+  "CMakeFiles/app.dir/src/flower.cpp.o"
   "CMakeFiles/app.dir/src/ordinaryflower.cpp.o"
   "CMakeFiles/app.dir/src/rareflower.cpp.o"
+  "CMakeFiles/app.dir/src/decorativeFlower.cpp.o"
+  "CMakeFiles/app.dir/src/functions.cpp.o"
   "CMakeFiles/app.dir/src/store.cpp.o"
-  "app"
   "app.pdb"
+  "app"
 )
 
 # Per-language clean rules from dependency scanning.

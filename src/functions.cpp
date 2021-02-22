@@ -12,10 +12,46 @@ void setMenu(sf::RenderWindow &window, sf::Texture &menuTexture, sf::Sprite &men
   menuTexture.loadFromFile("../image/menu/menu4.png");
   menuSprite.setTexture(menuTexture);
 }
+void setElementsOfLabaratory(sf::RenderWindow& window, sf::Event& event, sf::Texture & labRectangleTexture, sf::Sprite& labRectangleSprite)
+{
+  labRectangleTexture.loadFromFile("../image/labRect.png");
+  labRectangleSprite.setTexture(labRectangleTexture);
+  labRectangleSprite.setOrigin(sf::Vector2f(labRectangleSprite.getGlobalBounds().width/2, 0));
+  labRectangleSprite.setPosition(sf::Vector2f(window.getSize().x/2, 130));
+
+}
+void clickOnItemsOfLaboratory(sf::RenderWindow& window,sf::Event& event, sf::Sprite& labRectangleSprite)
+{
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x - 438 &&
+        sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x - 163 &&
+        sf::Mouse::getPosition(window).y >=  labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 100 &&
+        sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 20)
+      {
+         cout << "osare gole orkide!!!!!!!!" << endl;
+      }
+      else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x - 137 &&
+          sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x + 137 &&
+          sf::Mouse::getPosition(window).y >=  labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 100 &&
+          sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 20)
+        {
+           cout << "osare gole lilium!!!!!!!!" << endl;
+        }
+        else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x + 160 &&
+            sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x + 432 &&
+            sf::Mouse::getPosition(window).y >=  labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 100 &&
+            sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 20)
+          {
+             cout << "osare gole magnolia!!!!!!!!" << endl;
+          }
+     }
+}
 void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture &menuTexture,
                         sf::Sprite &menuSprite, sf::Texture *rectanglesTexture,
                         sf::Sprite *rectanglesSprite, sf::Text *text1, sf::Font &font,
-                        bool &clickOnSalesRoom, Store *mainStore, sf::Text *StoreMenuTexts, sf::Text *text2)
+                        bool &clickOnSalesRoom, bool & clickOnLaboratory, Store *mainStore, sf::Text *StoreMenuTexts,
+                        sf::Text *text2, sf::Texture& labRectangleTexture, sf::Sprite& labRectangleSprite)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
@@ -26,6 +62,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
     {
       cout << "profile" << endl;
       clickOnSalesRoom = false;
+      clickOnLaboratory = false;
+
       menuTexture.loadFromFile("../image/menu/menu0.png");
     }
   }
@@ -38,6 +76,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
     {
       cout << "greenhouse!!" << endl;
       clickOnSalesRoom = false;
+      clickOnLaboratory = false;
+
       menuTexture.loadFromFile("../image/menu/menu1.png");
     }
   }
@@ -50,6 +90,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
     {
       cout << "froshgah!!" << endl;
       clickOnSalesRoom = true;
+      clickOnLaboratory = false;
+
       menuTexture.loadFromFile("../image/menu/menu2.png");
       setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1);
       rightColumnOfFlowerStore(window, event, rectanglesSprite, mainStore, StoreMenuTexts, text2, font);
@@ -64,7 +106,9 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
     {
       cout << "azmayeshgah!!" << endl;
       clickOnSalesRoom = false;
+      clickOnLaboratory = true;
       menuTexture.loadFromFile("../image/menu/menu3.png");
+      setElementsOfLabaratory(window, event, labRectangleTexture, labRectangleSprite);
     }
   }
 }

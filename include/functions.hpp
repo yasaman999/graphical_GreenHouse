@@ -5,8 +5,12 @@
 
 void setBackground(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setMenu(sf::RenderWindow &window, sf::Texture &, sf::Sprite &);
+void setElementsOfLabaratory(sf::RenderWindow&, sf::Event&, sf::Texture &, sf::Sprite&);
+void clickOnItemsOfLaboratory(sf::RenderWindow&,sf::Event& , sf::Sprite&);
+
 void clickOnItemsOfMenu(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &,
-                        sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &font, bool &, Store *mainStore, sf::Text *StoreMenuTexts, sf::Text *text2);
+                        sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &,
+                        Store *, sf::Text *, sf::Text *, sf::Texture&, sf::Sprite&);
 void setStoreMenu(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *);
 void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
