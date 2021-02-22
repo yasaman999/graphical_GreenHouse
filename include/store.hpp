@@ -6,23 +6,25 @@
 #include <SFML/Window.hpp>
 
 typedef unsigned int ui;
-class Store// a singleton class
+class Store // a singleton class
 {
-  friend void rightColumnOfSalesRoom(sf::RenderWindow &,sf::Event & , sf::Sprite * ,int  , Store * , sf::Text *);
-  friend void leftColumnOfSalesRoom(sf::RenderWindow & ,sf::Event &,sf::Sprite *,int , Store *, sf::Text *);
+  friend void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &,sf::Text *);
+  friend void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &,sf::Text *);
+  //friend void rightColumnOfFlowerStore(sf::RenderWindow &, sf::Event &,
+  //                                   sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &);
 
 public:
   // void increase(std::string);
   // void decrease(std::string);
 
-  static Store * oneStore();
+  static Store *oneStore();
   ~Store();
 
 private:
   //private constructor for singleton
   Store();
 
-  static Store * storePtr;
+  static Store *storePtr;
 
   ui NumberOfWaterUnits = 0;
   ui NumberOfSoilUnits = 0;
@@ -41,9 +43,6 @@ private:
   ui magnolia = 0;
   ui lilium = 0;
   ui orkide = 0;
-
-
-
 };
 
 #endif
