@@ -12,46 +12,141 @@ void setMenu(sf::RenderWindow &window, sf::Texture &menuTexture, sf::Sprite &men
   menuTexture.loadFromFile("../image/menu/menu4.png");
   menuSprite.setTexture(menuTexture);
 }
-void setElementsOfLabaratory(sf::RenderWindow& window, sf::Event& event, sf::Texture & labRectangleTexture, sf::Sprite& labRectangleSprite)
+void setElementsOfLabaratory(sf::RenderWindow &window, sf::Event &event, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite)
 {
   labRectangleTexture.loadFromFile("../image/labRect.png");
   labRectangleSprite.setTexture(labRectangleTexture);
-  labRectangleSprite.setOrigin(sf::Vector2f(labRectangleSprite.getGlobalBounds().width/2, 0));
-  labRectangleSprite.setPosition(sf::Vector2f(window.getSize().x/2, 130));
-
+  labRectangleSprite.setOrigin(sf::Vector2f(labRectangleSprite.getGlobalBounds().width / 2, 0));
+  labRectangleSprite.setPosition(sf::Vector2f(window.getSize().x / 2, 130));
 }
-void clickOnItemsOfLaboratory(sf::RenderWindow& window,sf::Event& event, sf::Sprite& labRectangleSprite)
+void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sprite &labRectangleSprite, Store *mainStore,sf::Text*StoreMenuTexts,sf::Sprite&storeMenuSprite)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
     if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x - 438 &&
         sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x - 163 &&
-        sf::Mouse::getPosition(window).y >=  labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 100 &&
-        sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 20)
+        sf::Mouse::getPosition(window).y >= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 100 &&
+        sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 20)
+    {
+      cout << "osare gole orkide!!!!!!!!" << endl;
+      if ((mainStore->NumberOfWaterUnits) > 0 && (mainStore->sonbol) > 0)
       {
-         cout << "osare gole orkide!!!!!!!!" << endl;
+        (mainStore->NumberOfWaterUnits)--;
+        (mainStore->sonbol)--;
+        (mainStore->orkideExtract)++;
+        ui x = mainStore->NumberOfWaterUnits;
+        StoreMenuTexts[0].setString(to_string(x));
+        StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+
+        cout << "bozorg tar az 0" << endl;
       }
-      else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x - 137 &&
-          sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x + 137 &&
-          sf::Mouse::getPosition(window).y >=  labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 100 &&
-          sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 20)
+      else
+      {
+        sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
+        sf::Event errorEvent;
+        sf::Texture errorTexture;
+        sf::Sprite errorSprite;
+        errorTexture.loadFromFile("../image/errorWindowBack.png");
+        errorSprite.setTexture(errorTexture);
+        while (errorWindow.isOpen())
         {
-           cout << "osare gole lilium!!!!!!!!" << endl;
-        }
-        else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x + 160 &&
-            sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x + 432 &&
-            sf::Mouse::getPosition(window).y >=  labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 100 &&
-            sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 20)
+          while (errorWindow.pollEvent(errorEvent))
           {
-             cout << "osare gole magnolia!!!!!!!!" << endl;
+            if (errorEvent.type == sf::Event::Closed)
+              errorWindow.close();
           }
-     }
+          errorWindow.draw(errorSprite);
+          errorWindow.display();
+        }
+        cout << "kochic tar az 0" << endl;
+      }
+    }
+    else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x - 137 &&
+             sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x + 137 &&
+             sf::Mouse::getPosition(window).y >= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 100 &&
+             sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 20)
+    {
+      cout << "osare gole lilium!!!!!!!!" << endl;
+      if ((mainStore->maryam) > 0 && (mainStore->narges) > 0 && (mainStore->NumberOfWaterUnits) > 0)
+      {
+        (mainStore->maryam)--;
+        (mainStore->narges)--;
+        (mainStore->NumberOfWaterUnits)--;
+        (mainStore->liliumExtract)++;
+        ui x = mainStore->NumberOfWaterUnits;
+        StoreMenuTexts[0].setString(to_string(x));
+        StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+
+        cout << "lilium Bozorg tare !" << endl;
+      }
+      else
+      {
+        sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
+        sf::Event errorEvent;
+        sf::Texture errorTexture;
+        sf::Sprite errorSprite;
+        errorTexture.loadFromFile("../image/errorWindowBack.png");
+        errorSprite.setTexture(errorTexture);
+        while (errorWindow.isOpen())
+        {
+          while (errorWindow.pollEvent(errorEvent))
+          {
+            if (errorEvent.type == sf::Event::Closed)
+              errorWindow.close();
+          }
+          errorWindow.draw(errorSprite);
+          errorWindow.display();
+        }
+        cout << "lilium kochic tar az 0" << endl;
+      }
+    }
+
+    else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x + 160 &&
+             sf::Mouse::getPosition(window).x <= labRectangleSprite.getPosition().x + 432 &&
+             sf::Mouse::getPosition(window).y >= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 100 &&
+             sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 20)
+    {
+      cout << "osare gole magnolia!!!!!!!!" << endl;
+      if ((mainStore->lale) > 0 && (mainStore->kokab) > 0 && (mainStore->NumberOfWaterUnits) > 0)
+      {
+        (mainStore->lale)--;
+        (mainStore->kokab)--;
+        (mainStore->NumberOfWaterUnits)--;
+        (mainStore->magnoliaExtract)++;
+        ui x = mainStore->NumberOfWaterUnits;
+        StoreMenuTexts[0].setString(to_string(x));
+        StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+
+        cout << "magnolia Bozorg tare !" << endl;
+      }
+      else
+      {
+        sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
+        sf::Event errorEvent;
+        sf::Texture errorTexture;
+        sf::Sprite errorSprite;
+        errorTexture.loadFromFile("../image/errorWindowBack.png");
+        errorSprite.setTexture(errorTexture);
+        while (errorWindow.isOpen())
+        {
+          while (errorWindow.pollEvent(errorEvent))
+          {
+            if (errorEvent.type == sf::Event::Closed)
+              errorWindow.close();
+          }
+          errorWindow.draw(errorSprite);
+          errorWindow.display();
+        }
+        cout << "magnoli kochic tar az 0" << endl;
+      }
+    }
+  }
 }
 void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture &menuTexture,
                         sf::Sprite &menuSprite, sf::Texture *rectanglesTexture,
                         sf::Sprite *rectanglesSprite, sf::Text *text1, sf::Font &font,
-                        bool &clickOnSalesRoom, bool & clickOnLaboratory, Store *mainStore, sf::Text *StoreMenuTexts,
-                        sf::Text *text2, sf::Texture& labRectangleTexture, sf::Sprite& labRectangleSprite)
+                        bool &clickOnSalesRoom, bool &clickOnLaboratory, Store *mainStore, sf::Text *StoreMenuTexts,
+                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {

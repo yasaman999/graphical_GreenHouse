@@ -8,10 +8,9 @@
 typedef unsigned int ui;
 class Store // a singleton class
 {
-  friend void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &,sf::Text *);
-  friend void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &,sf::Text *);
-  //friend void rightColumnOfFlowerStore(sf::RenderWindow &, sf::Event &,
-  //                                   sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &);
+  friend void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
+  friend void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
+  friend void clickOnItemsOfLaboratory(sf::RenderWindow &, sf::Event &, sf::Sprite &, Store *, sf::Text *, sf::Sprite &);
 
 public:
   // void increase(std::string);
@@ -29,7 +28,10 @@ private:
   ui NumberOfWaterUnits = 0;
   ui NumberOfSoilUnits = 0;
   ui spray = 0;
-  ui extract = 0;
+  ui orkideExtract = 0;
+  ui liliumExtract = 0;
+  ui magnoliaExtract = 0;
+
   // bulbs
   ui ordinaryBulb = 0;
   ui rareBulb = 0;

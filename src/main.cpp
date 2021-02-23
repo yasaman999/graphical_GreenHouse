@@ -98,7 +98,7 @@ int main()
       }
       if(clickOnLaboratory)
       {
-        clickOnItemsOfLaboratory(mainWindow, mainEvent, labRectangleSprite);
+        clickOnItemsOfLaboratory(mainWindow, mainEvent, labRectangleSprite,mainStore,StoreMenuTexts,storeMenuSprite);
       }
 
     }
