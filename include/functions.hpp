@@ -6,7 +6,7 @@
 void setBackground(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setMenu(sf::RenderWindow &window, sf::Texture &, sf::Sprite &);
 void setElementsOfLabaratory(sf::RenderWindow&, sf::Event&, sf::Texture &, sf::Sprite&);
-void clickOnItemsOfLaboratory(sf::RenderWindow&,sf::Event& , sf::Sprite&,Store*,sf::Text*,sf::Sprite&);
+void clickOnItemsOfLaboratory(sf::RenderWindow&,sf::Event& , sf::Sprite&,Store*,sf::Text*,sf::Sprite&,sf::Text*);
 
 void clickOnItemsOfMenu(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &,
                         sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &,

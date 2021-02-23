@@ -10,7 +10,7 @@ class Store // a singleton class
 {
   friend void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
   friend void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
-  friend void clickOnItemsOfLaboratory(sf::RenderWindow &, sf::Event &, sf::Sprite &, Store *, sf::Text *, sf::Sprite &);
+  friend void clickOnItemsOfLaboratory(sf::RenderWindow &, sf::Event &, sf::Sprite &, Store *, sf::Text *, sf::Sprite &,sf::Text*);
 
 public:
   // void increase(std::string);
@@ -37,11 +37,11 @@ private:
   ui rareBulb = 0;
   ui decorativeBulb = 0;
   // flowers
-  ui kokab = 0;
-  ui narges = 0;
-  ui lale = 0;
-  ui maryam = 0;
-  ui sonbol = 0;
+  ui kokab = 3;
+  ui narges = 3;
+  ui lale = 3;
+  ui maryam = 1;
+  ui sonbol = 2;
   ui magnolia = 0;
   ui lilium = 0;
   ui orkide = 0;

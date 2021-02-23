@@ -19,7 +19,7 @@ void setElementsOfLabaratory(sf::RenderWindow &window, sf::Event &event, sf::Tex
   labRectangleSprite.setOrigin(sf::Vector2f(labRectangleSprite.getGlobalBounds().width / 2, 0));
   labRectangleSprite.setPosition(sf::Vector2f(window.getSize().x / 2, 130));
 }
-void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sprite &labRectangleSprite, Store *mainStore,sf::Text*StoreMenuTexts,sf::Sprite&storeMenuSprite)
+void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sprite &labRectangleSprite, Store *mainStore, sf::Text *StoreMenuTexts, sf::Sprite &storeMenuSprite, sf::Text *text2)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
@@ -35,9 +35,15 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         (mainStore->sonbol)--;
         (mainStore->orkideExtract)++;
         ui x = mainStore->NumberOfWaterUnits;
-        StoreMenuTexts[0].setString(to_string(x));
-        StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+        ui y = mainStore->orkideExtract;
+        ui z = mainStore->liliumExtract + mainStore->orkideExtract + mainStore->magnoliaExtract;
+        StoreMenuTexts[3].setString(to_string(z));
+        StoreMenuTexts[3].setPosition(sf::Vector2f(storeMenuSprite.getPosition().x + 80, storeMenuSprite.getPosition().y + 12));
 
+        StoreMenuTexts[0].setString(to_string(x));
+        StoreMenuTexts[17].setString(to_string(y));
+        StoreMenuTexts[17].setFillColor(sf::Color::White);
+        text2[13].setFillColor(sf::Color::White);
         cout << "bozorg tar az 0" << endl;
       }
       else
@@ -74,8 +80,15 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         (mainStore->NumberOfWaterUnits)--;
         (mainStore->liliumExtract)++;
         ui x = mainStore->NumberOfWaterUnits;
+        ui y = mainStore->liliumExtract;
         StoreMenuTexts[0].setString(to_string(x));
-        StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+        ui z = mainStore->liliumExtract + mainStore->orkideExtract + mainStore->magnoliaExtract;
+        StoreMenuTexts[3].setString(to_string(z));
+        StoreMenuTexts[3].setPosition(sf::Vector2f(storeMenuSprite.getPosition().x + 80, storeMenuSprite.getPosition().y + 12));
+
+        StoreMenuTexts[16].setString(to_string(y));
+        StoreMenuTexts[16].setFillColor(sf::Color::White);
+        text2[12].setFillColor(sf::Color::White);
 
         cout << "lilium Bozorg tare !" << endl;
       }
@@ -114,8 +127,15 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         (mainStore->NumberOfWaterUnits)--;
         (mainStore->magnoliaExtract)++;
         ui x = mainStore->NumberOfWaterUnits;
+        ui y = mainStore->magnoliaExtract;
+        ui z = mainStore->liliumExtract + mainStore->orkideExtract + mainStore->magnoliaExtract;
+        StoreMenuTexts[3].setString(to_string(z));
+        StoreMenuTexts[3].setPosition(sf::Vector2f(storeMenuSprite.getPosition().x+80,storeMenuSprite.getPosition().y+12));
+
         StoreMenuTexts[0].setString(to_string(x));
-        StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+        StoreMenuTexts[15].setString(to_string(y));
+        StoreMenuTexts[15].setFillColor(sf::Color::White);
+        text2[11].setFillColor(sf::Color::White);
 
         cout << "magnolia Bozorg tare !" << endl;
       }
