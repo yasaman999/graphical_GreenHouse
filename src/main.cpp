@@ -20,6 +20,9 @@ int main()
   sf::Texture menuTexture;
   sf::Sprite menuSprite;
   setMenu(mainWindow, menuTexture, menuSprite);
+  // vases of green house
+  Vase vases[10];
+
   //store menu
   sf::Texture storeMenuTexture;
   sf::Sprite storeMenuSprite;
@@ -64,8 +67,7 @@ int main()
   //----------------------------------
   bool clickOnSalesRoom;
   bool clickOnLaboratory;
-
-
+  bool clickOnGreenHouse;
 
   sf::RectangleShape test;
 
@@ -78,7 +80,8 @@ int main()
       {
         mainWindow.close();
       }
-      clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture, rectanglesSprite, text1,font, clickOnSalesRoom,clickOnLaboratory, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite);
+      clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture,menuSprite, rectanglesTexture,
+         rectanglesSprite, text1,font, clickOnSalesRoom,clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases);
       if (clickOnSalesRoom)
       {
         clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2);
@@ -111,7 +114,6 @@ int main()
     {
       //write title of tables.
       sf::Text storeText, salesRoomText;
-
       setTitleOfTables(rectanglesSprite, storeText, salesRoomText, font);
 
       mainWindow.draw(storeText);
@@ -145,6 +147,13 @@ int main()
     {
       mainWindow.draw(labRectangleSprite);
 
+    }
+    if(clickOnGreenHouse)
+    {
+      for (size_t i = 0; i < 10; i++)
+      {
+        mainWindow.draw(vases[i].get_vaseSprite());
+      }
     }
 
      // mainWindow.draw(test);

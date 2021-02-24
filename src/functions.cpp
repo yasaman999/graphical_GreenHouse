@@ -165,8 +165,8 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
 void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture &menuTexture,
                         sf::Sprite &menuSprite, sf::Texture *rectanglesTexture,
                         sf::Sprite *rectanglesSprite, sf::Text *text1, sf::Font &font,
-                        bool &clickOnSalesRoom, bool &clickOnLaboratory, Store *mainStore, sf::Text *StoreMenuTexts,
-                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite)
+                        bool &clickOnSalesRoom, bool &clickOnLaboratory, bool& clickOnGreenHouse, Store *mainStore, sf::Text *StoreMenuTexts,
+                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite, Vase * vases)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
@@ -178,6 +178,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
       cout << "profile" << endl;
       clickOnSalesRoom = false;
       clickOnLaboratory = false;
+      clickOnGreenHouse = false;
 
       menuTexture.loadFromFile("../image/menu/menu0.png");
     }
@@ -192,8 +193,9 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
       cout << "greenhouse!!" << endl;
       clickOnSalesRoom = false;
       clickOnLaboratory = false;
-
+      clickOnGreenHouse = true;
       menuTexture.loadFromFile("../image/menu/menu1.png");
+      setVases(window, event, vases);
     }
   }
   if (event.type == sf::Event::MouseButtonPressed)
@@ -206,6 +208,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
       cout << "froshgah!!" << endl;
       clickOnSalesRoom = true;
       clickOnLaboratory = false;
+      clickOnGreenHouse = false;
 
       menuTexture.loadFromFile("../image/menu/menu2.png");
       setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1);
@@ -222,6 +225,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
       cout << "azmayeshgah!!" << endl;
       clickOnSalesRoom = false;
       clickOnLaboratory = true;
+      clickOnGreenHouse = false;
+
       menuTexture.loadFromFile("../image/menu/menu3.png");
       setElementsOfLabaratory(window, event, labRectangleTexture, labRectangleSprite);
     }
@@ -428,3 +433,30 @@ void setTitleOfTables(sf::Sprite *rectanglesSprite, sf::Text &storeText, sf::Tex
   storeText.setPosition(sf::Vector2f(rectanglesSprite[0].getPosition().x - rectanglesSprite[0].getGlobalBounds().width / 2, rectanglesSprite[0].getPosition().y - 50));
   salesRoomText.setPosition(sf::Vector2f(rectanglesSprite[7].getPosition().x + rectanglesSprite[7].getGlobalBounds().width / 2, rectanglesSprite[7].getPosition().y - 50));
 }
+void setVases(sf::RenderWindow& window, sf::Event& event, Vase * vases)
+{
+  vases[0].set_locked(true);
+  vases[0].set_empty(false);
+
+  vases[0].set_vaseTexture("../image/empty.png");
+  for (size_t i = 1; i < 10; i++)
+  {
+    vases[i].set_vaseTexture("../image/lock.png");
+  }
+  for (size_t i = 0; i < 10; i++)
+  {
+    vases[i].set_vaseSprite();
+  }
+  for (size_t i = 0; i < 10; i++)
+  {
+    if(i >= 0 && i <= 4)
+    {
+      vases[i].set_positionOfVaseSprite((240.5 + i*120 + i*80), 130);
+    }
+    else
+    {
+      vases[i].set_positionOfVaseSprite((240.5 + (i-5)*120 + (i-5)*80), 400);
+    }
+  }
+}
+// 600  320    481->240.5 * 2

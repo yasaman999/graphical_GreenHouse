@@ -2,15 +2,16 @@
 #define FUNCTIONS_HPP
 #include <iostream>
 #include "store.hpp"
-
+#include "vase.hpp"
 void setBackground(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setMenu(sf::RenderWindow &window, sf::Texture &, sf::Sprite &);
 void setElementsOfLabaratory(sf::RenderWindow&, sf::Event&, sf::Texture &, sf::Sprite&);
 void clickOnItemsOfLaboratory(sf::RenderWindow&,sf::Event& , sf::Sprite&,Store*,sf::Text*,sf::Sprite&,sf::Text*);
+void setVases(sf::RenderWindow&, sf::Event&, Vase * vases);
 
 void clickOnItemsOfMenu(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &,
-                        sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &,
-                        Store *, sf::Text *, sf::Text *, sf::Texture&, sf::Sprite&);
+                        sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &, bool &,
+                        Store *, sf::Text *, sf::Text *, sf::Texture&, sf::Sprite&, Vase * vases);
 void setStoreMenu(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *);
 void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
