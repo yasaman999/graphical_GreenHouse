@@ -15,14 +15,15 @@ void clickOnItemsOfMenu(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Spri
                         sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &, bool &,
                         Store *, sf::Text *, sf::Text *, sf::Texture&, sf::Sprite&, Vase * vases);
 void setStoreMenu(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
-void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *);
+void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *,sf::Text *,sf::Text*,Store*);
 void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
 void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
 
 void rightColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *,int, Store *, sf::Text *, sf::Text *, sf::Font &);
 // void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &);
+bool confirmWindow();
 
-void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, Store *, sf::Text *, sf::Sprite &, sf::Text *);
+void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, Store *, sf::Text *, sf::Sprite &, sf::Text *, sf::Font& font);
 void setTitleOfTables(sf::Sprite *, sf::Text &, sf::Text &, sf::Font &);
 
 #endif // FUNCTIONS_HPP

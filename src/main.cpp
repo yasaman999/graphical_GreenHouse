@@ -57,10 +57,6 @@ int main()
   //------------------------------
   for (size_t i = 4; i < 18; i++)
   {
-    StoreMenuTexts[i].setString("0");
-  }
-  for (size_t i = 4; i < 18; i++)
-  {
     StoreMenuTexts[i].setFillColor(sf::Color(200, 100, 100));
   }
 
@@ -84,7 +80,7 @@ int main()
          rectanglesSprite, text1,font, clickOnSalesRoom,clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases);
       if (clickOnSalesRoom)
       {
-        clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2);
+        clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2 ,font);
 
         for (size_t i = 4; i < 18; i++)
         {
