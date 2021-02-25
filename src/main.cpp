@@ -85,9 +85,6 @@ int main()
       if (clickOnSalesRoom)
       {
         clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2);
-        // test.setPosition(sf::Vector2f(labRectangleSprite.getPosition().x + 432, labRectangleSprite.getPosition().y+labRectangleSprite.getGlobalBounds().height - 50));
-        // test.setSize(sf::Vector2f(3, 200));
-        // test.setFillColor(sf::Color::Blue);
 
         for (size_t i = 4; i < 18; i++)
         {
@@ -103,7 +100,14 @@ int main()
       {
         clickOnItemsOfLaboratory(mainWindow, mainEvent, labRectangleSprite,mainStore,StoreMenuTexts,storeMenuSprite,text2);
       }
+      if(clickOnGreenHouse)
+      {
+        // test.setPosition(sf::Vector2f(vases[5].get_vaseSprite().getPosition().x + vases[5].get_vaseSprite().getGlobalBounds().width - 1, vases[5].get_vaseSprite().getPosition().y+vases[5].get_vaseSprite().getGlobalBounds().height - 20));
+        // test.setSize(sf::Vector2f(2, 200));
+        // test.setFillColor(sf::Color::Black);
+        clickOnVases(mainWindow, mainEvent, vases, clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, rectanglesTexture, rectanglesSprite, font, text1, text2,StoreMenuTexts, mainStore);
 
+      }
     }
 
     mainWindow.display();
@@ -156,7 +160,7 @@ int main()
       }
     }
 
-     // mainWindow.draw(test);
+      //mainWindow.draw(test);
   }
 
   return 0;

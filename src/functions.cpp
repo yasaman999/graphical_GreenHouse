@@ -212,7 +212,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
 
       menuTexture.loadFromFile("../image/menu/menu2.png");
       setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1);
-      rightColumnOfFlowerStore(window, event, rectanglesSprite, mainStore, StoreMenuTexts, text2, font);
+      rightColumnOfFlowerStore(window, event, rectanglesSprite, 1, mainStore, StoreMenuTexts, text2, font);
     }
   }
   if (event.type == sf::Event::MouseButtonPressed)
@@ -369,7 +369,7 @@ void leftColumnOfSalesRoom(sf::RenderWindow &window,
 
 void rightColumnOfFlowerStore(sf::RenderWindow &window,
                               sf::Event &event, sf::Sprite *rectanglesSprite,
-                              Store *mainStore, sf::Text *StoreMenuTexts,
+                              int index, Store *mainStore, sf::Text *StoreMenuTexts,
                               sf::Text *text2, sf::Font &font)
 {
   for (size_t i = 0; i < 14; i++)
@@ -402,6 +402,41 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
       text2[i].setPosition(sf::Vector2f(rectanglesSprite[(i - 1) / 2].getPosition().x - rectanglesSprite[(i - 1) / 2].getGlobalBounds().width + 5, rectanglesSprite[(i - 1) / 2].getPosition().y + 2));
     }
   }
+  // if (event.type == sf::Event::MouseButtonPressed)
+  // {
+  //   if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x - rectanglesSprite[index].getGlobalBounds().width / 2 - 6 &&
+  //       sf::Mouse::getPosition(window).x <= rectanglesSprite[index].getPosition().x &&
+  //       sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
+  //       sf::Mouse::getPosition(window).y <= rectanglesSprite[index].getPosition().y + rectanglesSprite[index].getGlobalBounds().height)
+  //   {
+  //     if (index == 0)
+  //     {
+  //       (mainStore->rareBulb)++;
+  //       cout << "rareBulb : " << mainStore->rareBulb << endl;
+  //       ui x = mainStore->rareBulb;
+  //       StoreMenuTexts[13].setString(to_string(x));
+  //       StoreMenuTexts[13].setPosition(sf::Vector2f(rectanglesSprite[4].getPosition().x - rectanglesSprite[4].getGlobalBounds().width / 2 - 30, rectanglesSprite[4].getPosition().y + 2));
+  //       StoreMenuTexts[13].setFillColor(sf::Color::White);
+  //       text2[9].setFillColor(sf::Color::White);
+  //     }
+  //     else if (index == 1)
+  //     {
+  //       (mainStore->spray)++;
+  //       cout << "spray : " << mainStore->spray << endl;
+  //       ui x = mainStore->spray;
+  //       StoreMenuTexts[2].setString(to_string(x));
+  //       StoreMenuTexts[2].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 950, storeMenuSprite.getPosition().y + 12);
+  //     }
+  //     else if (index == 2)
+  //     {
+  //       (mainStore->NumberOfWaterUnits)++;
+  //       cout << "NumberOfWaterUnits : " << mainStore->NumberOfWaterUnits << endl;
+  //       ui x = mainStore->NumberOfWaterUnits;
+  //       StoreMenuTexts[0].setString(to_string(x));
+  //       StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+  //     }
+  //
+  //   }
 }
 
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite, sf::Event &event, Store *mainStore,
@@ -435,13 +470,30 @@ void setTitleOfTables(sf::Sprite *rectanglesSprite, sf::Text &storeText, sf::Tex
 }
 void setVases(sf::RenderWindow& window, sf::Event& event, Vase * vases)
 {
-  vases[0].set_locked(true);
-  vases[0].set_empty(false);
+  vases[0].set_locked(false);
+  vases[0].set_empty(true);
 
-  vases[0].set_vaseTexture("../image/empty.png");
-  for (size_t i = 1; i < 10; i++)
+  // vases[0].set_vaseTexture("../image/empty.png");
+  for (size_t i = 0; i < 10; i++)
   {
-    vases[i].set_vaseTexture("../image/lock.png");
+    if(vases[i].get_locked())
+    {
+      vases[i].set_vaseTexture("../image/lock.png");
+    }
+    else if(vases[i].get_empty())
+    {
+      vases[i].set_vaseTexture("../image/empty.png");
+    }
+    else if(vases[i].get_growing())
+    {
+      // contain 3 if (for levels of growing)
+      cout << "marhale growing dar setVases!!!" << endl;
+    }
+    else if(vases[i].get_readyToPick())
+    {
+      cout << "marhale readyToPickdar setVases!!!" << endl;
+    }
+
   }
   for (size_t i = 0; i < 10; i++)
   {
@@ -459,4 +511,146 @@ void setVases(sf::RenderWindow& window, sf::Event& event, Vase * vases)
     }
   }
 }
-// 600  320    481->240.5 * 2
+void clickOnVases(sf::RenderWindow& window, sf::Event& event, Vase * vases, bool & clickOnSalesRoom, bool & clickOnGreenHouse, bool & clickOnLaboratory, sf::Texture& menuTexture, sf::Texture* rectanglesTexture, sf::Sprite* rectanglesSprite, sf::Font& font, sf::Text * text1, sf::Text * text2, sf::Text * StoreMenuTexts, Store * mainStore)
+{
+  for (size_t i = 0; i < 10; i++)
+  {
+    if (event.type == sf::Event::MouseButtonPressed)
+    {
+      if(i < 5)
+      {
+        if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= vases[i].get_vaseSprite().getPosition().x - 1 &&
+        sf::Mouse::getPosition(window).x <= vases[i].get_vaseSprite().getPosition().x + vases[i].get_vaseSprite().getGlobalBounds().width - 1 &&
+        sf::Mouse::getPosition(window).y >= vases[0].get_vaseSprite().getPosition().y + vases[0].get_vaseSprite().getGlobalBounds().height - 23 &&
+        sf::Mouse::getPosition(window).y <= vases[0].get_vaseSprite().getPosition().y+vases[0].get_vaseSprite().getGlobalBounds().height - 5)
+        {
+          cout<<"hora roye dokmeye goldone "<<i<<" om click kardi!!!" << endl;
+          manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore);
+        }
+      } // end of if(i < 5)
+      else // if(i >= 5)
+      {
+        if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= vases[i].get_vaseSprite().getPosition().x - 1 &&
+        sf::Mouse::getPosition(window).x <= vases[i].get_vaseSprite().getPosition().x + vases[i].get_vaseSprite().getGlobalBounds().width - 1 &&
+        sf::Mouse::getPosition(window).y >= vases[5].get_vaseSprite().getPosition().y + vases[5].get_vaseSprite().getGlobalBounds().height - 23 &&
+        sf::Mouse::getPosition(window).y <= vases[5].get_vaseSprite().getPosition().y+vases[5].get_vaseSprite().getGlobalBounds().height - 5)
+        {
+          cout<<"hora roye dokmeye goldone "<<i<<" om click kardi!!!" << endl;
+          manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2,StoreMenuTexts, mainStore);
+
+        }
+
+      } // end of else
+    }
+  } // end of for loop
+} // end of clickOnVases function
+void manageVases(Vase & v, bool & clickOnSalesRoom, bool & clickOnGreenHouse, bool & clickOnLaboratory, sf::Texture & menuTexture, sf::RenderWindow& window, sf::Event& event, sf::Texture* rectanglesTexture, sf::Sprite* rectanglesSprite, sf::Font& font, sf::Text * text1, sf::Text * text2, sf::Text * StoreMenuTexts, Store * mainStore)
+{
+  if(v.get_locked())
+  {
+    cout << "marhale locked" << endl;
+    v.set_locked(false);
+    v.set_empty(true);
+    v.set_vaseTexture("../image/empty.png");
+    v.set_vaseSprite();
+  }
+  else if(v.get_empty())
+  {
+    cout << "marhale empty!!!" << endl;
+    clickOnSalesRoom = true;
+    clickOnLaboratory = false;
+    clickOnGreenHouse = false;
+    menuTexture.loadFromFile("../image/menu/menu2.png");
+    setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1);
+    rightColumnOfFlowerStore(window, event, rectanglesSprite, 1, mainStore, StoreMenuTexts, text2, font);
+  }
+  else if(v.get_growing())
+  {
+    cout << "marhale growing!!!" << endl;
+  }
+  else if(v.get_readyToPick())
+  {
+    cout << "marhale readyToPick!!!" << endl;
+  }
+}
+// void confirmWindow()
+// {
+//   sf::RenderWindow window(sf::VideoMode(549, 351), "confirm window")
+//   // background of window
+//   sf::Texture backgroundTexture;
+//   sf::Sprite backgroundSprite;
+//   backgroundTexture.loadFromFile("../images/confirmWindowBackground.png");
+//   backgroundSprite.setTexture(backgroundTexture);
+//   sf::Event event;
+//   sf::Text message, yes, no;
+//
+//   // set font of "message", "yes" and "no" Text
+//   message.setFont(font);
+//   yes.setFont(font);
+//   no.setFont(font);
+//
+//   // set size of "yes" and "no" Text(size of "message" default)
+//   yes.setCharacterSize(40);
+//   no.setCharacterSize(40);
+//
+//   // set string of "message", "yes" and "no" Text
+//   string str = tasks[i].get_task_name();
+//   message.setString("Are you sure to delete below task : \n" + str);
+//   yes.setString("YES");
+//   no.setString("NO");
+//
+//   // set color of "message", "yes" and "no" Text
+//   message.setFillColor(sf::Color::Black);
+//   yes.setFillColor(sf::Color::Black);
+//   no.setFillColor(sf::Color::Black);
+//
+//   yes.setOrigin(sf::Vector2f(yes.getGlobalBounds().width, 0));
+//   // set position of "yes" and "no" Text("message" default)
+//   yes.setPosition(sf::Vector2f(window3.getSize().x / 2 - 20, 500));
+//   no.setPosition(sf::Vector2f(window3.getSize().x / 2 + 20, 500));
+//
+//   //while user dose not click on the close button, YES
+//   // or NO , window3 is open
+//   while (window3.isOpen())
+//   {
+//     while (window3.pollEvent(event))
+//     {
+//       // if user clicks on the close button, window3 will be closed
+//       if (event.type == sf::Event::EventType::Closed)
+//       {
+//         window3.close();
+//       }
+//       // if user clicks on "NO", window3 will be closed
+//       if (event.type == sf::Event::EventType::MouseButtonPressed)
+//       {
+//         if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window3).x >= no.getPosition().x &&
+//             sf::Mouse::getPosition(window3).x <= no.getPosition().x + no.getGlobalBounds().width &&
+//             sf::Mouse::getPosition(window3).y >= no.getPosition().y &&
+//             sf::Mouse::getPosition(window3).y <= no.getPosition().y + no.getGlobalBounds().height)
+//         {
+//           window3.close();
+//         }
+//       }
+//       // if user clicks on "YES", task will be deleted and window3 will be closed
+//       if (event.type == sf::Event::EventType::MouseButtonPressed)
+//       {
+//         if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window3).x >= yes.getPosition().x - yes.getGlobalBounds().width &&
+//             sf::Mouse::getPosition(window3).x <= yes.getPosition().x &&
+//             sf::Mouse::getPosition(window3).y >= yes.getPosition().y &&
+//             sf::Mouse::getPosition(window3).y <= yes.getPosition().y + yes.getGlobalBounds().height)
+//         {
+//
+//           window3.close();
+//           tasks.erase(tasks.begin() + i);
+//         }
+//       }
+//     } // end of while(window3.pollEvent(event))
+//     window3.draw(window3BackgroundSprite);
+//     window3.draw(message);
+//     window3.draw(yes);
+//     window3.draw(no);
+//     window3.display();
+//   } // end of while(window3.isOpen())
+// } // end of manage_window3 function
+//
+// }
