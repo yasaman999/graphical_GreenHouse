@@ -166,7 +166,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
                         sf::Sprite &menuSprite, sf::Texture *rectanglesTexture,
                         sf::Sprite *rectanglesSprite, sf::Text *text1, sf::Font &font,
                         bool &clickOnSalesRoom, bool &clickOnLaboratory, bool &clickOnGreenHouse, Store *mainStore, sf::Text *StoreMenuTexts,
-                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite, Vase *vases)
+                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite, Vase *vases, bool &fromGreenHouse)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
@@ -209,7 +209,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
       clickOnSalesRoom = true;
       clickOnLaboratory = false;
       clickOnGreenHouse = false;
-
+      fromGreenHouse = false;
       menuTexture.loadFromFile("../image/menu/menu2.png");
       setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore);
     }
@@ -441,23 +441,29 @@ void leftColumnOfSalesRoom(sf::RenderWindow &window,
   }
 }
 
+//void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &)
+//{
+
+//}
+
 void rightColumnOfFlowerStore(sf::RenderWindow &window,
                               sf::Event &event, sf::Sprite *rectanglesSprite,
                               int index, Store *mainStore, sf::Text *StoreMenuTexts,
-                              sf::Text *text2, sf::Font &font)
+                              sf::Text *text2, sf::Font &font, bool &fromGreenHouse)
 {
   // cout<<"hello rightColumnOfFlowerStore function . "<<endl;
   if (event.type == sf::Event::MouseButtonPressed)
   {
+
+    //cout<<"in right"<<endl;
     if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x - rectanglesSprite[index].getGlobalBounds().width / 2 + 6 &&
         sf::Mouse::getPosition(window).x <= rectanglesSprite[index].getPosition().x &&
         sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
         sf::Mouse::getPosition(window).y <= rectanglesSprite[index].getPosition().y + rectanglesSprite[index].getGlobalBounds().height)
     {
-      cout << "hello if avval" << endl;
+      cout << "toye rightim alan" << endl;
       if (index == 0)
       {
-        cout << "index : " << index << endl;
         if (confirmWindow())
         {
           if (mainStore->magnolia > 0)
@@ -480,6 +486,11 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           {
             cout << "error_magnolia" << endl;
           }
+          cout << "+ daryaft kardam " << endl;
+        }
+        else
+        {
+          cout << "- daryaft kardam " << endl;
         }
       }
       else if (index == 1)
@@ -488,7 +499,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
         {
           if (mainStore->orkide > 0)
           {
-            (mainStore->orkide)--;
+            (mainStore->orkide--);
             ui x = (mainStore->orkide);
             StoreMenuTexts[6].setString(to_string(x));
             if (mainStore->orkide == 0)
@@ -562,6 +573,8 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
       }
       else if (index == 4)
       {
+        if (fromGreenHouse == false)
+        {
         if (confirmWindow())
         {
           if (mainStore->ordinaryBulb > 0)
@@ -582,12 +595,20 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_ordinaryBulb " << endl;
+            cout << "error_ordinarybulb " << endl;
           }
         }
+        }
+        else if (fromGreenHouse == true)
+        {
+          cout << "in right , fromGreenHouse==true , index==4" << endl;
+        }
       }
+
       else if (index == 5)
       {
+        if (fromGreenHouse == false)
+        {
         if (confirmWindow())
         {
           if (mainStore->decorativeBulb > 0)
@@ -608,16 +629,179 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_decorativeBulb" << endl;
+            cout << "error_decorativebulb " << endl;
           }
+        }
+        }
+        else if (fromGreenHouse == true)
+        {
+          cout << "in right , fromGreenHouse==true ,index==5" << endl;
         }
       }
     }
   }
 }
+
+void leftColumnOfFlowerStore(sf::RenderWindow &window,
+                             sf::Event &event, sf::Sprite *rectanglesSprite,
+                             int index, Store *mainStore, sf::Text *StoreMenuTexts,
+                             sf::Text *text2, sf::Font &font, bool &fromGreenHouse)
+{
+  // cout<<"hello rightColumnOfFlowerStore function . "<<endl;
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x - rectanglesSprite[index].getGlobalBounds().width &&
+        sf::Mouse::getPosition(window).x <= rectanglesSprite[index].getPosition().x - rectanglesSprite[index].getGlobalBounds().width / 2 - 6 &&
+        sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
+        sf::Mouse::getPosition(window).y <= rectanglesSprite[index].getPosition().y + rectanglesSprite[index].getGlobalBounds().height)
+    {
+      cout << "toye leftim alan" << endl;
+      if (index == 0)
+      {
+        cout << "index : " << index << endl;
+            if (confirmWindow())
+            {
+              if (mainStore->lilium > 0)
+              {
+                (mainStore->lilium)--;
+                ui x = (mainStore->lilium);
+                StoreMenuTexts[5].setString(to_string(x));
+                if (mainStore->lilium == 0)
+                {
+                  StoreMenuTexts[5].setFillColor(sf::Color(200, 100, 100));
+                  text2[1].setFillColor(sf::Color(200, 100, 100));
+                }
+                else
+                {
+                  StoreMenuTexts[5].setFillColor(sf::Color::White);
+                  text2[1].setFillColor(sf::Color::White);
+                }
+              }
+              else
+              {
+                cout << "error_lilium" << endl;
+              }
+            }
+
+      }
+      else if (index == 1)
+      {
+        if(fromGreenHouse==false)
+        {
+              if (mainStore->lale > 0)
+              {
+                (mainStore->lale)--;
+                ui x = (mainStore->lale);
+                StoreMenuTexts[7].setString(to_string(x));
+                if (mainStore->lale == 0)
+                {
+                  StoreMenuTexts[7].setFillColor(sf::Color(200, 100, 100));
+                  text2[3].setFillColor(sf::Color(200, 100, 100));
+                }
+                else
+                {
+                  StoreMenuTexts[7].setFillColor(sf::Color::White);
+                  text2[3].setFillColor(sf::Color::White);
+                }
+              }
+              else
+              {
+                cout << "error_lale " << endl;
+              }
+            }
+      }
+      else if (index == 2)
+      {
+            if (confirmWindow())
+            {
+              if (mainStore->sonbol > 0)
+              {
+                (mainStore->sonbol)--;
+                ui x = (mainStore->sonbol);
+                StoreMenuTexts[9].setString(to_string(x));
+                if (mainStore->sonbol == 0)
+                {
+                  StoreMenuTexts[9].setFillColor(sf::Color(200, 100, 100));
+                  text2[5].setFillColor(sf::Color(200, 100, 100));
+                }
+                else
+                {
+                  StoreMenuTexts[9].setFillColor(sf::Color::White);
+                  text2[5].setFillColor(sf::Color::White);
+                }
+              }
+              else
+              {
+                cout << "error_sonbol " << endl;
+              }
+            }
+      }
+      else if (index == 3)
+      {
+            if (confirmWindow())
+            {
+              if (mainStore->narges > 0)
+              {
+                (mainStore->narges)--;
+                ui x = (mainStore->narges);
+                StoreMenuTexts[11].setString(to_string(x));
+                if (mainStore->narges == 0)
+                {
+                  StoreMenuTexts[11].setFillColor(sf::Color(200, 100, 100));
+                  text2[7].setFillColor(sf::Color(200, 100, 100));
+                }
+                else
+                {
+                  StoreMenuTexts[11].setFillColor(sf::Color::White);
+                  text2[7].setFillColor(sf::Color::White);
+                }
+              }
+              else
+              {
+                cout << "error_narges" << endl;
+              }
+            }
+      }
+      else if (index == 4)
+      {
+        if (fromGreenHouse == false)
+        {
+          if (confirmWindow())
+          {
+            if (mainStore->rareBulb > 0)
+            {
+              (mainStore->rareBulb)--;
+              ui x = (mainStore->rareBulb);
+              StoreMenuTexts[13].setString(to_string(x));
+              if (mainStore->rareBulb == 0)
+              {
+                StoreMenuTexts[13].setFillColor(sf::Color(200, 100, 100));
+                text2[9].setFillColor(sf::Color(200, 100, 100));
+              }
+              else
+              {
+                StoreMenuTexts[13].setFillColor(sf::Color::White);
+                text2[9].setFillColor(sf::Color::White);
+              }
+            }
+            else
+            {
+              cout << "error_rarebulb " << endl;
+            }
+          }
+        }
+        else if (fromGreenHouse == true)
+        {
+          cout << "comfirm window2 rare bulb" << endl;
+        }
+      }
+    }
+  }
+}
+
 bool confirmWindow()
 {
-  cout << "hello confirmWindow function " << endl;
+  //cout << "hello confirmWindow function " << endl;
 
   sf::RenderWindow ConfirmWindoww(sf::VideoMode(549, 309), "confirm ConfirmWindoww");
   // background of ConfirmWindoww
@@ -631,7 +815,6 @@ bool confirmWindow()
 
   sf::Event event;
 
-  bool check;
   // sf::RectangleShape test;
   // test.setPosition(sf::Vector2f(375, 150));
   // test.setSize(sf::Vector2f(202, 2));
@@ -647,7 +830,7 @@ bool confirmWindow()
       if (event.type == sf::Event::EventType::Closed)
       {
         ConfirmWindoww.close();
-        check = false;
+        return false;
       }
       //if user clicks on "NO", ConfirmWindoww will be closed
       if (event.type == sf::Event::EventType::MouseButtonPressed)
@@ -658,8 +841,8 @@ bool confirmWindow()
             sf::Mouse::getPosition(ConfirmWindoww).y <= 176)
         {
           ConfirmWindoww.close();
-          check = false;
-          cout << "we are in no :/" << endl;
+          cout << "ghesmmat na da confirm " << endl;
+          return false;
         }
       }
       //if user clicks on "YES", task will be deleted and ConfirmWindoww will be closed
@@ -673,21 +856,89 @@ bool confirmWindow()
         {
 
           ConfirmWindoww.close();
-          check = true;
           cout << "we are in are :)" << endl;
+          return true;
         }
       }
     } // end of while(ConfirmWindoww.pollEvent(event))
     ConfirmWindoww.draw(backgroundSprite);
-   // ConfirmWindoww.draw(test);
+    // ConfirmWindoww.draw(test);
     ConfirmWindoww.display();
   } // end of while(window.isOpen())
+} // end of manage_window function
 
+bool confirmWindow2()
+{
+  cout << "hello confirmWindow2 function " << endl;
+
+  sf::RenderWindow ConfirmWindoww2(sf::VideoMode(556, 323), "confirm Window");
+  // background of ConfirmWindoww
+
+  sf::Texture backgroundTexture;
+
+  sf::Sprite backgroundSprite;
+  backgroundTexture.loadFromFile("../image/confirmWindow2.png");
+
+  backgroundSprite.setTexture(backgroundTexture);
+
+  sf::Event event;
+
+  bool check;
+  // sf::RectangleShape test;
+  // test.setPosition(sf::Vector2f(250, 173));
+  // test.setSize(sf::Vector2f(2, 200));
+  // test.setFillColor(sf::Color::Black);
+
+  //while user dose not click on the close button, YES
+  // or NO , ConfirmWindoww is open
+  while (ConfirmWindoww2.isOpen())
+  {
+    while (ConfirmWindoww2.pollEvent(event))
+    {
+      // if user clicks on the close button, ConfirmWindoww will be closed
+      if (event.type == sf::Event::EventType::Closed)
+      {
+        ConfirmWindoww2.close();
+        check = false;
+      }
+      //if user clicks on "NO", ConfirmWindoww will be closed
+      if (event.type == sf::Event::EventType::MouseButtonPressed)
+      {
+        if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(ConfirmWindoww2).x >= 147 &&
+            sf::Mouse::getPosition(ConfirmWindoww2).x <= 250 &&
+            sf::Mouse::getPosition(ConfirmWindoww2).y >= 173 &&
+            sf::Mouse::getPosition(ConfirmWindoww2).y <= 212)
+        {
+          ConfirmWindoww2.close();
+          check = false;
+          cout << "we are in no brfrosham :/" << endl;
+        }
+      }
+      //if user clicks on "YES", task will be deleted and ConfirmWindoww will be closed
+
+      if (event.type == sf::Event::EventType::MouseButtonPressed)
+      {
+        if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(ConfirmWindoww2).x >= 338 &&
+            sf::Mouse::getPosition(ConfirmWindoww2).x <= 441 &&
+            sf::Mouse::getPosition(ConfirmWindoww2).y >= 173 &&
+            sf::Mouse::getPosition(ConfirmWindoww2).y <= 212)
+        {
+
+          ConfirmWindoww2.close();
+          check = true;
+          cout << "we are in are kashtan :)" << endl;
+        }
+      }
+    } // end of while(ConfirmWindoww.pollEvent(event))
+    ConfirmWindoww2.draw(backgroundSprite);
+    // ConfirmWindoww.draw(test);
+    ConfirmWindoww2.display();
+  } // end of while(window.isOpen())
   return check;
 } // end of manage_window function
 
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite, sf::Event &event, Store *mainStore,
-                         sf::Text *StoreMenuTexts, sf::Sprite &storeMenuSprite, sf::Text *text2, sf::Font &font)
+                         sf::Text *StoreMenuTexts, sf::Sprite &storeMenuSprite, sf::Text *text2, sf::Font &font, bool &fromGreenHouse)
 {
   rightColumnOfSalesRoom(window, event, rectanglesSprite, 7, mainStore, StoreMenuTexts, storeMenuSprite, text2);
   rightColumnOfSalesRoom(window, event, rectanglesSprite, 8, mainStore, StoreMenuTexts, storeMenuSprite, text2);
@@ -696,10 +947,19 @@ void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite,
   leftColumnOfSalesRoom(window, event, rectanglesSprite, 8, mainStore, StoreMenuTexts, storeMenuSprite, text2);
   leftColumnOfSalesRoom(window, event, rectanglesSprite, 9, mainStore, StoreMenuTexts, storeMenuSprite, text2);
 
-  for (size_t j = 0; j < 7; j++)
-  {
-    rightColumnOfFlowerStore(window, event, rectanglesSprite, j, mainStore, StoreMenuTexts, text2, font);
-  }
+  leftColumnOfFlowerStore(window, event, rectanglesSprite, 0, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  leftColumnOfFlowerStore(window, event, rectanglesSprite, 1, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  leftColumnOfFlowerStore(window, event, rectanglesSprite, 2, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  leftColumnOfFlowerStore(window, event, rectanglesSprite, 3, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  leftColumnOfFlowerStore(window, event, rectanglesSprite, 4, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+
+  rightColumnOfFlowerStore(window, event, rectanglesSprite, 0, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  rightColumnOfFlowerStore(window, event, rectanglesSprite, 1, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  rightColumnOfFlowerStore(window, event, rectanglesSprite, 2, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  rightColumnOfFlowerStore(window, event, rectanglesSprite, 3, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  rightColumnOfFlowerStore(window, event, rectanglesSprite, 4, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+  rightColumnOfFlowerStore(window, event, rectanglesSprite, 5, mainStore, StoreMenuTexts, text2, font, fromGreenHouse);
+
 }
 
 void setTitleOfTables(sf::Sprite *rectanglesSprite, sf::Text &storeText, sf::Text &salesRoomText, sf::Font &font)
@@ -762,7 +1022,8 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
     }
   }
 }
-void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore)
+void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory,
+                  sf::Texture &menuTexture, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse)
 {
   for (size_t i = 0; i < 10; i++)
   {
@@ -776,7 +1037,7 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
             sf::Mouse::getPosition(window).y <= vases[0].get_vaseSprite().getPosition().y + vases[0].get_vaseSprite().getGlobalBounds().height - 5)
         {
           cout << "hora roye dokmeye goldone " << i << " om click kardi!!!" << endl;
-          manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore);
+          manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse);
         }
       }    // end of if(i < 5)
       else // if(i >= 5)
@@ -787,14 +1048,14 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
             sf::Mouse::getPosition(window).y <= vases[5].get_vaseSprite().getPosition().y + vases[5].get_vaseSprite().getGlobalBounds().height - 5)
         {
           cout << "hora roye dokmeye goldone " << i << " om click kardi!!!" << endl;
-          manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore);
+          manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse);
         }
 
       } // end of else
     }
   } // end of for loop
 } // end of clickOnVases function
-void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::RenderWindow &window, sf::Event &event, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore)
+void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::RenderWindow &window, sf::Event &event, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse)
 {
   if (v.get_locked())
   {
@@ -810,12 +1071,9 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
     clickOnSalesRoom = true;
     clickOnLaboratory = false;
     clickOnGreenHouse = false;
+    fromGreenHouse = true;
     menuTexture.loadFromFile("../image/menu/menu2.png");
     setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore);
-    for (size_t j = 0; j < 7; j++)
-    {
-      rightColumnOfFlowerStore(window, event, rectanglesSprite, j, mainStore, StoreMenuTexts, text2, font);
-    }
   }
   else if (v.get_growing())
   {

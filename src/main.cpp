@@ -30,13 +30,12 @@ int main()
   //table elements of store and salesRoom
   sf::Texture rectanglesTexture[14];
   sf::Sprite rectanglesSprite[14];
-  sf::Text text1[20];// for names of elements of sale room
-  sf::Text text2[14];// for names of flowers store's elements
+  sf::Text text1[20]; // for names of elements of sale room
+  sf::Text text2[14]; // for names of flowers store's elements
 
   // rectangle of lababoratory
   sf::Texture labRectangleTexture;
   sf::Sprite labRectangleSprite;
-
 
   for (size_t i = 0; i < 14; i++)
   {
@@ -64,7 +63,7 @@ int main()
   bool clickOnSalesRoom;
   bool clickOnLaboratory;
   bool clickOnGreenHouse;
-
+  bool fromGreenHouse = false;
   sf::RectangleShape test;
 
   while (mainWindow.isOpen())
@@ -76,11 +75,11 @@ int main()
       {
         mainWindow.close();
       }
-      clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture,menuSprite, rectanglesTexture,
-         rectanglesSprite, text1,font, clickOnSalesRoom,clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases);
+      clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture,
+                         rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases,fromGreenHouse);
       if (clickOnSalesRoom)
       {
-        clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2 ,font);
+        clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse);
 
         for (size_t i = 4; i < 18; i++)
         {
@@ -92,17 +91,16 @@ int main()
             StoreMenuTexts[i].setPosition(sf::Vector2f(rectanglesSprite[(i - 5) / 2].getPosition().x - rectanglesSprite[(i - 5) / 2].getGlobalBounds().width / 2 - 30, rectanglesSprite[(i - 5) / 2].getPosition().y + 2));
         }
       }
-      if(clickOnLaboratory)
+      if (clickOnLaboratory)
       {
-        clickOnItemsOfLaboratory(mainWindow, mainEvent, labRectangleSprite,mainStore,StoreMenuTexts,storeMenuSprite,text2);
+        clickOnItemsOfLaboratory(mainWindow, mainEvent, labRectangleSprite, mainStore, StoreMenuTexts, storeMenuSprite, text2);
       }
-      if(clickOnGreenHouse)
+      if (clickOnGreenHouse)
       {
         // test.setPosition(sf::Vector2f(vases[5].get_vaseSprite().getPosition().x + vases[5].get_vaseSprite().getGlobalBounds().width - 1, vases[5].get_vaseSprite().getPosition().y+vases[5].get_vaseSprite().getGlobalBounds().height - 20));
         // test.setSize(sf::Vector2f(2, 200));
         // test.setFillColor(sf::Color::Black);
-        clickOnVases(mainWindow, mainEvent, vases, clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, rectanglesTexture, rectanglesSprite, font, text1, text2,StoreMenuTexts, mainStore);
-
+        clickOnVases(mainWindow, mainEvent, vases, clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse);
       }
     }
 
@@ -143,12 +141,11 @@ int main()
       mainWindow.draw(StoreMenuTexts[i]);
     }
 
-    if(clickOnLaboratory)
+    if (clickOnLaboratory)
     {
       mainWindow.draw(labRectangleSprite);
-
     }
-    if(clickOnGreenHouse)
+    if (clickOnGreenHouse)
     {
       for (size_t i = 0; i < 10; i++)
       {
@@ -156,7 +153,7 @@ int main()
       }
     }
 
-      //mainWindow.draw(test);
+    //mainWindow.draw(test);
   }
 
   return 0;
