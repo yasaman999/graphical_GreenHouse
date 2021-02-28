@@ -17,6 +17,10 @@ store.hpp
 ../include/store.hpp
 vase.hpp
 ../include/vase.hpp
+cstdlib
+-
+time.h
+-
 
 ../include/store.hpp
 iostream
@@ -27,6 +31,8 @@ SFML/System.hpp
 -
 SFML/Window.hpp
 -
+vase.hpp
+../include/vase.hpp
 
 ../include/vase.hpp
 flower.hpp

@@ -25,7 +25,9 @@ CMakeFiles/app.dir/src/ordinaryflower.cpp.o: ../src/ordinaryflower.cpp
 CMakeFiles/app.dir/src/rareflower.cpp.o: ../include/flower.hpp
 CMakeFiles/app.dir/src/rareflower.cpp.o: ../src/rareflower.cpp
 
+CMakeFiles/app.dir/src/store.cpp.o: ../include/flower.hpp
 CMakeFiles/app.dir/src/store.cpp.o: ../include/store.hpp
+CMakeFiles/app.dir/src/store.cpp.o: ../include/vase.hpp
 CMakeFiles/app.dir/src/store.cpp.o: ../src/store.cpp
 
 CMakeFiles/app.dir/src/vase.cpp.o: ../include/flower.hpp

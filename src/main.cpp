@@ -64,6 +64,9 @@ int main()
   bool clickOnLaboratory;
   bool clickOnGreenHouse;
   bool fromGreenHouse = false;
+  Vase selectedVase;
+  Vase * vasePtr = & selectedVase;
+
   sf::RectangleShape test;
 
   while (mainWindow.isOpen())
@@ -79,7 +82,7 @@ int main()
                          rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases,fromGreenHouse);
       if (clickOnSalesRoom)
       {
-        clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse);
+        clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse, vasePtr);
 
         for (size_t i = 4; i < 18; i++)
         {
@@ -100,7 +103,7 @@ int main()
         // test.setPosition(sf::Vector2f(vases[5].get_vaseSprite().getPosition().x + vases[5].get_vaseSprite().getGlobalBounds().width - 1, vases[5].get_vaseSprite().getPosition().y+vases[5].get_vaseSprite().getGlobalBounds().height - 20));
         // test.setSize(sf::Vector2f(2, 200));
         // test.setFillColor(sf::Color::Black);
-        clickOnVases(mainWindow, mainEvent, vases, clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse);
+        clickOnVases(mainWindow, mainEvent, vases, clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse, vasePtr);
       }
     }
 
