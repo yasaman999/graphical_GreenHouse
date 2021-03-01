@@ -22,6 +22,8 @@ int main()
   setMenu(mainWindow, menuTexture, menuSprite);
   // vases of green house
   Vase vases[10];
+  vases[0].set_locked(false);
+  vases[0].set_empty(true);
 
   //store menu
   sf::Texture storeMenuTexture;
@@ -65,7 +67,7 @@ int main()
   bool clickOnGreenHouse;
   bool fromGreenHouse = false;
   Vase selectedVase;
-  Vase * vasePtr = & selectedVase;
+  Vase *vasePtr = &selectedVase;
 
   sf::RectangleShape test;
 
@@ -79,7 +81,7 @@ int main()
         mainWindow.close();
       }
       clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture,
-                         rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases,fromGreenHouse);
+                         rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse);
       if (clickOnSalesRoom)
       {
         clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse, vasePtr);

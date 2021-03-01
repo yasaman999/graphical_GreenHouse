@@ -5,8 +5,8 @@ typedef unsigned int ui;
 class Flower
 {
 private:
-    ui soil = 1;
-    ui water = 1;
+    bool soil = 0;
+    bool water = 0;
     float purchasePriceOfBulb;
     float salePriceOfBulb;
     float returnPrice;
@@ -18,6 +18,8 @@ public:
     ~Flower() {} //distructor
     virtual void set_name(std::string);
     virtual std::string get_name() const;
+    virtual bool get_water() const;
+    virtual void set_water(bool);
 
 protected:
     virtual float get_PurchasePriceOfBulb() const;
@@ -32,6 +34,8 @@ protected:
 //endl of Flower class
 class OrdinaryFlower final : public Flower //be final class
 {
+    // friend void manageVases(Vase &v, bool &, bool &, bool &clickOnLaboratory, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *, Store *, bool &, Vase *&);
+
 private:
 public:
     OrdinaryFlower() {}  //constructor
@@ -66,9 +70,11 @@ protected:
     virtual void set_salePriceOfFlowers();
 };
 //end of RareFlower class
-class decorativeFlower final :public Flower
+class decorativeFlower final : public Flower
 {
 private:
+    bool extract;
+
 public:
     decorativeFlower() {}
     ~decorativeFlower() {}

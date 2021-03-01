@@ -10,8 +10,8 @@ void setMenu(sf::RenderWindow &window, sf::Texture &, sf::Sprite &);
 void setElementsOfLabaratory(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &);
 void clickOnItemsOfLaboratory(sf::RenderWindow &, sf::Event &, sf::Sprite &, Store *, sf::Text *, sf::Sprite &, sf::Text *);
 void setVases(sf::RenderWindow &, sf::Event &, Vase *vases);
-void clickOnVases(sf::RenderWindow &, sf::Event &, Vase *, bool &, bool &, bool &, sf::Texture &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase * &);
-void manageVases(Vase &, bool &, bool &, bool &, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase * &);
+void clickOnVases(sf::RenderWindow &, sf::Event &, Vase *, bool &, bool &, bool &, sf::Texture &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase *&);
+void manageVases(Vase &, bool &, bool &, bool &, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase *&);
 
 void clickOnItemsOfMenu(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &,
                         sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &, bool &,
@@ -21,11 +21,14 @@ void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, 
 void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
 void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
 
-void rightColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase * &);
-void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase * &);
+void rightColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase *&);
+void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase *&);
 bool confirmWindow();
 bool confirmWindow2();
-void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, Store *, sf::Text *, sf::Sprite &, sf::Text *, sf::Font &font, bool &, Vase * &);
+void errorWindow();
+bool waterWindow();
+void giveWater(Vase &,Store*,sf::Text*,ui);
+void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, Store *, sf::Text *, sf::Sprite &, sf::Text *, sf::Font &font, bool &, Vase *&);
 void setTitleOfTables(sf::Sprite *, sf::Text &, sf::Text &, sf::Font &);
 
 #endif // FUNCTIONS_HPP

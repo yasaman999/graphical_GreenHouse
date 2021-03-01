@@ -9,7 +9,7 @@
 class Vase
 {
 private:
-    Flower* flower;
+    Flower *flower;
     bool locked = true;
     bool empty = false;
     bool growing = false;
@@ -18,6 +18,7 @@ private:
     sf::Sprite vaseSprite;
     sf::Texture stateTexture;
     sf::Sprite stateSprite;
+
 public:
     // set functions
     void set_locked(bool);
@@ -27,12 +28,13 @@ public:
     void set_vaseTexture(std::string);
     void set_vaseSprite();
     void set_positionOfVaseSprite(float x, float y);
+    void set_flower(int type, std::string name);
     // get functions
     bool get_locked();
     bool get_empty();
     bool get_growing();
     bool get_readyToPick();
     sf::Sprite get_vaseSprite();
-
+    Flower *get_flowerStar();
 };
 #endif // VASE_HPP

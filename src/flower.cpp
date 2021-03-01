@@ -40,3 +40,13 @@ std::string Flower::get_name() const
 {
     return name;
 }
+
+bool Flower::get_water() const
+{
+    return water;
+}
+
+void Flower::set_water(bool num)
+{
+    water = num;
+}

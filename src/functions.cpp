@@ -436,15 +436,10 @@ void leftColumnOfSalesRoom(sf::RenderWindow &window,
   }
 }
 
-//void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &)
-//{
-
-//}
-
 void rightColumnOfFlowerStore(sf::RenderWindow &window,
                               sf::Event &event, sf::Sprite *rectanglesSprite,
                               int index, Store *mainStore, sf::Text *StoreMenuTexts,
-                              sf::Text *text2, sf::Font &font, bool &fromGreenHouse, bool & checkCallFunction, Vase * & vasePtr)
+                              sf::Text *text2, sf::Font &font, bool &fromGreenHouse, bool &checkCallFunction, Vase *&vasePtr)
 {
   // cout<<"hello rightColumnOfFlowerStore function . "<<endl;
   if (event.type == sf::Event::MouseButtonPressed)
@@ -564,34 +559,34 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
       {
         if (fromGreenHouse == false)
         {
-        if (confirmWindow())
-        {
-          if (mainStore->ordinaryBulb > 0)
+          if (confirmWindow())
           {
-            (mainStore->ordinaryBulb)--;
-            ui x = (mainStore->ordinaryBulb);
-            StoreMenuTexts[12].setString(to_string(x));
-            if (mainStore->ordinaryBulb == 0)
+            if (mainStore->ordinaryBulb > 0)
             {
-              StoreMenuTexts[12].setFillColor(sf::Color(200, 100, 100));
-              text2[8].setFillColor(sf::Color(200, 100, 100));
+              (mainStore->ordinaryBulb)--;
+              ui x = (mainStore->ordinaryBulb);
+              StoreMenuTexts[12].setString(to_string(x));
+              if (mainStore->ordinaryBulb == 0)
+              {
+                StoreMenuTexts[12].setFillColor(sf::Color(200, 100, 100));
+                text2[8].setFillColor(sf::Color(200, 100, 100));
+              }
+              else
+              {
+                StoreMenuTexts[12].setFillColor(sf::Color::White);
+                text2[8].setFillColor(sf::Color::White);
+              }
             }
             else
             {
-              StoreMenuTexts[12].setFillColor(sf::Color::White);
-              text2[8].setFillColor(sf::Color::White);
+              cout << "error_ordinarybulb " << endl;
             }
           }
-          else
-          {
-            cout << "error_ordinarybulb " << endl;
-          }
-        }
         }
         else if (fromGreenHouse == true)
         {
           cout << "in right , fromGreenHouse==true , index==4" << endl;
-          if(confirmWindow2())
+          if (confirmWindow2())
           {
             cout << "mikham bekaram!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
@@ -611,21 +606,21 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
               }
               vasePtr->set_empty(false);
               vasePtr->set_growing(true);
-              srand (time(NULL));
+              srand(time(NULL));
               int randomFlower = rand() % 2 + 1;
-              if(randomFlower == 1) // kokab flower will be planted
+              if (randomFlower == 1) // kokab flower will be planted
               {
                 cout << "kokab flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower1-3.png");
+                vasePtr->set_vaseTexture("../image/kokab0.png");
+                vasePtr->set_flower(1, "kokab");
               }
               else // narges flower will be planted
               {
                 cout << "narges flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower2-3.png");
-
+                vasePtr->set_vaseTexture("../image/narges0.png");
+                vasePtr->set_flower(1, "narges");
               }
               vasePtr->set_vaseSprite();
-
             }
             else
             {
@@ -634,7 +629,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else // if(confirmWindow2() == false)
           {
-            cout << "mikham befrosham!!!(right 4)"<< endl;
+            cout << "mikham befrosham!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
             {
               (mainStore->ordinaryBulb)--;
@@ -655,7 +650,6 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             {
               cout << "error_ordinarybulb" << endl;
             }
-
           }
         }
       }
@@ -664,34 +658,34 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
       {
         if (fromGreenHouse == false)
         {
-        if (confirmWindow())
-        {
-          if (mainStore->decorativeBulb > 0)
+          if (confirmWindow())
           {
-            (mainStore->decorativeBulb)--;
-            ui x = (mainStore->decorativeBulb);
-            StoreMenuTexts[14].setString(to_string(x));
-            if (mainStore->decorativeBulb == 0)
+            if (mainStore->decorativeBulb > 0)
             {
-              StoreMenuTexts[14].setFillColor(sf::Color(200, 100, 100));
-              text2[10].setFillColor(sf::Color(200, 100, 100));
+              (mainStore->decorativeBulb)--;
+              ui x = (mainStore->decorativeBulb);
+              StoreMenuTexts[14].setString(to_string(x));
+              if (mainStore->decorativeBulb == 0)
+              {
+                StoreMenuTexts[14].setFillColor(sf::Color(200, 100, 100));
+                text2[10].setFillColor(sf::Color(200, 100, 100));
+              }
+              else
+              {
+                StoreMenuTexts[14].setFillColor(sf::Color::White);
+                text2[10].setFillColor(sf::Color::White);
+              }
             }
             else
             {
-              StoreMenuTexts[14].setFillColor(sf::Color::White);
-              text2[10].setFillColor(sf::Color::White);
+              cout << "error_decorativebulb " << endl;
             }
           }
-          else
-          {
-            cout << "error_decorativebulb " << endl;
-          }
-        }
         }
         else if (fromGreenHouse == true)
         {
           cout << "in right , fromGreenHouse==true ,index==5" << endl;
-          if(confirmWindow2())
+          if (confirmWindow2())
           {
             cout << "mikham bekaram!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
@@ -711,30 +705,29 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
               }
               vasePtr->set_empty(false);
               vasePtr->set_growing(true);
-              srand (time(NULL));
+              srand(time(NULL));
               int randomFlower = rand() % 3 + 1;
-              if(randomFlower == 1) // magnolia flower will be planted
+              if (randomFlower == 1) // magnolia flower will be planted
               {
                 cout << "magnolia flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower6-3.png");
+                vasePtr->set_vaseTexture("../image/magnolia0.png");
                 vasePtr->set_vaseSprite();
-
+                vasePtr->set_flower(3, "magnolia");
               }
-              else if(randomFlower==2)// lilium flower will be planted
+              else if (randomFlower == 2) // lilium flower will be planted
               {
                 cout << "lilium flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower7-3.png");
+                vasePtr->set_vaseTexture("../image/lilium0.png");
                 vasePtr->set_vaseSprite();
-
+                vasePtr->set_flower(3, "lilium");
               }
               else // orkide flower will be planted
               {
                 cout << "orkide flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower8-3.png");
+                vasePtr->set_vaseTexture("../image/orkide0.png");
                 vasePtr->set_vaseSprite();
+                vasePtr->set_flower(3, "orkide");
               }
-
-
             }
             else
             {
@@ -743,7 +736,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else // if(confirmWindow2() == false)
           {
-            cout << "mikham befrosham!!!(right 5)"<< endl;
+            cout << "mikham befrosham!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
             {
               (mainStore->decorativeBulb)--;
@@ -764,9 +757,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             {
               cout << "error_decorativebulb" << endl;
             }
-
           }
-
         }
       }
     }
@@ -776,7 +767,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
 void leftColumnOfFlowerStore(sf::RenderWindow &window,
                              sf::Event &event, sf::Sprite *rectanglesSprite,
                              int index, Store *mainStore, sf::Text *StoreMenuTexts,
-                             sf::Text *text2, sf::Font &font, bool &fromGreenHouse, bool & checkCallFunction, Vase * & vasePtr)
+                             sf::Text *text2, sf::Font &font, bool &fromGreenHouse, bool &checkCallFunction, Vase *&vasePtr)
 {
   // cout<<"hello rightColumnOfFlowerStore function . "<<endl;
   if (event.type == sf::Event::MouseButtonPressed)
@@ -790,30 +781,29 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
       checkCallFunction = true;
       if (index == 0)
       {
-            if (confirmWindow())
+        if (confirmWindow())
+        {
+          if (mainStore->lilium > 0)
+          {
+            (mainStore->lilium)--;
+            ui x = (mainStore->lilium);
+            StoreMenuTexts[5].setString(to_string(x));
+            if (mainStore->lilium == 0)
             {
-              if (mainStore->lilium > 0)
-              {
-                (mainStore->lilium)--;
-                ui x = (mainStore->lilium);
-                StoreMenuTexts[5].setString(to_string(x));
-                if (mainStore->lilium == 0)
-                {
-                  StoreMenuTexts[5].setFillColor(sf::Color(200, 100, 100));
-                  text2[1].setFillColor(sf::Color(200, 100, 100));
-                }
-                else
-                {
-                  StoreMenuTexts[5].setFillColor(sf::Color::White);
-                  text2[1].setFillColor(sf::Color::White);
-                }
-              }
-              else
-              {
-                cout << "error_lilium" << endl;
-              }
+              StoreMenuTexts[5].setFillColor(sf::Color(200, 100, 100));
+              text2[1].setFillColor(sf::Color(200, 100, 100));
             }
-
+            else
+            {
+              StoreMenuTexts[5].setFillColor(sf::Color::White);
+              text2[1].setFillColor(sf::Color::White);
+            }
+          }
+          else
+          {
+            cout << "error_lilium" << endl;
+          }
+        }
       }
       else if (index == 1)
       {
@@ -828,72 +818,70 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             {
               StoreMenuTexts[7].setFillColor(sf::Color(200, 100, 100));
               text2[3].setFillColor(sf::Color(200, 100, 100));
-             }
-             else
-             {
-                StoreMenuTexts[7].setFillColor(sf::Color::White);
-                text2[3].setFillColor(sf::Color::White);
-              }
             }
             else
             {
-              cout << "error_lale " << endl;
+              StoreMenuTexts[7].setFillColor(sf::Color::White);
+              text2[3].setFillColor(sf::Color::White);
             }
-
+          }
+          else
+          {
+            cout << "error_lale " << endl;
+          }
         }
-
       }
       else if (index == 2)
       {
-            if (confirmWindow())
+        if (confirmWindow())
+        {
+          if (mainStore->sonbol > 0)
+          {
+            (mainStore->sonbol)--;
+            ui x = (mainStore->sonbol);
+            StoreMenuTexts[9].setString(to_string(x));
+            if (mainStore->sonbol == 0)
             {
-              if (mainStore->sonbol > 0)
-              {
-                (mainStore->sonbol)--;
-                ui x = (mainStore->sonbol);
-                StoreMenuTexts[9].setString(to_string(x));
-                if (mainStore->sonbol == 0)
-                {
-                  StoreMenuTexts[9].setFillColor(sf::Color(200, 100, 100));
-                  text2[5].setFillColor(sf::Color(200, 100, 100));
-                }
-                else
-                {
-                  StoreMenuTexts[9].setFillColor(sf::Color::White);
-                  text2[5].setFillColor(sf::Color::White);
-                }
-              }
-              else
-              {
-                cout << "error_sonbol " << endl;
-              }
+              StoreMenuTexts[9].setFillColor(sf::Color(200, 100, 100));
+              text2[5].setFillColor(sf::Color(200, 100, 100));
             }
+            else
+            {
+              StoreMenuTexts[9].setFillColor(sf::Color::White);
+              text2[5].setFillColor(sf::Color::White);
+            }
+          }
+          else
+          {
+            cout << "error_sonbol " << endl;
+          }
+        }
       }
       else if (index == 3)
       {
-            if (confirmWindow())
+        if (confirmWindow())
+        {
+          if (mainStore->narges > 0)
+          {
+            (mainStore->narges)--;
+            ui x = (mainStore->narges);
+            StoreMenuTexts[11].setString(to_string(x));
+            if (mainStore->narges == 0)
             {
-              if (mainStore->narges > 0)
-              {
-                (mainStore->narges)--;
-                ui x = (mainStore->narges);
-                StoreMenuTexts[11].setString(to_string(x));
-                if (mainStore->narges == 0)
-                {
-                  StoreMenuTexts[11].setFillColor(sf::Color(200, 100, 100));
-                  text2[7].setFillColor(sf::Color(200, 100, 100));
-                }
-                else
-                {
-                  StoreMenuTexts[11].setFillColor(sf::Color::White);
-                  text2[7].setFillColor(sf::Color::White);
-                }
-              }
-              else
-              {
-                cout << "error_narges" << endl;
-              }
+              StoreMenuTexts[11].setFillColor(sf::Color(200, 100, 100));
+              text2[7].setFillColor(sf::Color(200, 100, 100));
             }
+            else
+            {
+              StoreMenuTexts[11].setFillColor(sf::Color::White);
+              text2[7].setFillColor(sf::Color::White);
+            }
+          }
+          else
+          {
+            cout << "error_narges" << endl;
+          }
+        }
       }
       else if (index == 4)
       {
@@ -926,7 +914,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
         else if (fromGreenHouse == true)
         {
           cout << "in left , fromGreenHouse==true ,index==4" << endl;
-          if(confirmWindow2())
+          if (confirmWindow2())
           {
             cout << "mikham bekaram!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
@@ -946,30 +934,29 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
               }
               vasePtr->set_empty(false);
               vasePtr->set_growing(true);
-              srand (time(NULL));
+              srand(time(NULL));
               int randomFlower = rand() % 3 + 1;
-              if(randomFlower == 1) // lale flower will be planted
+              if (randomFlower == 1) // lale flower will be planted
               {
                 cout << "lale flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower3-3.png");
+                vasePtr->set_vaseTexture("../image/lale0.png");
                 vasePtr->set_vaseSprite();
-
+                vasePtr->set_flower(2, "lale");
               }
-              else if(randomFlower==2)// maryam flower will be planted
+              else if (randomFlower == 2) // maryam flower will be planted
               {
                 cout << "maryam flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower4-3.png");
+                vasePtr->set_vaseTexture("../image/maryam0.png");
                 vasePtr->set_vaseSprite();
-
+                vasePtr->set_flower(2, "maryam");
               }
               else // sonbol flower will be planted
               {
                 cout << "sonbol flower" << endl;
-                vasePtr->set_vaseTexture("../image/flower5-3.png");
+                vasePtr->set_vaseTexture("../image/sonbol0.png");
                 vasePtr->set_vaseSprite();
-
+                vasePtr->set_flower(2, "sonbol");
               }
-
             }
             else
             {
@@ -978,7 +965,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else // if(confirmWindow2() == false)
           {
-            cout << "mikham befrosham!!!(left 4)"<< endl;
+            cout << "mikham befrosham!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
             {
               (mainStore->rareBulb)--;
@@ -999,9 +986,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             {
               cout << "error_rarebulb" << endl;
             }
-
           }
-
         }
       }
     }
@@ -1117,7 +1102,6 @@ bool confirmWindow2()
         {
           ConfirmWindoww2.close();
           check = false;
-
         }
       }
       //if user clicks on "YES", task will be deleted and ConfirmWindoww will be closed
@@ -1141,9 +1125,121 @@ bool confirmWindow2()
   } // end of while(window.isOpen())
   return check;
 } // end of manage_window function
+void errorWindow()
+{
+  sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
+  sf::Event errorEvent;
+  sf::Texture errorTexture;
+  sf::Sprite errorSprite;
+  errorTexture.loadFromFile("../image/errorWindowBack.png");
+  errorSprite.setTexture(errorTexture);
+  while (errorWindow.isOpen())
+  {
+    while (errorWindow.pollEvent(errorEvent))
+    {
+      if (errorEvent.type == sf::Event::Closed)
+        errorWindow.close();
+    }
+    errorWindow.draw(errorSprite);
+    errorWindow.display();
+  }
+}
+
+bool waterWindow()
+{
+  sf::RenderWindow waterWin(sf::VideoMode(477, 342), "Water Window");
+  sf::Texture waterTexture;
+  waterTexture.loadFromFile("../image/waterWindow.png");
+  sf::Sprite waterSprite;
+  waterSprite.setTexture(waterTexture);
+  sf::Event waterEvent;
+  bool check = false;
+  // sf::RectangleShape test;
+  // test.setSize(sf::Vector2f(200, 2));
+  // test.setPosition(sf::Vector2f(200, 215));
+  while (waterWin.isOpen())
+  {
+    while (waterWin.pollEvent(waterEvent))
+    {
+      if (waterEvent.type == sf::Event::Closed)
+      {
+        waterWin.close();
+        check = false;
+      }
+      if (waterEvent.type == sf::Event::MouseButtonPressed)
+      {
+        if (waterEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(waterWin).x >= 150 &&
+            sf::Mouse::getPosition(waterWin).x <= 297 &&
+            sf::Mouse::getPosition(waterWin).y >= 159 &&
+            sf::Mouse::getPosition(waterWin).y <= 213)
+        {
+          check = true;
+          waterWin.close();
+        }
+      }
+    }
+    waterWin.display();
+    waterWin.draw(waterSprite);
+    //waterWin.draw(test);
+  }
+  return check;
+}
+
+void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
+{
+  if (waterWindow())
+  {
+    cout << "aab dadan :)" << endl;
+    if (mainStore->NumberOfWaterUnits >0)
+    {
+      --(mainStore->NumberOfWaterUnits);
+      ui x = mainStore->NumberOfWaterUnits;
+      StoreMenuTexts[0].setString(to_string(x));
+      if (type == 1)
+      {
+        if (v.get_flowerStar()->get_name() == "narges")
+        {
+          v.set_vaseTexture("../image/narges1.png");
+          v.set_vaseSprite();
+        }
+        else
+        {
+          v.set_vaseTexture("../image/kokab1.png");
+          v.set_vaseSprite();
+        }
+        v.get_flowerStar()->set_water(1);
+      }
+      else if (type == 2)
+      {
+        if (v.get_flowerStar()->get_name() == "maryam")
+        {
+          v.set_vaseTexture("../image/maryam1.png");
+          v.set_vaseSprite();
+        }
+        else if (v.get_flowerStar()->get_name() == "sonbol")
+        {
+          v.set_vaseTexture("../image/sonbol1.png");
+          v.set_vaseSprite();
+        }
+        else if (v.get_flowerStar()->get_name() == "lale")
+        {
+          v.set_vaseTexture("../image/lale1.png");
+          v.set_vaseSprite();
+        }
+      }
+      else
+      {
+      }
+    }
+    else
+    {
+      errorWindow();
+    }
+  }
+}
 
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite, sf::Event &event, Store *mainStore,
-                         sf::Text *StoreMenuTexts, sf::Sprite &storeMenuSprite, sf::Text *text2, sf::Font &font, bool &fromGreenHouse, Vase * & vasePtr)
+                         sf::Text *StoreMenuTexts, sf::Sprite &storeMenuSprite, sf::Text *text2, sf::Font &font, bool &fromGreenHouse, Vase *&vasePtr)
 {
   bool checkCallFunction = false;
   rightColumnOfSalesRoom(window, event, rectanglesSprite, 7, mainStore, StoreMenuTexts, storeMenuSprite, text2);
@@ -1154,27 +1250,26 @@ void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite,
   leftColumnOfSalesRoom(window, event, rectanglesSprite, 9, mainStore, StoreMenuTexts, storeMenuSprite, text2);
 
   leftColumnOfFlowerStore(window, event, rectanglesSprite, 0, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     leftColumnOfFlowerStore(window, event, rectanglesSprite, 1, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     leftColumnOfFlowerStore(window, event, rectanglesSprite, 2, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     leftColumnOfFlowerStore(window, event, rectanglesSprite, 3, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     leftColumnOfFlowerStore(window, event, rectanglesSprite, 4, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     rightColumnOfFlowerStore(window, event, rectanglesSprite, 0, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     rightColumnOfFlowerStore(window, event, rectanglesSprite, 1, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     rightColumnOfFlowerStore(window, event, rectanglesSprite, 2, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     rightColumnOfFlowerStore(window, event, rectanglesSprite, 3, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     rightColumnOfFlowerStore(window, event, rectanglesSprite, 4, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-  if(!checkCallFunction)
+  if (!checkCallFunction)
     rightColumnOfFlowerStore(window, event, rectanglesSprite, 5, mainStore, StoreMenuTexts, text2, font, fromGreenHouse, checkCallFunction, vasePtr);
-
 }
 
 void setTitleOfTables(sf::Sprite *rectanglesSprite, sf::Text &storeText, sf::Text &salesRoomText, sf::Font &font)
@@ -1197,8 +1292,6 @@ void setTitleOfTables(sf::Sprite *rectanglesSprite, sf::Text &storeText, sf::Tex
 }
 void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
 {
-  vases[0].set_locked(false);
-  vases[0].set_empty(true);
 
   // vases[0].set_vaseTexture("../image/empty.png");
   for (size_t i = 0; i < 10; i++)
@@ -1238,7 +1331,7 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
   }
 }
 void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory,
-                  sf::Texture &menuTexture, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse, Vase * & vasePtr)
+                  sf::Texture &menuTexture, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse, Vase *&vasePtr)
 {
   for (size_t i = 0; i < 10; i++)
   {
@@ -1270,7 +1363,7 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
     }
   } // end of for loop
 } // end of clickOnVases function
-void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::RenderWindow &window, sf::Event &event, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse, Vase * & vasePtr)
+void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::RenderWindow &window, sf::Event &event, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse, Vase *&vasePtr)
 {
   if (v.get_locked())
   {
@@ -1292,11 +1385,39 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
     cout << "manageVases -> v -> get_locked : " << v.get_locked() << endl;
     vasePtr = &v;
     cout << "manageVases -> vasePtr -> get_locked : " << vasePtr->get_locked() << endl;
-
   }
   else if (v.get_growing())
   {
     cout << "marhale growing!!!" << endl;
+    OrdinaryFlower *ordinaryPtr = nullptr;
+    RareFlower *rarePtr = nullptr;
+    decorativeFlower *decorativePtr = nullptr;
+    ordinaryPtr = dynamic_cast<OrdinaryFlower *>(v.get_flowerStar());
+    rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
+    decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
+    if (ordinaryPtr != nullptr)
+    {
+      if (!v.get_flowerStar()->get_water())
+      {
+        giveWater(v, mainStore, StoreMenuTexts, 1);
+      }
+    }
+    else if (rarePtr != nullptr)
+    {
+      if (!v.get_flowerStar()->get_water())
+      {
+        giveWater(v, mainStore, StoreMenuTexts, 2);
+      }
+    }
+    else if (decorativePtr != nullptr)
+    {
+      if (!v.get_flowerStar()->get_water())
+      {
+        giveWater(v, mainStore, StoreMenuTexts, 3);
+      }
+    }
+
+    //if()
   }
   else if (v.get_readyToPick())
   {

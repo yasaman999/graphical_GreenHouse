@@ -1,4 +1,4 @@
-# Install script for directory: /home/yasaman/Desktop/AP/GREENHOUSE_TODO/graphical_GreenHouse
+# Install script for directory: /mnt/c/Users/Parsian.system/Desktop/f4/graphical_GreenHouse
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/yasaman/Desktop/AP/GREENHOUSE_TODO/graphical_GreenHouse/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/Parsian.system/Desktop/f4/graphical_GreenHouse/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

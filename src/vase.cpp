@@ -34,6 +34,22 @@ void Vase::set_positionOfVaseSprite(float x, float y)
 {
   vaseSprite.setPosition(sf::Vector2f(x, y));
 }
+void Vase::set_flower(int type, std::string name)
+{
+  if (type == 1)
+  {
+    flower = new OrdinaryFlower();
+  }
+  else if (type == 2)
+  {
+    flower = new RareFlower();
+  }
+  else
+  {
+    flower = new decorativeFlower();
+  }
+  flower->set_name(name);
+}
 // implementation of get functions :
 bool Vase::get_locked()
 {
@@ -50,4 +66,9 @@ bool Vase::get_growing()
 bool Vase::get_readyToPick()
 {
   return readyToPick;
+}
+//--------------------------
+Flower *Vase::get_flowerStar()
+{
+  return flower;
 }
