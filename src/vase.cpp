@@ -8,6 +8,7 @@ void Vase::set_locked(bool b)
 void Vase::set_empty(bool b)
 {
   empty = b;
+  
 }
 void Vase::set_growing(bool b)
 {

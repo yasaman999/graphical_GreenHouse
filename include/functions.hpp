@@ -26,12 +26,12 @@ void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int,
 bool confirmWindow();
 bool confirmWindow2();
 void errorWindow();
-bool waterWindow();
-bool soilWindow();
-bool sprayWindow();
-bool extractWindow();
-void giveWater(Vase &,Store*,sf::Text*,ui);
-void giveSoil(Vase &,Store*,sf::Text*,ui);
+bool waterWindow(Vase &,Store*);
+bool soilWindow(Vase &,Store*);
+bool sprayWindow(Vase &,Store*);
+bool extractWindow(Vase &,Store*);
+void giveWater(Vase &, Store *, sf::Text *, ui);
+void giveSoil(Vase &, Store *, sf::Text *, ui);
 void giveSpray(Vase &, Store *, sf::Text *);
 void giveExtract(Vase &, Store *, sf::Text *);
 

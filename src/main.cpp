@@ -160,6 +160,5 @@ int main()
 
     //mainWindow.draw(test);
   }
-
   return 0;
 }

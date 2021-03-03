@@ -325,6 +325,11 @@ void setRectangles(sf::RenderWindow &window, sf::Texture *rectanglesTexture,
       StoreMenuTexts[i].setFillColor(sf::Color::White);
       text2[i - 4].setFillColor(sf::Color::White);
     }
+    else if (StoreMenuTexts[i].getString() == "0")
+    {
+      StoreMenuTexts[i].setFillColor(sf::Color(200, 100, 100));
+      text2[i - 4].setFillColor(sf::Color(200, 100, 100));
+    }
   }
 
   for (size_t i = 0; i < 14; i++)
@@ -586,11 +591,13 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
         else if (fromGreenHouse == true)
         {
           cout << "in right , fromGreenHouse==true , index==4" << endl;
+
           if (confirmWindow2())
           {
             cout << "mikham bekaram!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
             {
+              ++mainStore->plantedFlowers;
               (mainStore->ordinaryBulb)--;
               ui x = (mainStore->ordinaryBulb);
               StoreMenuTexts[12].setString(to_string(x));
@@ -662,6 +669,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           {
             if (mainStore->decorativeBulb > 0)
             {
+              ++mainStore->plantedFlowers;
               (mainStore->decorativeBulb)--;
               ui x = (mainStore->decorativeBulb);
               StoreMenuTexts[14].setString(to_string(x));
@@ -690,6 +698,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             cout << "mikham bekaram!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
             {
+              ++mainStore->plantedFlowers;
               (mainStore->decorativeBulb)--;
               ui x = (mainStore->decorativeBulb);
               StoreMenuTexts[14].setString(to_string(x));
@@ -916,9 +925,10 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           cout << "in left , fromGreenHouse==true ,index==4" << endl;
           if (confirmWindow2())
           {
-            cout << "mikham bekaram!!!(left 4)" << endl;
+            //cout << "mikham bekaram!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
             {
+              ++mainStore->plantedFlowers;
               (mainStore->rareBulb)--;
               ui x = (mainStore->rareBulb);
               StoreMenuTexts[13].setString(to_string(x));
@@ -1137,13 +1147,18 @@ void errorWindow()
   }
 }
 
-bool waterWindow()
+bool waterWindow(Vase &v, Store *mainStore)
 {
   sf::RenderWindow waterWin(sf::VideoMode(477, 342), "Water Window");
   sf::Texture waterTexture;
+  sf::Texture trash;
   waterTexture.loadFromFile("../image/waterWindow.png");
+  trash.loadFromFile("../image/trash.png");
   sf::Sprite waterSprite;
+  sf::Sprite trashSprite;
   waterSprite.setTexture(waterTexture);
+  trashSprite.setTexture(trash);
+  trashSprite.setPosition(sf::Vector2f(waterWin.getSize().x - 42, waterWin.getSize().y - 42));
   sf::Event waterEvent;
   bool check = false;
   // sf::RectangleShape test;
@@ -1168,25 +1183,44 @@ bool waterWindow()
           check = true;
           waterWin.close();
         }
+        if (waterEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(waterWin).x >= waterWin.getSize().x - 42 &&
+            sf::Mouse::getPosition(waterWin).x <= waterWin.getSize().x &&
+            sf::Mouse::getPosition(waterWin).y >= waterWin.getSize().y - 42 &&
+            sf::Mouse::getPosition(waterWin).y <= waterWin.getSize().y)
+        {
+          check = false;
+          v.set_empty(true);
+          v.set_growing(false);
+          v.set_vaseTexture("../image/empty.png");
+          v.get_vaseSprite();
+          waterWin.close();
+          mainStore->deletedFlowers++;
+        }
       }
     }
     waterWin.display();
     waterWin.draw(waterSprite);
+    waterWin.draw(trashSprite);
     //waterWin.draw(test);
   }
   return check;
 }
 // open a window for giving soil to flowers
 
-bool soilWindow()
+bool soilWindow(Vase &v, Store *mainStore)
 {
   sf::RenderWindow soilWin(sf::VideoMode(500, 300), "Soil Window");
   sf::Texture soilTexture;
+  sf::Texture trash;
   soilTexture.loadFromFile("../image/soilWindow.png");
+  trash.loadFromFile("../image/trash.png");
   sf::Sprite soilSprite;
+  sf::Sprite trashSprite;
   soilSprite.setTexture(soilTexture);
+  trashSprite.setTexture(trash);
   sf::Event soilEvent;
   bool check = false;
+  trashSprite.setPosition(sf::Vector2f(soilWin.getSize().x - 42, soilWin.getSize().y - 42));
   while (soilWin.isOpen())
   {
     while (soilWin.pollEvent(soilEvent))
@@ -1206,23 +1240,42 @@ bool soilWindow()
           check = true;
           soilWin.close();
         }
+        if (soilEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(soilWin).x >= soilWin.getSize().x - 42 &&
+            sf::Mouse::getPosition(soilWin).x <= soilWin.getSize().x &&
+            sf::Mouse::getPosition(soilWin).y >= soilWin.getSize().y - 42 &&
+            sf::Mouse::getPosition(soilWin).y <= soilWin.getSize().y)
+        {
+          check = false;
+          v.set_empty(true);
+          v.set_growing(false);
+          v.set_vaseTexture("../image/empty.png");
+          v.get_vaseSprite();
+          soilWin.close();
+          mainStore->deletedFlowers++;
+        }
       }
     }
     soilWin.display();
     soilWin.draw(soilSprite);
+    soilWin.draw(trashSprite);
   }
   return check;
 }
 // open a window for giving spray to rare flowers
-bool sprayWindow()
+bool sprayWindow(Vase &v, Store *mainStore)
 {
   sf::RenderWindow sprayWin(sf::VideoMode(546, 339), "Spray Window");
   sf::Texture sprayTesture;
+  sf::Texture trash;
   sprayTesture.loadFromFile("../image/spray.png");
+  trash.loadFromFile("../image/trash.png");
   sf::Sprite spraySprite;
+  sf::Sprite trashSprite;
   spraySprite.setTexture(sprayTesture);
+  trashSprite.setTexture(trash);
   sf::Event sprayEvent;
   bool check = false;
+  trashSprite.setPosition(sf::Vector2f(sprayWin.getSize().x - 42, sprayWin.getSize().y - 42));
   while (sprayWin.isOpen())
   {
     while (sprayWin.pollEvent(sprayEvent))
@@ -1242,23 +1295,42 @@ bool sprayWindow()
           check = true;
           sprayWin.close();
         }
+        if (sprayEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(sprayWin).x >= sprayWin.getSize().x - 42 &&
+            sf::Mouse::getPosition(sprayWin).x <= sprayWin.getSize().x &&
+            sf::Mouse::getPosition(sprayWin).y >= sprayWin.getSize().y - 42 &&
+            sf::Mouse::getPosition(sprayWin).y <= sprayWin.getSize().y)
+        {
+          check = false;
+          v.set_empty(true);
+          v.set_growing(false);
+          v.set_vaseTexture("../image/empty.png");
+          v.get_vaseSprite();
+          sprayWin.close();
+          mainStore->deletedFlowers++;
+        }
       }
     }
     sprayWin.display();
     sprayWin.draw(spraySprite);
+    sprayWin.draw(trashSprite);
   }
   return check;
 }
 
 // open a window for giving extract to decorative flowers
-bool extractWindow()
+bool extractWindow(Vase &v, Store *mainStore)
 {
   sf::RenderWindow extractWin(sf::VideoMode(546, 366), "extract Window");
   sf::Texture extractTexture;
+  sf::Texture trash;
   extractTexture.loadFromFile("../image/extractWindow.png");
+  trash.loadFromFile("../image/trash.png");
   sf::Sprite extractSprite;
+  sf::Sprite trashSprite;
   extractSprite.setTexture(extractTexture);
+  trashSprite.setTexture(trash);
   sf::Event extractEvent;
+  trashSprite.setPosition(sf::Vector2f(extractWin.getSize().x - 42, extractWin.getSize().y - 42));
   bool check = false;
   while (extractWin.isOpen())
   {
@@ -1280,16 +1352,31 @@ bool extractWindow()
           extractWin.close();
         }
       }
+      if (extractEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(extractWin).x >= extractWin.getSize().x - 42 &&
+          sf::Mouse::getPosition(extractWin).x <= extractWin.getSize().x &&
+          sf::Mouse::getPosition(extractWin).y >= extractWin.getSize().y - 42 &&
+          sf::Mouse::getPosition(extractWin).y <= extractWin.getSize().y)
+      {
+        check = false;
+        v.set_empty(true);
+        v.set_growing(false);
+        v.set_vaseTexture("../image/empty.png");
+        v.get_vaseSprite();
+        extractWin.close();
+        mainStore->deletedFlowers++;
+        cout << "number of deleted flowers -> " << mainStore->deletedFlowers << endl;
+      }
     }
     extractWin.display();
     extractWin.draw(extractSprite);
+    extractWin.draw(trashSprite);
   }
   return check;
 }
 
 void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 {
-  if (waterWindow())
+  if (waterWindow(v, mainStore))
   {
     cout << "aab dadan :)" << endl;
     if (mainStore->NumberOfWaterUnits > 0)
@@ -1310,7 +1397,7 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
           v.set_vaseSprite();
         }
         v.get_flowerStar()->set_water(1);
-      } // end of if (type == 1)
+      }                   // end of if (type == 1)
       else if (type == 2) // rare flowers
       {
         if (v.get_flowerStar()->get_name() == "maryam")
@@ -1349,7 +1436,6 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
         }
       }
       v.get_flowerStar()->set_water(1);
-
     }
     else
     {
@@ -1361,7 +1447,7 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 
 void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 {
-  if (soilWindow())
+  if (soilWindow(v, mainStore))
   {
     cout << "khaak dadan :)" << endl;
     if (mainStore->NumberOfSoilUnits > 0)
@@ -1383,12 +1469,12 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
         }
         v.set_growing(false);
         v.set_readyToPick(true);
-      } // end of if (type == 1)
+      }                   // end of if (type == 1)
       else if (type == 2) // rare flowers
       {
         srand(time(NULL));
         int needToSpray = rand() % 2;
-        if(needToSpray==1) // the rare flower needs to spray
+        if (needToSpray == 1) // the rare flower needs to spray
         {
           if (v.get_flowerStar()->get_name() == "maryam")
           {
@@ -1405,7 +1491,7 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
             v.set_vaseTexture("../image/lale2.png");
             v.set_vaseSprite();
           }
-        } // end of if(needToSpray == 1)
+        }    // end of if(needToSpray == 1)
         else // if needToSpray == 0
         {
           if (v.get_flowerStar()->get_name() == "maryam")
@@ -1425,12 +1511,12 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
           }
           // beacause of set_spray function is just for
           // RareFlower class we must use dynamic_cast
-          RareFlower * rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
+          RareFlower *rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
           rarePtr->set_spray(true);
           v.set_readyToPick(true);
           v.set_growing(false);
         }
-      } // end of else if (type == 2)
+      }    // end of else if (type == 2)
       else // if type == 3 -> decorative flowers
       {
 
@@ -1461,7 +1547,7 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 } // end of giveSoil function
 void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
 {
-  if (sprayWindow())
+  if (sprayWindow(v, mainStore))
   {
     cout << "spray dadan :)" << endl;
     if (mainStore->spray > 0)
@@ -1482,7 +1568,7 @@ void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
         v.set_vaseTexture("../image/flower3-3.png");
       }
       v.set_vaseSprite();
-      RareFlower * rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
+      RareFlower *rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
       rarePtr->set_spray(true);
       v.set_readyToPick(true);
       v.set_growing(false);
@@ -1495,76 +1581,74 @@ void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
 } // end of giveSpray function
 void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
 {
-  if (extractWindow())
+  if (extractWindow(v, mainStore))
   {
-      if (v.get_flowerStar()->get_name() == "magnolia")
+    if (v.get_flowerStar()->get_name() == "magnolia")
+    {
+      if (mainStore->magnoliaExtract > 0)
       {
-        if (mainStore->magnoliaExtract > 0)
-        {
-          --(mainStore->magnoliaExtract);
-          ui x = mainStore->magnoliaExtract;
-          ui y = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
-          StoreMenuTexts[15].setString(to_string(x));
-          StoreMenuTexts[3].setString(to_string(y));
-          v.set_vaseTexture("../image/flower6-3.png");
-          v.set_vaseSprite();
-          decorativeFlower * decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
-          decorativePtr->set_extract(true);
-          v.set_readyToPick(true);
-          v.set_growing(false);
-
-        }
-        else
-        {
-          errorWindow();
-        }
-      }// end of if (v.get_flowerStar()->get_name() == "magnolia")
-
-      else if (v.get_flowerStar()->get_name() == "lilium")
+        --(mainStore->magnoliaExtract);
+        ui x = mainStore->magnoliaExtract;
+        ui y = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
+        StoreMenuTexts[15].setString(to_string(x));
+        StoreMenuTexts[3].setString(to_string(y));
+        v.set_vaseTexture("../image/flower6-3.png");
+        v.set_vaseSprite();
+        decorativeFlower *decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
+        decorativePtr->set_extract(true);
+        v.set_readyToPick(true);
+        v.set_growing(false);
+      }
+      else
       {
-        if (mainStore->liliumExtract > 0)
-        {
-          --(mainStore->liliumExtract);
-          ui x = mainStore->liliumExtract;
-          ui y = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
-          StoreMenuTexts[16].setString(to_string(x));
-          StoreMenuTexts[3].setString(to_string(y));
-          v.set_vaseTexture("../image/flower7-3.png");
-          v.set_vaseSprite();
-          decorativeFlower * decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
-          decorativePtr->set_extract(true);
-          v.set_readyToPick(true);
-          v.set_growing(false);
+        errorWindow();
+      }
+    } // end of if (v.get_flowerStar()->get_name() == "magnolia")
 
-        }
-        else
-        {
-          errorWindow();
-        }
-      }// end of else if (v.get_flowerStar()->get_name() == "lilium")
-
-      else if (v.get_flowerStar()->get_name() == "orkide")
+    else if (v.get_flowerStar()->get_name() == "lilium")
+    {
+      if (mainStore->liliumExtract > 0)
       {
-        if (mainStore->orkideExtract > 0)
-        {
-          --(mainStore->orkideExtract);
-          ui x = mainStore->orkideExtract;
-          ui y = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
-          StoreMenuTexts[17].setString(to_string(x));
-          StoreMenuTexts[3].setString(to_string(y));
-          v.set_vaseTexture("../image/flower8-3.png");
-          v.set_vaseSprite();
-          decorativeFlower * decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
-          decorativePtr->set_extract(true);
-          v.set_readyToPick(true);
-          v.set_growing(false);
-        }
-        else
-        {
-          errorWindow();
-        }
-      } // end of else if (v.get_flowerStar()->get_name() == "orkide")
-  } // end of if (extractWindow())
+        --(mainStore->liliumExtract);
+        ui x = mainStore->liliumExtract;
+        ui y = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
+        StoreMenuTexts[16].setString(to_string(x));
+        StoreMenuTexts[3].setString(to_string(y));
+        v.set_vaseTexture("../image/flower7-3.png");
+        v.set_vaseSprite();
+        decorativeFlower *decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
+        decorativePtr->set_extract(true);
+        v.set_readyToPick(true);
+        v.set_growing(false);
+      }
+      else
+      {
+        errorWindow();
+      }
+    } // end of else if (v.get_flowerStar()->get_name() == "lilium")
+
+    else if (v.get_flowerStar()->get_name() == "orkide")
+    {
+      if (mainStore->orkideExtract > 0)
+      {
+        --(mainStore->orkideExtract);
+        ui x = mainStore->orkideExtract;
+        ui y = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
+        StoreMenuTexts[17].setString(to_string(x));
+        StoreMenuTexts[3].setString(to_string(y));
+        v.set_vaseTexture("../image/flower8-3.png");
+        v.set_vaseSprite();
+        decorativeFlower *decorativePtr = dynamic_cast<decorativeFlower *>(v.get_flowerStar());
+        decorativePtr->set_extract(true);
+        v.set_readyToPick(true);
+        v.set_growing(false);
+      }
+      else
+      {
+        errorWindow();
+      }
+    } // end of else if (v.get_flowerStar()->get_name() == "orkide")
+  }   // end of if (extractWindow())
 } // end of giveExtract function
 
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite, sf::Event &event, Store *mainStore,
@@ -1735,7 +1819,6 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       {
         giveSoil(v, mainStore, StoreMenuTexts, 1);
       }
-
     }
     else if (rarePtr != nullptr)
     {
@@ -1747,7 +1830,7 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       {
         giveSoil(v, mainStore, StoreMenuTexts, 2);
       }
-      else if(!rarePtr->get_spray())
+      else if (!rarePtr->get_spray())
       {
         giveSpray(v, mainStore, StoreMenuTexts);
       }
@@ -1762,7 +1845,7 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       {
         giveSoil(v, mainStore, StoreMenuTexts, 3);
       }
-      else if(!decorativePtr->get_extract())
+      else if (!decorativePtr->get_extract())
       {
         giveExtract(v, mainStore, StoreMenuTexts);
       }
@@ -1771,5 +1854,41 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
   else if (v.get_readyToPick())
   {
     cout << "marhale readyToPick!!!" << endl;
+    v.set_vaseTexture("../image/empty.png");
+    v.set_empty(true);
+    v.set_readyToPick(false);
+    string name = v.get_flowerStar()->get_name();
+    if (name == "kokab")
+    {
+      mainStore->kokab++;
+    }
+    else if (name == "narges")
+    {
+      mainStore->narges++;
+    }
+    else if (name == "lale")
+    {
+      mainStore->lale++;
+    }
+    else if (name == "maryam")
+    {
+      mainStore->maryam++;
+    }
+    else if (name == "sonbol")
+    {
+      mainStore->sonbol++;
+    }
+    else if (name == "magnolia")
+    {
+      mainStore->magnolia++;
+    }
+    else if (name == "lilium")
+    {
+      mainStore->lilium++;
+    }
+    else if (name == "orkide")
+    {
+      mainStore->orkide++;
+    }
   }
 }

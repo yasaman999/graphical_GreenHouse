@@ -14,13 +14,15 @@ class Store // a singleton class
   friend void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase *&);
   friend void clickOnItemsOfLaboratory(sf::RenderWindow &, sf::Event &, sf::Sprite &, Store *, sf::Text *, sf::Sprite &, sf::Text *);
   friend void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *);
-  // friend void manageVases(Vase &, bool &, bool &, bool &, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase *&);
-  friend void giveWater(Vase &, Store *, sf::Text *,ui);
-  friend void giveSoil(Vase &, Store*, sf::Text*, ui);
+  friend void manageVases(Vase &, bool &, bool &, bool &, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase *&);
+  friend void giveWater(Vase &, Store *, sf::Text *, ui);
+  friend void giveSoil(Vase &, Store *, sf::Text *, ui);
   friend void giveSpray(Vase &, Store *, sf::Text *);
   friend void giveExtract(Vase &, Store *, sf::Text *);
-
-
+  friend bool waterWindow(Vase &, Store *);
+  friend bool soilWindow(Vase &, Store *);
+  friend bool sprayWindow(Vase &, Store *);
+  friend bool extractWindow(Vase &, Store *);
 public:
   // void increase(std::string);
   // void decrease(std::string);
@@ -54,6 +56,8 @@ private:
   ui magnolia = 3;
   ui lilium = 0;
   ui orkide = 0;
+  ui deletedFlowers = 0;
+  ui plantedFlowers = 0;
 };
 
 #endif
