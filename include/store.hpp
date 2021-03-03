@@ -18,6 +18,8 @@ class Store // a singleton class
   friend void giveWater(Vase &, Store *, sf::Text *,ui);
   friend void giveSoil(Vase &, Store*, sf::Text*, ui);
   friend void giveSpray(Vase &, Store *, sf::Text *);
+  friend void giveExtract(Vase &, Store *, sf::Text *);
+
 
 public:
   // void increase(std::string);

@@ -24,3 +24,11 @@ std::string decorativeFlower::get_name() const
 {
     return Flower::get_name();
 }
+void decorativeFlower::set_extract(bool e)
+{
+  extract = e;
+}
+bool decorativeFlower::get_extract()
+{
+  return extract;
+}

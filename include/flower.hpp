@@ -81,6 +81,8 @@ private:
 public:
     decorativeFlower() {}
     ~decorativeFlower() {}
+    void set_extract(bool);
+    bool get_extract();
     virtual void set_name(std::string) override;
     virtual std::string get_name() const override;
 
