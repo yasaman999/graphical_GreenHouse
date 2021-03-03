@@ -29,6 +29,7 @@ void errorWindow();
 bool waterWindow();
 void giveWater(Vase &,Store*,sf::Text*,ui);
 void giveSoil(Vase &,Store*,sf::Text*,ui);
+void giveSpray(Vase &, Store *, sf::Text *);
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, Store *, sf::Text *, sf::Sprite &, sf::Text *, sf::Font &font, bool &, Vase *&);
 void setTitleOfTables(sf::Sprite *, sf::Text &, sf::Text &, sf::Font &);
 

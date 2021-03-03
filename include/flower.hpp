@@ -62,6 +62,7 @@ public:
     RareFlower() {}
     ~RareFlower() {}
     void set_spray(bool);
+    bool get_spray();
     virtual void set_name(std::string) override;
     virtual std::string get_name() const override;
 

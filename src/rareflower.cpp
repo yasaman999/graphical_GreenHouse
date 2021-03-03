@@ -19,6 +19,10 @@ void RareFlower::set_spray(bool s)
 {
   spray = s;
 }
+bool RareFlower::get_spray()
+{
+  return spray;
+}
 
 void RareFlower::set_name(std::string name)
 {

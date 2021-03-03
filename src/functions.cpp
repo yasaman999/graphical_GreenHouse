@@ -51,7 +51,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         sf::Event errorEvent;
         sf::Texture errorTexture;
         sf::Sprite errorSprite;
-        errorTexture.loadFromFile("../image/errorWindowBack.png");
+        errorTexture.loadFromFile("../image/Back.png");
         errorSprite.setTexture(errorTexture);
         while (errorWindow.isOpen())
         {
@@ -1127,11 +1127,11 @@ bool confirmWindow2()
 } // end of manage_window function
 void errorWindow()
 {
-  sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
+  sf::RenderWindow errorWindow(sf::VideoMode(580, 338), "Error window");
   sf::Event errorEvent;
   sf::Texture errorTexture;
   sf::Sprite errorSprite;
-  errorTexture.loadFromFile("../image/errorWindowBack.png");
+  errorTexture.loadFromFile("../image/errorWindow2.png");
   errorSprite.setTexture(errorTexture);
   while (errorWindow.isOpen())
   {
@@ -1184,7 +1184,7 @@ bool waterWindow()
   }
   return check;
 }
-//==========================
+// open a window for giving soil to flowers
 
 bool soilWindow()
 {
@@ -1218,6 +1218,42 @@ bool soilWindow()
     }
     soilWin.display();
     soilWin.draw(soilSprite);
+  }
+  return check;
+}
+// open a window for giving spray to rare flowers
+bool sprayWindow()
+{
+  sf::RenderWindow sprayWin(sf::VideoMode(546, 339), "Spray Window");
+  sf::Texture sprayTesture;
+  sprayTesture.loadFromFile("../image/spray.png");
+  sf::Sprite spraySprite;
+  spraySprite.setTexture(sprayTesture);
+  sf::Event sprayEvent;
+  bool check = false;
+  while (sprayWin.isOpen())
+  {
+    while (sprayWin.pollEvent(sprayEvent))
+    {
+      if (sprayEvent.type == sf::Event::Closed)
+      {
+        sprayWin.close();
+        check = false;
+      }
+      if (sprayEvent.type == sf::Event::MouseButtonPressed)
+      {
+        if (sprayEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(sprayWin).x >= 148 &&
+            sf::Mouse::getPosition(sprayWin).x <= 390 &&
+            sf::Mouse::getPosition(sprayWin).y >= 167 &&
+            sf::Mouse::getPosition(sprayWin).y <= 232)
+        {
+          check = true;
+          sprayWin.close();
+        }
+      }
+    }
+    sprayWin.display();
+    sprayWin.draw(spraySprite);
   }
   return check;
 }
@@ -1293,7 +1329,7 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
     }
   }
 }
-// ===============================
+// open a window for giving soil to flowers
 
 void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 {
@@ -1384,12 +1420,44 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
       }
       v.get_flowerStar()->set_soil(true);
 
-    }
+    } // end of if (mainStore->NumberOfSoilUnits > 0)
     else
     {
       errorWindow();
     }
-  }
+  } // end of if (soilWindow())
+} // end of giveSoil function
+void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
+{
+  if (sprayWindow())
+  {
+    cout << "spray dadan :)" << endl;
+    if (mainStore->spray > 0)
+    {
+      --(mainStore->spray);
+      ui x = mainStore->spray;
+      StoreMenuTexts[2].setString(to_string(x));
+      if (v.get_flowerStar()->get_name() == "maryam")
+      {
+        v.set_vaseTexture("../image/flower4-3.png");
+      }
+      else if (v.get_flowerStar()->get_name() == "sonbol")
+      {
+        v.set_vaseTexture("../image/flower5-3.png");
+      }
+      else if (v.get_flowerStar()->get_name() == "lale")
+      {
+        v.set_vaseTexture("../image/flower3-3.png");
+      }
+      v.set_vaseSprite();
+      RareFlower * rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
+      rarePtr->set_spray(true);
+    } // end of if (mainStore->spray > 0)
+    else
+    {
+      errorWindow();
+    }
+  } // end of if (sprayWindow())
 }
 
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *rectanglesSprite, sf::Event &event, Store *mainStore,
@@ -1519,6 +1587,7 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
 } // end of clickOnVases function
 void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::RenderWindow &window, sf::Event &event, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse, Vase *&vasePtr)
 {
+  cout << "manageVases function!!!!!" << endl;
   if (v.get_locked())
   {
     cout << "marhale locked" << endl;
@@ -1557,10 +1626,9 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       }
       else if (v.get_flowerStar()->get_water() && (!v.get_flowerStar()->get_soil()))
       {
-        cout << "be khak niaz daram!!!! aadi" << endl;
         giveSoil(v, mainStore, StoreMenuTexts, 1);
-
       }
+
     }
     else if (rarePtr != nullptr)
     {
@@ -1570,9 +1638,11 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       }
       else if (v.get_flowerStar()->get_water() && (!v.get_flowerStar()->get_soil()))
       {
-        cout << "be khak niaz daram!!!! nader" << endl;
         giveSoil(v, mainStore, StoreMenuTexts, 2);
-
+      }
+      else if(!rarePtr->get_spray())
+      {
+        giveSpray(v, mainStore, StoreMenuTexts);
       }
     }
     else if (decorativePtr != nullptr)
@@ -1583,7 +1653,6 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       }
       else if (v.get_flowerStar()->get_water() && (!v.get_flowerStar()->get_soil()))
       {
-        cout << "be khak niaz daram!!!! zinati" << endl;
         giveSoil(v, mainStore, StoreMenuTexts, 3);
       }
     }
