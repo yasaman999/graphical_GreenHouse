@@ -15,9 +15,9 @@ void RareFlower::set_salePriceOfFlowers()
 {
     Flower::set_salePriceOfFlowers(20000);
 }
-void RareFlower::set_needToSpray()
+void RareFlower::set_spray(bool s)
 {
-    needToSpray = true;
+  spray = s;
 }
 
 void RareFlower::set_name(std::string name)

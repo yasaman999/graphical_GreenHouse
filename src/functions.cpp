@@ -1184,32 +1184,70 @@ bool waterWindow()
   }
   return check;
 }
+//==========================
+
+bool soilWindow()
+{
+  sf::RenderWindow soilWin(sf::VideoMode(500, 300), "Soil Window");
+  sf::Texture soilTexture;
+  soilTexture.loadFromFile("../image/soilWindow.png");
+  sf::Sprite soilSprite;
+  soilSprite.setTexture(soilTexture);
+  sf::Event soilEvent;
+  bool check = false;
+  while (soilWin.isOpen())
+  {
+    while (soilWin.pollEvent(soilEvent))
+    {
+      if (soilEvent.type == sf::Event::Closed)
+      {
+        soilWin.close();
+        check = false;
+      }
+      if (soilEvent.type == sf::Event::MouseButtonPressed)
+      {
+        if (soilEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(soilWin).x >= 191 &&
+            sf::Mouse::getPosition(soilWin).x <= 313 &&
+            sf::Mouse::getPosition(soilWin).y >= 146 &&
+            sf::Mouse::getPosition(soilWin).y <= 190)
+        {
+          check = true;
+          soilWin.close();
+        }
+      }
+    }
+    soilWin.display();
+    soilWin.draw(soilSprite);
+  }
+  return check;
+}
+
 
 void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 {
   if (waterWindow())
   {
     cout << "aab dadan :)" << endl;
-    if (mainStore->NumberOfWaterUnits >0)
+    if (mainStore->NumberOfWaterUnits > 0)
     {
       --(mainStore->NumberOfWaterUnits);
       ui x = mainStore->NumberOfWaterUnits;
       StoreMenuTexts[0].setString(to_string(x));
-      if (type == 1)
+      if (type == 1) // ordinary flowers
       {
         if (v.get_flowerStar()->get_name() == "narges")
         {
           v.set_vaseTexture("../image/narges1.png");
           v.set_vaseSprite();
         }
-        else
+        else // if ordinary flower was kokab
         {
           v.set_vaseTexture("../image/kokab1.png");
           v.set_vaseSprite();
         }
         v.get_flowerStar()->set_water(1);
-      }
-      else if (type == 2)
+      } // end of if (type == 1)
+      else if (type == 2) // rare flowers
       {
         if (v.get_flowerStar()->get_name() == "maryam")
         {
@@ -1227,9 +1265,125 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
           v.set_vaseSprite();
         }
       }
-      else
+      else // if type == 3 -> decorative flowers
       {
+
+        if (v.get_flowerStar()->get_name() == "magnolia")
+        {
+          v.set_vaseTexture("../image/magnolia1.png");
+          v.set_vaseSprite();
+        }
+        else if (v.get_flowerStar()->get_name() == "lilium")
+        {
+          v.set_vaseTexture("../image/lilium1.png");
+          v.set_vaseSprite();
+        }
+        else if (v.get_flowerStar()->get_name() == "orkide")
+        {
+          v.set_vaseTexture("../image/orkide1.png");
+          v.set_vaseSprite();
+        }
       }
+      v.get_flowerStar()->set_water(1);
+
+    }
+    else
+    {
+      errorWindow();
+    }
+  }
+}
+// ===============================
+
+void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
+{
+  if (soilWindow())
+  {
+    cout << "khaak dadan :)" << endl;
+    if (mainStore->NumberOfSoilUnits > 0)
+    {
+      --(mainStore->NumberOfSoilUnits);
+      ui x = mainStore->NumberOfSoilUnits;
+      StoreMenuTexts[1].setString(to_string(x));
+      if (type == 1) // ordinary flowers
+      {
+        if (v.get_flowerStar()->get_name() == "narges")
+        {
+          v.set_vaseTexture("../image/flower2-3.png");
+          v.set_vaseSprite();
+        }
+        else // if ordinary flower was kokab
+        {
+          v.set_vaseTexture("../image/flower1-3.png");
+          v.set_vaseSprite();
+        }
+      }
+      else if (type == 2) // rare flowers
+      {
+        srand(time(NULL));
+        int needToSpray = rand() % 2;
+        if(needToSpray==1) // the rare flower needs to spray
+        {
+          if (v.get_flowerStar()->get_name() == "maryam")
+          {
+            v.set_vaseTexture("../image/maryam2.png");
+            v.set_vaseSprite();
+          }
+          else if (v.get_flowerStar()->get_name() == "sonbol")
+          {
+            v.set_vaseTexture("../image/sonbol2.png");
+            v.set_vaseSprite();
+          }
+          else if (v.get_flowerStar()->get_name() == "lale")
+          {
+            v.set_vaseTexture("../image/lale2.png");
+            v.set_vaseSprite();
+          }
+        } // end of if(needToSpray == 1)
+        else // if needToSpray == 0
+        {
+          if (v.get_flowerStar()->get_name() == "maryam")
+          {
+            v.set_vaseTexture("../image/flower4-3.png");
+            v.set_vaseSprite();
+          }
+          else if (v.get_flowerStar()->get_name() == "sonbol")
+          {
+            v.set_vaseTexture("../image/flower5-3.png");
+            v.set_vaseSprite();
+          }
+          else if (v.get_flowerStar()->get_name() == "lale")
+          {
+            v.set_vaseTexture("../image/flower3-3.png");
+            v.set_vaseSprite();
+          }
+          // beacause of set_spray function is just for
+          // RareFlower class we must use dynamic_cast
+          RareFlower * rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
+          rarePtr->set_spray(true);
+        }
+      } // end of else if (type == 2)
+      else // if type == 3 -> decorative flowers
+      {
+
+        if (v.get_flowerStar()->get_name() == "magnolia")
+        {
+          v.set_vaseTexture("../image/magnolia2.png");
+          v.set_vaseSprite();
+        }
+        else if (v.get_flowerStar()->get_name() == "lilium")
+        {
+          v.set_vaseTexture("../image/lilium2.png");
+          v.set_vaseSprite();
+        }
+        else if (v.get_flowerStar()->get_name() == "orkide")
+        {
+          v.set_vaseTexture("../image/orkide2.png");
+          v.set_vaseSprite();
+        }
+      }
+      v.get_flowerStar()->set_soil(true);
+
     }
     else
     {
@@ -1401,12 +1555,24 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       {
         giveWater(v, mainStore, StoreMenuTexts, 1);
       }
+      else if (v.get_flowerStar()->get_water() && (!v.get_flowerStar()->get_soil()))
+      {
+        cout << "be khak niaz daram!!!! aadi" << endl;
+        giveSoil(v, mainStore, StoreMenuTexts, 1);
+
+      }
     }
     else if (rarePtr != nullptr)
     {
       if (!v.get_flowerStar()->get_water())
       {
         giveWater(v, mainStore, StoreMenuTexts, 2);
+      }
+      else if (v.get_flowerStar()->get_water() && (!v.get_flowerStar()->get_soil()))
+      {
+        cout << "be khak niaz daram!!!! nader" << endl;
+        giveSoil(v, mainStore, StoreMenuTexts, 2);
+
       }
     }
     else if (decorativePtr != nullptr)
@@ -1415,9 +1581,12 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
       {
         giveWater(v, mainStore, StoreMenuTexts, 3);
       }
+      else if (v.get_flowerStar()->get_water() && (!v.get_flowerStar()->get_soil()))
+      {
+        cout << "be khak niaz daram!!!! zinati" << endl;
+        giveSoil(v, mainStore, StoreMenuTexts, 3);
+      }
     }
-
-    //if()
   }
   else if (v.get_readyToPick())
   {

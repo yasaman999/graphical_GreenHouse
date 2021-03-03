@@ -16,6 +16,7 @@ class Store // a singleton class
   friend void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *);
   // friend void manageVases(Vase &, bool &, bool &, bool &, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *, bool &, Vase *&);
   friend void giveWater(Vase &, Store *, sf::Text *,ui);
+  friend void giveSoil(Vase &, Store*, sf::Text*, ui);
 
 public:
   // void increase(std::string);

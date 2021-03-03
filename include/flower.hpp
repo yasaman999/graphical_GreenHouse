@@ -18,8 +18,10 @@ public:
     ~Flower() {} //distructor
     virtual void set_name(std::string);
     virtual std::string get_name() const;
-    virtual bool get_water() const;
     virtual void set_water(bool);
+    virtual void set_soil(bool);
+    virtual bool get_water() const;
+    virtual bool get_soil() const;
 
 protected:
     virtual float get_PurchasePriceOfBulb() const;
@@ -54,12 +56,12 @@ protected:
 class RareFlower final : public Flower //be final class
 {
 private:
-    bool needToSpray = false;
+    bool spray = false;
 
 public:
     RareFlower() {}
     ~RareFlower() {}
-    void set_needToSpray();
+    void set_spray(bool);
     virtual void set_name(std::string) override;
     virtual std::string get_name() const override;
 
@@ -73,7 +75,7 @@ protected:
 class decorativeFlower final : public Flower
 {
 private:
-    bool extract;
+    bool extract = false;
 
 public:
     decorativeFlower() {}

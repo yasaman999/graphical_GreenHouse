@@ -41,12 +41,19 @@ std::string Flower::get_name() const
     return name;
 }
 
+void Flower::set_water(bool w)
+{
+  water = w;
+}
+void Flower::set_soil(bool s)
+{
+  soil = s;
+}
 bool Flower::get_water() const
 {
     return water;
 }
-
-void Flower::set_water(bool num)
+bool Flower::get_soil() const
 {
-    water = num;
+  return soil;
 }
