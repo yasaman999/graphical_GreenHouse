@@ -23,6 +23,8 @@ class Store // a singleton class
   friend bool soilWindow(Vase &, Store *);
   friend bool sprayWindow(Vase &, Store *);
   friend bool extractWindow(Vase &, Store *);
+  friend void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &, sf::Text *, Store *,sf::Font&);
+
 public:
   // void increase(std::string);
   // void decrease(std::string);

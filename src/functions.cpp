@@ -164,7 +164,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
                         sf::Sprite &menuSprite, sf::Texture *rectanglesTexture,
                         sf::Sprite *rectanglesSprite, sf::Text *text1, sf::Font &font,
                         bool &clickOnSalesRoom, bool &clickOnLaboratory, bool &clickOnGreenHouse, Store *mainStore, sf::Text *StoreMenuTexts,
-                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite, Vase *vases, bool &fromGreenHouse)
+                        sf::Text *text2, sf::Texture &labRectangleTexture, sf::Sprite &labRectangleSprite, Vase *vases, bool &fromGreenHouse, bool &clickOnProfile, sf::Texture &protexture,
+                        sf::Sprite &proSprite, sf::Text *profileText)
 {
   if (event.type == sf::Event::MouseButtonPressed)
   {
@@ -174,11 +175,14 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
       cout << "profile" << endl;
+      clickOnProfile = true;
       clickOnSalesRoom = false;
       clickOnLaboratory = false;
       clickOnGreenHouse = false;
 
       menuTexture.loadFromFile("../image/menu/menu0.png");
+      setProfile(window, protexture, proSprite, profileText, mainStore, font);
+      //clickOnprofile();
     }
   }
   if (event.type == sf::Event::MouseButtonPressed)
@@ -189,6 +193,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
       cout << "greenhouse!!" << endl;
+      clickOnProfile = false;
       clickOnSalesRoom = false;
       clickOnLaboratory = false;
       clickOnGreenHouse = true;
@@ -204,6 +209,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
       cout << "froshgah!!" << endl;
+      clickOnProfile = false;
+
       clickOnSalesRoom = true;
       clickOnLaboratory = false;
       clickOnGreenHouse = false;
@@ -220,6 +227,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
       cout << "azmayeshgah!!" << endl;
+      clickOnProfile = false;
       clickOnSalesRoom = false;
       clickOnLaboratory = true;
       clickOnGreenHouse = false;
@@ -273,7 +281,7 @@ void setRectangles(sf::RenderWindow &window, sf::Texture *rectanglesTexture,
   text1[16].setString("piaz gol zinati  20000");
   text1[17].setString("made sam pashi 500");
   text1[18].setString("khak  450");
-  text1[19].setString("aab  250");
+  text1[19].setString("abb   250");
   for (size_t i = 14; i <= 19; i++)
   {
     if (i % 2 == 0)
@@ -478,7 +486,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_magnolia" << endl;
+            errorWindow();
           }
         }
       }
@@ -504,7 +512,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_orkide " << endl;
+            errorWindow();
           }
         }
       }
@@ -530,7 +538,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_maryam " << endl;
+            errorWindow();
           }
         }
       }
@@ -556,7 +564,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_kokab" << endl;
+            errorWindow();
           }
         }
       }
@@ -584,7 +592,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_ordinarybulb " << endl;
+              errorWindow();
             }
           }
         }
@@ -631,7 +639,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_ordinarybulb" << endl;
+              errorWindow();
             }
           }
           else // if(confirmWindow2() == false)
@@ -655,7 +663,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_ordinarybulb" << endl;
+              errorWindow();
             }
           }
         }
@@ -686,7 +694,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_decorativebulb " << endl;
+              errorWindow();
             }
           }
         }
@@ -740,7 +748,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_decorativebulb" << endl;
+              errorWindow();
             }
           }
           else // if(confirmWindow2() == false)
@@ -764,7 +772,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_decorativebulb" << endl;
+              errorWindow();
             }
           }
         }
@@ -810,7 +818,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_lilium" << endl;
+            errorWindow();
           }
         }
       }
@@ -836,7 +844,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_lale " << endl;
+            errorWindow();
           }
         }
       }
@@ -862,7 +870,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_sonbol " << endl;
+            errorWindow();
           }
         }
       }
@@ -888,7 +896,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            cout << "error_narges" << endl;
+            errorWindow();
           }
         }
       }
@@ -916,7 +924,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_rarebulb " << endl;
+              errorWindow();
             }
           }
         }
@@ -970,7 +978,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_rarebulb" << endl;
+              errorWindow();
             }
           }
           else // if(confirmWindow2() == false)
@@ -1889,6 +1897,81 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
     else if (name == "orkide")
     {
       mainStore->orkide++;
+    }
+  }
+}
+
+void setProfile(sf::RenderWindow &window, sf::Texture &proTexture, sf::Sprite &proSprite, sf::Text *profileText, Store *mainStore, sf::Font &font)
+{
+  proTexture.loadFromFile("../image/profileMenu.png");
+  proSprite.setTexture(proTexture);
+  proSprite.setOrigin(sf::Vector2f(proSprite.getGlobalBounds().width / 2, 0));
+  proSprite.setPosition(sf::Vector2f(window.getSize().x / 2, 140));
+  for (size_t i = 0; i < 6; i++)
+  {
+    profileText[i].setFillColor(sf::Color::Black);
+  }
+  for (size_t i = 0; i < 6; i++)
+  {
+    profileText[i].setFont(font);
+  }
+  //showing sum of ordinary flowers in profile
+  ui x = mainStore->kokab + mainStore->narges;
+  profileText[0].setString(to_string(x));
+  profileText[0].setPosition(sf::Vector2f(750, 340));
+  //showing sum of rare flowers in profile
+  x = mainStore->lale + mainStore->maryam + mainStore->sonbol;
+  profileText[1].setString(to_string(x));
+  profileText[1].setPosition(sf::Vector2f(750, 415));
+  //showing sum of decorative flowers in profile
+  x = mainStore->magnolia + mainStore->orkide + mainStore->lilium;
+  profileText[2].setString(to_string(x));
+  profileText[2].setPosition(sf::Vector2f(750, 485));
+  //showing sum of planted flowers in profile
+  x = mainStore->plantedFlowers;
+  profileText[3].setString(to_string(x));
+  profileText[3].setPosition(sf::Vector2f(280, 340));
+  //showing sum of deleted flowers in profile
+  x = mainStore->deletedFlowers;
+  profileText[4].setString(to_string(x));
+  profileText[4].setPosition(sf::Vector2f(280, 415));
+  //showing sum of extracts in profile
+  x = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
+  profileText[5].setString(to_string(x));
+  profileText[5].setPosition(sf::Vector2f(280, 485));
+}
+
+void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event)
+{
+
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= 1015 &&
+        sf::Mouse::getPosition(window).x <= 1098 &&
+        sf::Mouse::getPosition(window).y >= 160 &&
+        sf::Mouse::getPosition(window).y <= 248)
+    {
+     sf::RenderWindow proWin(sf::VideoMode(504,340),"Person Information");
+     sf::Event proEvent;
+     sf::Texture proTexture;
+     proTexture.loadFromFile("../image/bioForm.png");
+     sf::Sprite proSprite;
+     proSprite.setTexture(proTexture);
+     while (proWin.isOpen())
+     {
+       while (proWin.pollEvent(proEvent))
+       {
+         if(proEvent.type==sf::Event::Closed)
+         {
+           proWin.close();
+         }
+       }
+       
+       proWin.display();
+       proWin.draw(proSprite);
+     }
+     
     }
   }
 }

@@ -32,13 +32,15 @@ int main()
   //table elements of store and salesRoom
   sf::Texture rectanglesTexture[14];
   sf::Sprite rectanglesSprite[14];
-  sf::Text text1[20]; // for names of elements of sale room
-  sf::Text text2[14]; // for names of flowers store's elements
-
+  sf::Text text1[20];      // for names of elements of sale room
+  sf::Text text2[14];      // for names of flowers store's elements
+  sf::Text profileText[6]; //for number elements of profile menu
   // rectangle of lababoratory
   sf::Texture labRectangleTexture;
   sf::Sprite labRectangleSprite;
-
+  //profile tecture and sprite
+  sf::Texture proTexture;
+  sf::Sprite proSprite;
   for (size_t i = 0; i < 14; i++)
   {
     text2[i].setFillColor(sf::Color(200, 100, 100));
@@ -65,11 +67,17 @@ int main()
   bool clickOnSalesRoom;
   bool clickOnLaboratory;
   bool clickOnGreenHouse;
+  bool clickOnProfile;
   bool fromGreenHouse = false;
   Vase selectedVase;
   Vase *vasePtr = &selectedVase;
 
   sf::RectangleShape test;
+  //mesal--------
+  // sf::RectangleShape rec;
+  // rec.setSize(sf::Vector2f(200, 2));
+  // rec.setPosition(1080, 160);
+  //-------------
 
   while (mainWindow.isOpen())
   {
@@ -80,8 +88,9 @@ int main()
       {
         mainWindow.close();
       }
+      clickOnItemsOfProfile(mainWindow, mainEvent);
       clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture,
-                         rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse);
+                         rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse, clickOnProfile, proTexture, proSprite, profileText);
       if (clickOnSalesRoom)
       {
         clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse, vasePtr);
@@ -157,7 +166,16 @@ int main()
         mainWindow.draw(vases[i].get_vaseSprite());
       }
     }
+    if (clickOnProfile == true)
+    {
+      mainWindow.draw(proSprite);
+      for (size_t i = 0; i < 6; i++)
+      {
+        mainWindow.draw(profileText[i]);
+      }
 
+     // mainWindow.draw(rec);
+    }
     //mainWindow.draw(test);
   }
   return 0;

@@ -15,7 +15,8 @@ void manageVases(Vase &, bool &, bool &, bool &, sf::Texture &, sf::RenderWindow
 
 void clickOnItemsOfMenu(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &,
                         sf::Texture *, sf::Sprite *, sf::Text *, sf::Font &, bool &, bool &, bool &,
-                        Store *, sf::Text *, sf::Text *, sf::Texture &, sf::Sprite &, Vase *vases, bool &);
+                        Store *, sf::Text *, sf::Text *, sf::Texture &, sf::Sprite &, Vase *vases, bool &,bool&,
+                        sf::Texture&,sf::Sprite&,sf::Text*);
 void setStoreMenu(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setRectangles(sf::RenderWindow &, sf::Texture *, sf::Sprite *, sf::Font &, sf::Text *, sf::Text *, sf::Text *, Store *);
 void rightColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Sprite &, sf::Text *);
@@ -38,4 +39,6 @@ void giveExtract(Vase &, Store *, sf::Text *);
 void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, Store *, sf::Text *, sf::Sprite &, sf::Text *, sf::Font &font, bool &, Vase *&);
 void setTitleOfTables(sf::Sprite *, sf::Text &, sf::Text &, sf::Font &);
 
+void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &,sf::Text*,Store*,sf::Font&);
+void clickOnItemsOfProfile(sf::RenderWindow&,sf::Event&);
 #endif // FUNCTIONS_HPP
