@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/yasaman/Desktop/AP/GREEN_HOUSE/graphical_GreenHouse/include 
+CXX_INCLUDES = -I/home/fn/final_project/graphical_GreenHouse/include 
 

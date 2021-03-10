@@ -19,6 +19,23 @@ Store::~Store()
 {
   delete storePtr;
 }
+void Store::set_userName(string name)
+{
+  userName = name;
+}
+void Store::set_bio(string b)
+{
+  bio = b;
+}
+string Store::get_userName()
+{
+  return userName;
+}
+string Store::get_bio()
+{
+  return bio;
+}
+
 
 
 

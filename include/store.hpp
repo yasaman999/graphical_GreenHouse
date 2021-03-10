@@ -26,11 +26,14 @@ class Store // a singleton class
   friend void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &, sf::Text *, Store *,sf::Font&);
 
 public:
-  // void increase(std::string);
-  // void decrease(std::string);
-
   static Store *oneStore();
   ~Store();
+  void set_userName(std::string);
+  void set_bio(std::string);
+  std::string get_userName();
+  std::string get_bio();
+
+
 
 private:
   //private constructor for singleton
@@ -60,6 +63,9 @@ private:
   ui orkide = 0;
   ui deletedFlowers = 0;
   ui plantedFlowers = 0;
+  std::string userName = "";
+  std::string bio = "";
+
 };
 
 #endif

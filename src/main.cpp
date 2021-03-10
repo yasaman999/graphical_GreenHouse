@@ -41,6 +41,10 @@ int main()
   //profile tecture and sprite
   sf::Texture proTexture;
   sf::Sprite proSprite;
+  // for showing userName and bio in profile
+  sf::Text userNameText;
+  sf::Text bioText;
+
   for (size_t i = 0; i < 14; i++)
   {
     text2[i].setFillColor(sf::Color(200, 100, 100));
@@ -88,9 +92,12 @@ int main()
       {
         mainWindow.close();
       }
-      clickOnItemsOfProfile(mainWindow, mainEvent);
       clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture,
                          rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse, clickOnProfile, proTexture, proSprite, profileText);
+      if(clickOnProfile)
+      {
+        clickOnItemsOfProfile(mainWindow, mainEvent, mainStore, font, userNameText, bioText);
+      }
       if (clickOnSalesRoom)
       {
         clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse, vasePtr);
@@ -166,17 +173,20 @@ int main()
         mainWindow.draw(vases[i].get_vaseSprite());
       }
     }
-    if (clickOnProfile == true)
+    if (clickOnProfile)
     {
       mainWindow.draw(proSprite);
       for (size_t i = 0; i < 6; i++)
       {
         mainWindow.draw(profileText[i]);
       }
-
-     // mainWindow.draw(rec);
+      mainWindow.draw(userNameText);
+      mainWindow.draw(bioText);
     }
     //mainWindow.draw(test);
   }
+  cout << "user name -> " << mainStore->get_userName() << endl;
+  cout << "bio -> " << mainStore->get_bio() << endl;
+
   return 0;
 }

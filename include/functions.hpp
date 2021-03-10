@@ -25,8 +25,8 @@ void leftColumnOfSalesRoom(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, S
 void rightColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase *&);
 void leftColumnOfFlowerStore(sf::RenderWindow &, sf::Event &, sf::Sprite *, int, Store *, sf::Text *, sf::Text *, sf::Font &, bool &, bool &, Vase *&);
 bool confirmWindow();
-bool confirmWindow2();
-void errorWindow();
+int confirmWindow2();
+void errorWindow(std::string);
 bool waterWindow(Vase &,Store*);
 bool soilWindow(Vase &,Store*);
 bool sprayWindow(Vase &,Store*);
@@ -40,5 +40,6 @@ void clickOnItemsOfTable(sf::RenderWindow &window, sf::Sprite *, sf::Event &, St
 void setTitleOfTables(sf::Sprite *, sf::Text &, sf::Text &, sf::Font &);
 
 void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &,sf::Text*,Store*,sf::Font&);
-void clickOnItemsOfProfile(sf::RenderWindow&,sf::Event&);
+void clickOnItemsOfProfile(sf::RenderWindow&,sf::Event&, Store *, sf::Font &, sf::Text &, sf::Text &);
+void nameWindow(std::string, Store *);
 #endif // FUNCTIONS_HPP

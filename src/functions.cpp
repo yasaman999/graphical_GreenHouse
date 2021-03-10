@@ -47,22 +47,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
       }
       else
       {
-        sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
-        sf::Event errorEvent;
-        sf::Texture errorTexture;
-        sf::Sprite errorSprite;
-        errorTexture.loadFromFile("../image/Back.png");
-        errorSprite.setTexture(errorTexture);
-        while (errorWindow.isOpen())
-        {
-          while (errorWindow.pollEvent(errorEvent))
-          {
-            if (errorEvent.type == sf::Event::Closed)
-              errorWindow.close();
-          }
-          errorWindow.draw(errorSprite);
-          errorWindow.display();
-        }
+        errorWindow("../image/errorWindowBack.png");
       }
     }
     else if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= labRectangleSprite.getPosition().x - 137 &&
@@ -92,23 +77,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
       }
       else
       {
-        sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
-        sf::Event errorEvent;
-        sf::Texture errorTexture;
-        sf::Sprite errorSprite;
-        errorTexture.loadFromFile("../image/errorWindowBack.png");
-        errorSprite.setTexture(errorTexture);
-        while (errorWindow.isOpen())
-        {
-          while (errorWindow.pollEvent(errorEvent))
-          {
-            if (errorEvent.type == sf::Event::Closed)
-              errorWindow.close();
-          }
-          errorWindow.draw(errorSprite);
-          errorWindow.display();
-        }
-        cout << "lilium kochic tar az 0" << endl;
+        errorWindow("../image/errorWindowBack.png");
       }
     }
 
@@ -139,23 +108,8 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
       }
       else
       {
-        sf::RenderWindow errorWindow(sf::VideoMode(549, 348), "Error window");
-        sf::Event errorEvent;
-        sf::Texture errorTexture;
-        sf::Sprite errorSprite;
-        errorTexture.loadFromFile("../image/errorWindowBack.png");
-        errorSprite.setTexture(errorTexture);
-        while (errorWindow.isOpen())
-        {
-          while (errorWindow.pollEvent(errorEvent))
-          {
-            if (errorEvent.type == sf::Event::Closed)
-              errorWindow.close();
-          }
-          errorWindow.draw(errorSprite);
-          errorWindow.display();
-        }
-        cout << "magnoli kochic tar az 0" << endl;
+        errorWindow("../image/errorWindowBack.png");
+
       }
     }
   }
@@ -486,7 +440,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -512,7 +466,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -538,7 +492,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -564,7 +518,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -592,15 +546,15 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
         }
         else if (fromGreenHouse == true)
         {
           cout << "in right , fromGreenHouse==true , index==4" << endl;
-
-          if (confirmWindow2())
+          int confirmWindow2_output = confirmWindow2();
+          if (confirmWindow2_output == 1)
           {
             cout << "mikham bekaram!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
@@ -639,10 +593,10 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
-          else // if(confirmWindow2() == false)
+          else if(confirmWindow2_output == 2)
           {
             cout << "mikham befrosham!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
@@ -663,7 +617,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
         }
@@ -694,14 +648,15 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
         }
         else if (fromGreenHouse == true)
         {
-          cout << "in right , fromGreenHouse==true ,index==5" << endl;
-          if (confirmWindow2())
+          int confirmWindow2_output = confirmWindow2();
+
+          if (confirmWindow2_output == 1)
           {
             cout << "mikham bekaram!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
@@ -748,10 +703,10 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
-          else // if(confirmWindow2() == false)
+          else if(confirmWindow2_output == 2)
           {
             cout << "mikham befrosham!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
@@ -772,7 +727,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
         }
@@ -794,7 +749,6 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
         sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
         sf::Mouse::getPosition(window).y <= rectanglesSprite[index].getPosition().y + rectanglesSprite[index].getGlobalBounds().height)
     {
-      cout << "toye leftim alan" << endl;
       checkCallFunction = true;
       if (index == 0)
       {
@@ -818,7 +772,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -844,7 +798,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -870,7 +824,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -896,7 +850,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
-            errorWindow();
+            errorWindow("../image/errorWindow2.png");
           }
         }
       }
@@ -924,16 +878,16 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
         }
         else if (fromGreenHouse == true)
         {
-          cout << "in left , fromGreenHouse==true ,index==4" << endl;
-          if (confirmWindow2())
+          int confirmWindow2_output = confirmWindow2();
+          if (confirmWindow2_output == 1)
           {
-            //cout << "mikham bekaram!!!(left 4)" << endl;
+            cout << "mikham bekaram!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
             {
               ++mainStore->plantedFlowers;
@@ -963,14 +917,12 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
               }
               else if (randomFlower == 2) // maryam flower will be planted
               {
-                cout << "maryam flower" << endl;
                 vasePtr->set_vaseTexture("../image/maryam0.png");
                 vasePtr->set_vaseSprite();
                 vasePtr->set_flower(2, "maryam");
               }
               else // sonbol flower will be planted
               {
-                cout << "sonbol flower" << endl;
                 vasePtr->set_vaseTexture("../image/sonbol0.png");
                 vasePtr->set_vaseSprite();
                 vasePtr->set_flower(2, "sonbol");
@@ -978,10 +930,10 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              errorWindow();
+              errorWindow("../image/errorWindow2.png");
             }
           }
-          else // if(confirmWindow2() == false)
+          else if(confirmWindow2_output == 2)
           {
             cout << "mikham befrosham!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
@@ -1002,7 +954,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
-              cout << "error_rarebulb" << endl;
+              errorWindow("../image/errorWindow2.png");
             }
           }
         }
@@ -1074,7 +1026,7 @@ bool confirmWindow()
   return check;
 } // end of manage_window function
 
-bool confirmWindow2()
+int confirmWindow2()
 {
   sf::RenderWindow ConfirmWindoww2(sf::VideoMode(556, 323), "confirm Window");
   // background of ConfirmWindoww
@@ -1088,7 +1040,7 @@ bool confirmWindow2()
 
   sf::Event event;
 
-  bool check;
+  int check;
 
   //while user dose not click on the close button, YES
   // or NO , ConfirmWindoww is open
@@ -1099,10 +1051,10 @@ bool confirmWindow2()
       // if user clicks on the close button, ConfirmWindoww will be closed
       if (event.type == sf::Event::EventType::Closed)
       {
+        check = 0;
         ConfirmWindoww2.close();
-        check = false;
       }
-      //if user clicks on "NO", ConfirmWindoww will be closed
+      //if user clicks on "mikham befrosham", flower bulb will be sold ConfirmWindoww will be close
       if (event.type == sf::Event::EventType::MouseButtonPressed)
       {
         if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(ConfirmWindoww2).x >= 147 &&
@@ -1110,11 +1062,11 @@ bool confirmWindow2()
             sf::Mouse::getPosition(ConfirmWindoww2).y >= 173 &&
             sf::Mouse::getPosition(ConfirmWindoww2).y <= 212)
         {
+          check = 2;
           ConfirmWindoww2.close();
-          check = false;
         }
       }
-      //if user clicks on "YES", task will be deleted and ConfirmWindoww will be closed
+      //if user clicks on "mikham bekaram", flower bulb will be planted and ConfirmWindoww will be closed
 
       if (event.type == sf::Event::EventType::MouseButtonPressed)
       {
@@ -1124,8 +1076,8 @@ bool confirmWindow2()
             sf::Mouse::getPosition(ConfirmWindoww2).y <= 212)
         {
 
+          check = 1;
           ConfirmWindoww2.close();
-          check = true;
         }
       }
     } // end of while(ConfirmWindoww.pollEvent(event))
@@ -1135,13 +1087,13 @@ bool confirmWindow2()
   } // end of while(window.isOpen())
   return check;
 } // end of manage_window function
-void errorWindow()
+void errorWindow(string path)
 {
-  sf::RenderWindow errorWindow(sf::VideoMode(580, 338), "Error window");
+  sf::RenderWindow errorWindow(sf::VideoMode(549, 338), "Error window");
   sf::Event errorEvent;
   sf::Texture errorTexture;
   sf::Sprite errorSprite;
-  errorTexture.loadFromFile("../image/errorWindow2.png");
+  errorTexture.loadFromFile(path);
   errorSprite.setTexture(errorTexture);
   while (errorWindow.isOpen())
   {
@@ -1169,10 +1121,7 @@ bool waterWindow(Vase &v, Store *mainStore)
   trashSprite.setPosition(sf::Vector2f(waterWin.getSize().x - 42, waterWin.getSize().y - 42));
   sf::Event waterEvent;
   bool check = false;
-  // sf::RectangleShape test;
-  // test.setSize(sf::Vector2f(200, 2));
-  // test.setPosition(sf::Vector2f(200, 215));
-  while (waterWin.isOpen())
+  while(waterWin.isOpen())
   {
     while (waterWin.pollEvent(waterEvent))
     {
@@ -1447,7 +1396,7 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
     }
     else
     {
-      errorWindow();
+      errorWindow("../image/errorWindow2.png");
     }
   }
 }
@@ -1549,7 +1498,7 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
     } // end of if (mainStore->NumberOfSoilUnits > 0)
     else
     {
-      errorWindow();
+      errorWindow("../image/errorWindow2.png");
     }
   } // end of if (soilWindow())
 } // end of giveSoil function
@@ -1583,7 +1532,7 @@ void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
     } // end of if (mainStore->spray > 0)
     else
     {
-      errorWindow();
+      errorWindow("../image/errorWindow2.png");
     }
   } // end of if (sprayWindow())
 } // end of giveSpray function
@@ -1609,7 +1558,7 @@ void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       }
       else
       {
-        errorWindow();
+        errorWindow("../image/errorWindow2.png");
       }
     } // end of if (v.get_flowerStar()->get_name() == "magnolia")
 
@@ -1631,7 +1580,7 @@ void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       }
       else
       {
-        errorWindow();
+        errorWindow("../image/errorWindow2.png");
       }
     } // end of else if (v.get_flowerStar()->get_name() == "lilium")
 
@@ -1653,7 +1602,7 @@ void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       }
       else
       {
-        errorWindow();
+        errorWindow("../image/errorWindow2.png");
       }
     } // end of else if (v.get_flowerStar()->get_name() == "orkide")
   }   // end of if (extractWindow())
@@ -1941,9 +1890,10 @@ void setProfile(sf::RenderWindow &window, sf::Texture &proTexture, sf::Sprite &p
   profileText[5].setPosition(sf::Vector2f(280, 485));
 }
 
-void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event)
+void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event, Store * mainStore, sf::Font & font, sf::Text & userNameText, sf::Text & bioText)
 {
-
+  bool clickOnPerson = false;
+  // if user clicks on rectangle of profile picture, proWin will be opened
   if (event.type == sf::Event::MouseButtonPressed)
   {
 
@@ -1952,13 +1902,21 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event)
         sf::Mouse::getPosition(window).y >= 160 &&
         sf::Mouse::getPosition(window).y <= 248)
     {
+     clickOnPerson = true;
      sf::RenderWindow proWin(sf::VideoMode(504,340),"Person Information");
      sf::Event proEvent;
+     // set font for userNameText and bioText
+     userNameText.setFont(font);
+     bioText.setFont(font);
+     // set color for userNameText and bioText
+     userNameText.setFillColor(sf::Color::Black);
+     bioText.setFillColor(sf::Color::Black);
+
      sf::Texture proTexture;
      proTexture.loadFromFile("../image/bioForm.png");
      sf::Sprite proSprite;
      proSprite.setTexture(proTexture);
-     while (proWin.isOpen())
+      while (proWin.isOpen())
      {
        while (proWin.pollEvent(proEvent))
        {
@@ -1966,12 +1924,126 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event)
          {
            proWin.close();
          }
+         if (proEvent.type == sf::Event::MouseButtonPressed)
+         {
+
+           if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 240 &&
+               sf::Mouse::getPosition(proWin).x <= 415 &&
+               sf::Mouse::getPosition(proWin).y >= 125 &&
+               sf::Mouse::getPosition(proWin).y <= 188)
+               {
+                 nameWindow("name", mainStore);
+               }
+               if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 65 &&
+                   sf::Mouse::getPosition(proWin).x <= 240 &&
+                   sf::Mouse::getPosition(proWin).y >= 125 &&
+                   sf::Mouse::getPosition(proWin).y <= 188)
+               {
+                  nameWindow("bio", mainStore);
+               }
+            }
        }
-       
+       // set string for userNameText and bio
+       userNameText.setString(mainStore->get_userName());
+       bioText.setString(mainStore->get_bio());
+       // set origin and position for userNameText
+       userNameText.setOrigin(sf::Vector2f(userNameText.getGlobalBounds().width/2, 0));
+       userNameText.setPosition(sf::Vector2f(1040, 260));
+       // set position for bioText
+       bioText.setPosition(sf::Vector2f(255, 160));
+
        proWin.display();
        proWin.draw(proSprite);
      }
-     
+
     }
+  }
+
+}
+void nameWindow(string str, Store * mainStore)
+{
+  // declare RenderWindow and event
+  sf::RenderWindow nameWin(sf::VideoMode(800, 464), "Information of user window");
+  sf::Event event;
+  // declare Texture and Sprite for background of window
+  sf::Texture nameWinTexture;
+  sf::Sprite nameWinSprite;
+  // loadFromFile and setTexture for background of window
+  nameWinTexture.loadFromFile("../image/background2.png");
+  nameWinSprite.setTexture(nameWinTexture);
+  // declare Text and Font
+  sf::Text messages;
+  sf::Font font;
+
+  string s, userName = "";
+  if(str == "name")
+  {
+    s = "Please enter your user name :\n";
+  }
+  else if(str == "bio")
+  {
+    s = "Please enter your bio :\n";
+  }
+  // loadFromFile for font and some set function for messages
+  font.loadFromFile("../image/aviny.ttf");
+  messages.setFont(font);
+  messages.setString(s);
+  messages.setFillColor(sf::Color::Black);
+  messages.setCharacterSize(50);
+  //cout << "ghabl az while" << endl;
+  while(nameWin.isOpen())
+  {
+    while(nameWin.pollEvent(event))
+    {
+      if(event.type == sf::Event::Closed)
+      {
+        nameWin.close();
+      }
+      if (event.type == sf::Event::TextEntered)// for get input
+      {
+        if (event.text.unicode < 128)
+        {
+          // if user enters backspace key
+          if (event.text.unicode == 8)
+          {
+            if (userName.size() != 0)
+            {
+              s.erase(s.begin() + s.size() - 1);
+              userName.erase(userName.begin() + userName.size() - 1);
+            }
+          } //end of if (event.text.unicode == 8)
+          else if (userName.size() <= 155)
+          {
+            s += static_cast<char>(event.text.unicode);
+            userName += static_cast<char>(event.text.unicode);
+            if(userName.size() == 35 || userName.size() == 70 || userName.size() == 105  || userName.size() == 140)
+            {
+              s += '\n';
+            }
+            if(userName.size() == 55 || userName.size() == 111)
+            {
+              userName += '\n';
+            }
+
+          }
+          else // if size of userName greater than 100
+          {
+            errorWindow("../image/errorWindow3.png");
+          }
+        } // end of if (event.text.unicode < 128)
+      } //end of if (event.type == sf::Event::TextEntered)
+      messages.setString(s);
+    } // end of while(nameWin.pollEvent(event))
+    nameWin.display();
+    nameWin.draw(nameWinSprite);
+    nameWin.draw(messages);
+  }
+  if(str == "name")
+  {
+    mainStore->set_userName(userName);
+  }
+  else if(str == "bio")
+  {
+    mainStore->set_bio(userName);
   }
 }
