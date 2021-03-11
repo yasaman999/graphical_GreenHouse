@@ -5,6 +5,13 @@
 using namespace std;
 int main()
 {
+  //files
+  ofstream storeFileWrite;
+  ofstream vaseFileWrite;
+
+  ifstream storeFileRead;
+  ifstream vaseFileRead;
+
   //main window
   sf::RenderWindow mainWindow(sf::VideoMode(1401, 812), "Graphical_GreenHouse");
   // event
@@ -57,6 +64,12 @@ int main()
   {
     StoreMenuTexts[i].setFont(font);
   }
+      //setPostion
+      StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+      StoreMenuTexts[1].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 650, storeMenuSprite.getPosition().y + 12);
+      StoreMenuTexts[2].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 950, storeMenuSprite.getPosition().y + 12);
+      StoreMenuTexts[3].setPosition(sf::Vector2f(storeMenuSprite.getPosition().x + 80, storeMenuSprite.getPosition().y + 12));
+
   for (size_t i = 0; i < 18; i++)
   {
     StoreMenuTexts[i].setFillColor(sf::Color::Black);
@@ -80,7 +93,7 @@ int main()
   //mesal--------
   // sf::RectangleShape rec;
   // rec.setSize(sf::Vector2f(200, 2));
-  // rec.setPosition(1080, 160);
+  // rec.setPosition(sf::Vector2f(400, 620));
   //-------------
 
   while (mainWindow.isOpen())
@@ -94,9 +107,9 @@ int main()
       }
       clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture,
                          rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse, clickOnProfile, proTexture, proSprite, profileText);
-      if(clickOnProfile)
+      if (clickOnProfile)
       {
-        clickOnItemsOfProfile(mainWindow, mainEvent, mainStore, font, userNameText, bioText);
+        clickOnItemsOfProfile(mainWindow, mainEvent, mainStore, font, userNameText, bioText, storeFileWrite, vaseFileWrite, storeFileRead, vaseFileRead,StoreMenuTexts,profileText);
       }
       if (clickOnSalesRoom)
       {
@@ -182,8 +195,8 @@ int main()
       }
       mainWindow.draw(userNameText);
       mainWindow.draw(bioText);
+      // mainWindow.draw(rec);
     }
-    //mainWindow.draw(test);
   }
   cout << "user name -> " << mainStore->get_userName() << endl;
   cout << "bio -> " << mainStore->get_bio() << endl;

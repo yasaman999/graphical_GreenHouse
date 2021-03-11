@@ -109,7 +109,6 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
       else
       {
         errorWindow("../image/errorWindowBack.png");
-
       }
     }
   }
@@ -596,7 +595,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
               errorWindow("../image/errorWindow2.png");
             }
           }
-          else if(confirmWindow2_output == 2)
+          else if (confirmWindow2_output == 2)
           {
             cout << "mikham befrosham!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
@@ -706,7 +705,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
               errorWindow("../image/errorWindow2.png");
             }
           }
-          else if(confirmWindow2_output == 2)
+          else if (confirmWindow2_output == 2)
           {
             cout << "mikham befrosham!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
@@ -933,7 +932,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
               errorWindow("../image/errorWindow2.png");
             }
           }
-          else if(confirmWindow2_output == 2)
+          else if (confirmWindow2_output == 2)
           {
             cout << "mikham befrosham!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
@@ -1121,7 +1120,7 @@ bool waterWindow(Vase &v, Store *mainStore)
   trashSprite.setPosition(sf::Vector2f(waterWin.getSize().x - 42, waterWin.getSize().y - 42));
   sf::Event waterEvent;
   bool check = false;
-  while(waterWin.isOpen())
+  while (waterWin.isOpen())
   {
     while (waterWin.pollEvent(waterEvent))
     {
@@ -1890,77 +1889,132 @@ void setProfile(sf::RenderWindow &window, sf::Texture &proTexture, sf::Sprite &p
   profileText[5].setPosition(sf::Vector2f(280, 485));
 }
 
-void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event, Store * mainStore, sf::Font & font, sf::Text & userNameText, sf::Text & bioText)
+void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
+                           Store *mainStore, sf::Font &font, sf::Text &userNameText, sf::Text &bioText, ofstream &storeFileWrite, ofstream &vaseFileWrite,
+                           ifstream &storeFileRead, ifstream &vaseFileRead, sf::Text *StoreMenuTexts, sf::Text *profileText)
 {
   bool clickOnPerson = false;
   // if user clicks on rectangle of profile picture, proWin will be opened
   if (event.type == sf::Event::MouseButtonPressed)
   {
-
     if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= 1015 &&
         sf::Mouse::getPosition(window).x <= 1098 &&
         sf::Mouse::getPosition(window).y >= 160 &&
         sf::Mouse::getPosition(window).y <= 248)
     {
-     clickOnPerson = true;
-     sf::RenderWindow proWin(sf::VideoMode(504,340),"Person Information");
-     sf::Event proEvent;
-     // set font for userNameText and bioText
-     userNameText.setFont(font);
-     bioText.setFont(font);
-     // set color for userNameText and bioText
-     userNameText.setFillColor(sf::Color::Black);
-     bioText.setFillColor(sf::Color::Black);
 
-     sf::Texture proTexture;
-     proTexture.loadFromFile("../image/bioForm.png");
-     sf::Sprite proSprite;
-     proSprite.setTexture(proTexture);
+      clickOnPerson = true;
+      sf::RenderWindow proWin(sf::VideoMode(504, 340), "Person Information");
+      sf::Event proEvent;
+      // set font for userNameText and bioText
+      userNameText.setFont(font);
+      bioText.setFont(font);
+      // set color for userNameText and bioText
+      userNameText.setFillColor(sf::Color::Black);
+      bioText.setFillColor(sf::Color::Black);
+
+      sf::Texture proTexture;
+      proTexture.loadFromFile("../image/bioForm.png");
+      sf::Sprite proSprite;
+      proSprite.setTexture(proTexture);
       while (proWin.isOpen())
-     {
-       while (proWin.pollEvent(proEvent))
-       {
-         if(proEvent.type==sf::Event::Closed)
-         {
-           proWin.close();
-         }
-         if (proEvent.type == sf::Event::MouseButtonPressed)
-         {
+      {
+        while (proWin.pollEvent(proEvent))
+        {
+          if (proEvent.type == sf::Event::Closed)
+          {
+            proWin.close();
+          }
+          if (proEvent.type == sf::Event::MouseButtonPressed)
+          {
 
-           if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 240 &&
-               sf::Mouse::getPosition(proWin).x <= 415 &&
-               sf::Mouse::getPosition(proWin).y >= 125 &&
-               sf::Mouse::getPosition(proWin).y <= 188)
-               {
-                 nameWindow("name", mainStore);
-               }
-               if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 65 &&
-                   sf::Mouse::getPosition(proWin).x <= 240 &&
-                   sf::Mouse::getPosition(proWin).y >= 125 &&
-                   sf::Mouse::getPosition(proWin).y <= 188)
-               {
-                  nameWindow("bio", mainStore);
-               }
+            if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 240 &&
+                sf::Mouse::getPosition(proWin).x <= 415 &&
+                sf::Mouse::getPosition(proWin).y >= 125 &&
+                sf::Mouse::getPosition(proWin).y <= 188)
+            {
+              nameWindow("name", mainStore);
             }
-       }
-       // set string for userNameText and bio
-       userNameText.setString(mainStore->get_userName());
-       bioText.setString(mainStore->get_bio());
-       // set origin and position for userNameText
-       userNameText.setOrigin(sf::Vector2f(userNameText.getGlobalBounds().width/2, 0));
-       userNameText.setPosition(sf::Vector2f(1040, 260));
-       // set position for bioText
-       bioText.setPosition(sf::Vector2f(255, 160));
-
-       proWin.display();
-       proWin.draw(proSprite);
-     }
-
+            if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 65 &&
+                sf::Mouse::getPosition(proWin).x <= 240 &&
+                sf::Mouse::getPosition(proWin).y >= 125 &&
+                sf::Mouse::getPosition(proWin).y <= 188)
+            {
+              nameWindow("bio", mainStore);
+            }
+          }
+        }
+        // set string for userNameText and bio
+        userNameText.setString(mainStore->get_userName());
+        bioText.setString(mainStore->get_bio());
+        // set origin and position for userNameText
+        userNameText.setOrigin(sf::Vector2f(userNameText.getGlobalBounds().width / 2, 0));
+        userNameText.setPosition(sf::Vector2f(1040, 260));
+        // set position for bioText
+        bioText.setPosition(sf::Vector2f(255, 160));
+        proWin.display();
+        proWin.draw(proSprite);
+      }
     }
   }
-
+  // if user clicks on save game part, information of game will be write in the file
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= 681 &&
+        sf::Mouse::getPosition(window).x <= 882 &&
+        sf::Mouse::getPosition(window).y >= 570 &&
+        sf::Mouse::getPosition(window).y <= 622)
+    {
+      cout << "roye zakhire bazi click kardi!!!" << endl;
+      writeInFile(storeFileWrite, vaseFileWrite, mainStore);
+    }
+  }
+  // if user clicks on load game part, information of game will be read from the file
+  if (event.type == sf::Event::MouseButtonPressed)
+  {
+    if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= 470 &&
+        sf::Mouse::getPosition(window).x <= 671 &&
+        sf::Mouse::getPosition(window).y >= 570 &&
+        sf::Mouse::getPosition(window).y <= 622)
+    {
+      cout << "roye bargozari bazi click kardi!!!" << endl;
+      readInFile(storeFileRead, vaseFileRead, mainStore);
+      ui x = mainStore->NumberOfWaterUnits;
+      StoreMenuTexts[0].setString(to_string(x));
+      x = mainStore->NumberOfSoilUnits;
+      StoreMenuTexts[1].setString(to_string(x));
+      x = mainStore->spray;
+      StoreMenuTexts[2].setString(to_string(x));
+      x = mainStore->liliumExtract + mainStore->magnoliaExtract + mainStore->orkideExtract;
+      StoreMenuTexts[3].setString(to_string(x));
+      //setPostion
+      x = mainStore->kokab + mainStore->narges;
+      profileText[0].setString(to_string(x));
+      x = mainStore->lale + mainStore->maryam + mainStore->sonbol;
+      profileText[1].setString(to_string(x));
+      x = mainStore->magnolia + mainStore->orkide + mainStore->lilium;
+      profileText[2].setString(to_string(x));
+      x = mainStore->plantedFlowers;
+      profileText[3].setString(to_string(x));
+      x = mainStore->deletedFlowers;
+      profileText[4].setString(to_string(x));
+      x = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
+      profileText[5].setString(to_string(x));
+      //------------------
+      string name = mainStore->userName;
+      userNameText.setFont(font);
+      userNameText.setFillColor(sf::Color::Black);
+      userNameText.setPosition(sf::Vector2f(1040, 260));
+      userNameText.setString(name);
+      name = mainStore->bio;
+      bioText.setFont(font);
+      bioText.setFillColor(sf::Color::Black);
+      bioText.setPosition(sf::Vector2f(255, 160));
+      bioText.setString(name);
+    }
+  }
 }
-void nameWindow(string str, Store * mainStore)
+void nameWindow(string str, Store *mainStore)
 {
   // declare RenderWindow and event
   sf::RenderWindow nameWin(sf::VideoMode(800, 464), "Information of user window");
@@ -1976,11 +2030,11 @@ void nameWindow(string str, Store * mainStore)
   sf::Font font;
 
   string s, userName = "";
-  if(str == "name")
+  if (str == "name")
   {
     s = "Please enter your user name :\n";
   }
-  else if(str == "bio")
+  else if (str == "bio")
   {
     s = "Please enter your bio :\n";
   }
@@ -1991,15 +2045,15 @@ void nameWindow(string str, Store * mainStore)
   messages.setFillColor(sf::Color::Black);
   messages.setCharacterSize(50);
   //cout << "ghabl az while" << endl;
-  while(nameWin.isOpen())
+  while (nameWin.isOpen())
   {
-    while(nameWin.pollEvent(event))
+    while (nameWin.pollEvent(event))
     {
-      if(event.type == sf::Event::Closed)
+      if (event.type == sf::Event::Closed)
       {
         nameWin.close();
       }
-      if (event.type == sf::Event::TextEntered)// for get input
+      if (event.type == sf::Event::TextEntered) // for get input
       {
         if (event.text.unicode < 128)
         {
@@ -2016,34 +2070,117 @@ void nameWindow(string str, Store * mainStore)
           {
             s += static_cast<char>(event.text.unicode);
             userName += static_cast<char>(event.text.unicode);
-            if(userName.size() == 35 || userName.size() == 70 || userName.size() == 105  || userName.size() == 140)
+            if (userName.size() == 35 || userName.size() == 70 || userName.size() == 105 || userName.size() == 140)
             {
               s += '\n';
             }
-            if(userName.size() == 55 || userName.size() == 111)
+            if (userName.size() == 55 || userName.size() == 111)
             {
               userName += '\n';
             }
-
           }
           else // if size of userName greater than 100
           {
             errorWindow("../image/errorWindow3.png");
           }
         } // end of if (event.text.unicode < 128)
-      } //end of if (event.type == sf::Event::TextEntered)
+      }   //end of if (event.type == sf::Event::TextEntered)
       messages.setString(s);
     } // end of while(nameWin.pollEvent(event))
     nameWin.display();
     nameWin.draw(nameWinSprite);
     nameWin.draw(messages);
   }
-  if(str == "name")
+  if (str == "name")
   {
     mainStore->set_userName(userName);
   }
-  else if(str == "bio")
+  else if (str == "bio")
   {
     mainStore->set_bio(userName);
   }
+}
+
+//write informations in 2 files
+void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, Store *mainStore)
+{
+  storeFileWrite.open("../file/storeFile.txt", ios::trunc);
+  cout << "we are in file write :D" << endl;
+  storeFileWrite.seekp(0, ios::beg);
+  //storeFileWrite << "hi mina :D" << endl;
+  // Store &s=*mainStore;
+  // storeFileWrite.write(reinterpret_cast<const char *>(&s), sizeof(s));
+  // cout<<"write :D -> mainstore : "<<mainStore->get_userName()<<endl;
+
+  // cout << "Neveshtim" << endl;
+  storeFileWrite << mainStore->NumberOfWaterUnits << " ";
+  storeFileWrite << mainStore->NumberOfSoilUnits << " ";
+  storeFileWrite << mainStore->spray << " ";
+  storeFileWrite << mainStore->orkideExtract << " ";
+  storeFileWrite << mainStore->liliumExtract << " ";
+  storeFileWrite << mainStore->magnoliaExtract << " ";
+  storeFileWrite << mainStore->ordinaryBulb << " ";
+  storeFileWrite << mainStore->rareBulb << " ";
+  storeFileWrite << mainStore->decorativeBulb << " ";
+  storeFileWrite << mainStore->kokab << " ";
+  storeFileWrite << mainStore->narges << " ";
+  storeFileWrite << mainStore->lale << " ";
+  storeFileWrite << mainStore->maryam << " ";
+  storeFileWrite << mainStore->sonbol << " ";
+  storeFileWrite << mainStore->magnolia << " ";
+  storeFileWrite << mainStore->lilium << " ";
+  storeFileWrite << mainStore->orkide << " ";
+  storeFileWrite << mainStore->deletedFlowers << " ";
+  storeFileWrite << mainStore->plantedFlowers << endl;
+  storeFileWrite << mainStore->userName << endl;
+  storeFileWrite << mainStore->bio;
+
+  storeFileWrite.close();
+}
+
+void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store *mainStore)
+{
+  storeFileRead.open("../file/storeFile.txt");
+  cout << "we are in file Read :D" << endl;
+  storeFileRead.seekg(0, ios::beg);
+  //storeFileRead << "hi mina :D" << endl;
+
+  // Store &s = *mainStore;
+  // storeFileRead.read(reinterpret_cast<char *>(&s), sizeof(s));
+  // cout << "reade :D -> mainstore : " << mainStore->get_userName() << endl;
+  // cout << "Neveshtim read " << endl;
+  storeFileRead >> mainStore->NumberOfWaterUnits;
+  storeFileRead >> mainStore->NumberOfSoilUnits;
+  storeFileRead >> mainStore->spray;
+  storeFileRead >> mainStore->orkideExtract;
+  storeFileRead >> mainStore->liliumExtract;
+  storeFileRead >> mainStore->magnoliaExtract;
+  storeFileRead >> mainStore->ordinaryBulb;
+  storeFileRead >> mainStore->rareBulb;
+  storeFileRead >> mainStore->decorativeBulb;
+  storeFileRead >> mainStore->kokab;
+  storeFileRead >> mainStore->narges;
+  storeFileRead >> mainStore->lale;
+  storeFileRead >> mainStore->maryam;
+  storeFileRead >> mainStore->sonbol;
+  storeFileRead >> mainStore->magnolia;
+  storeFileRead >> mainStore->lilium;
+  storeFileRead >> mainStore->orkide;
+  storeFileRead >> mainStore->deletedFlowers;
+  storeFileRead >> mainStore->plantedFlowers;
+
+  storeFileRead.ignore();
+  storeFileRead.ignore();
+  storeFileRead.ignore();
+
+  // storeFileRead >> mainStore->plantedFlowers >> endl;
+  // storeFileRead >> mainStore->userName >> endl;
+  getline(storeFileRead, mainStore->userName);
+  getline(storeFileRead, mainStore->bio);
+
+  cout << "*****************" << endl;
+  cout << mainStore->bio << endl;
+  cout << "*****************" << endl;
+
+  storeFileRead.close();
 }

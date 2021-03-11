@@ -23,8 +23,11 @@ class Store // a singleton class
   friend bool soilWindow(Vase &, Store *);
   friend bool sprayWindow(Vase &, Store *);
   friend bool extractWindow(Vase &, Store *);
-  friend void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &, sf::Text *, Store *,sf::Font&);
-
+  friend void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &, sf::Text *, Store *, sf::Font &);
+  friend void writeInFile(std::ofstream &, std::ofstream &, Store *);
+  friend void readInFile(std::ifstream &, std::ifstream &, Store *);
+  friend void clickOnItemsOfProfile(sf::RenderWindow &, sf::Event &, Store *, sf::Font &, sf::Text &, sf::Text &, std::ofstream &, std::ofstream &, std::ifstream &, std::ifstream &,sf::Text*,sf::Text*);
+  
 public:
   static Store *oneStore();
   ~Store();
@@ -32,8 +35,6 @@ public:
   void set_bio(std::string);
   std::string get_userName();
   std::string get_bio();
-
-
 
 private:
   //private constructor for singleton
@@ -65,7 +66,6 @@ private:
   ui plantedFlowers = 0;
   std::string userName = "";
   std::string bio = "";
-
 };
 
 #endif
