@@ -109,7 +109,7 @@ int main()
                          rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse, clickOnProfile, proTexture, proSprite, profileText);
       if (clickOnProfile)
       {
-        clickOnItemsOfProfile(mainWindow, mainEvent, mainStore, font, userNameText, bioText, storeFileWrite, vaseFileWrite, storeFileRead, vaseFileRead,StoreMenuTexts,profileText);
+        clickOnItemsOfProfile(mainWindow, mainEvent, mainStore, font, userNameText, bioText, storeFileWrite, vaseFileWrite, storeFileRead, vaseFileRead,StoreMenuTexts,profileText,vases);
       }
       if (clickOnSalesRoom)
       {

@@ -5,9 +5,14 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-
+class Store;
 class Vase
 {
+friend void writeInFile(std::ofstream &, std::ofstream &, Store *,Vase* );
+friend void readInFile(std::ofstream &, std::ofstream &, Store *,Vase* );
+//friend std::istream& operator>>(std::istream & cin, Flower& f);
+ 
+
 private:
     Flower *flower;
     bool locked = true;
@@ -36,5 +41,6 @@ public:
     bool get_readyToPick();
     sf::Sprite get_vaseSprite();
     Flower *get_flowerStar();
+    //const Vase* operator=(const Vase&);
 };
 #endif // VASE_HPP

@@ -57,3 +57,15 @@ bool Flower::get_soil() const
 {
   return soil;
 }
+//---------
+// std::istream& operator>>(std::istream & cin, Flower& f)
+// {
+//     cin>>&f;
+//     return cin;
+// }
+// //-----------
+// std::ostream& operator<<(std::ostream & cout, Flower& f)
+// {
+//     cout<<&f;
+//     return cout;
+// }

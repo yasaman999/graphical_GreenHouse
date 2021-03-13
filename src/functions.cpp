@@ -1662,25 +1662,164 @@ void setTitleOfTables(sf::Sprite *rectanglesSprite, sf::Text &storeText, sf::Tex
 void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
 {
 
-  // vases[0].set_vaseTexture("../image/empty.png");
   for (size_t i = 0; i < 10; i++)
   {
+    cout << "index -> " << i << endl;
     if (vases[i].get_locked())
     {
+      cout << "marhale locked dar setVases!!!" << endl;
       vases[i].set_vaseTexture("../image/lock.png");
     }
     else if (vases[i].get_empty())
     {
+      cout << "marhale empty dar setVases!!!" << endl;
+
       vases[i].set_vaseTexture("../image/empty.png");
     }
     else if (vases[i].get_growing())
     {
       // contain 3 if (for levels of growing)
       cout << "marhale growing dar setVases!!!" << endl;
+      if (vases[i].get_flowerStar()->get_name() == "kokab")
+      {
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/kokab0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+          vases[i].set_vaseTexture("../image/kokab1.png");
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "narges")
+      {
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/narges0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+          vases[i].set_vaseTexture("../image/narges1.png");
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "maryam")
+      {
+        RareFlower *rareF = nullptr;
+        rareF = dynamic_cast<RareFlower *>(vases[i].get_flowerStar());
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/maryam0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+        {
+          vases[i].set_vaseTexture("../image/maryam1.png");
+        }
+        else if (!rareF->get_spray())
+        {
+          vases[i].set_vaseTexture("../image/maryam2.png");
+        }
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "sonbol")
+      {
+        RareFlower *rareF = nullptr;
+        rareF = dynamic_cast<RareFlower *>(vases[i].get_flowerStar());
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/sonbo0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+        {
+          vases[i].set_vaseTexture("../image/sonbol1.png");
+        }
+        else if (!rareF->get_spray())
+        {
+          vases[i].set_vaseTexture("../image/sonbol2.png");
+        }
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "lale")
+      {
+        RareFlower *rareF = nullptr;
+        rareF = dynamic_cast<RareFlower *>(vases[i].get_flowerStar());
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/lale0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+        {
+          vases[i].set_vaseTexture("../image/lale1.png");
+        }
+        else if (!rareF->get_spray())
+        {
+          vases[i].set_vaseTexture("../image/lale2.png");
+        }
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "magnolia")
+      {
+        decorativeFlower *decorativeF = nullptr;
+        decorativeF = dynamic_cast<decorativeFlower *>(vases[i].get_flowerStar());
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/magnolia0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+        {
+          vases[i].set_vaseTexture("../image/magnolia1.png");
+        }
+        else if (!decorativeF->get_extract())
+        {
+          vases[i].set_vaseTexture("../image/magnolia2.png");
+        }
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "lilium")
+      {
+        decorativeFlower *decorativeF = nullptr;
+        decorativeF = dynamic_cast<decorativeFlower *>(vases[i].get_flowerStar());
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/lilium0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+        {
+          vases[i].set_vaseTexture("../image/lilium1.png");
+        }
+        else if (!decorativeF->get_extract())
+        {
+          vases[i].set_vaseTexture("../image/lilium2.png");
+        }
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "orkide")
+      {
+        decorativeFlower *decorativeF = nullptr;
+        decorativeF = dynamic_cast<decorativeFlower *>(vases[i].get_flowerStar());
+        if (!vases[i].get_flowerStar()->get_water())
+          vases[i].set_vaseTexture("../image/orkide0.png");
+        else if (!vases[i].get_flowerStar()->get_soil())
+        {
+          vases[i].set_vaseTexture("../image/orkide1.png");
+        }
+        else if (!decorativeF->get_extract())
+        {
+          vases[i].set_vaseTexture("../image/orkide2.png");
+        }
+      }
     }
     else if (vases[i].get_readyToPick())
     {
       cout << "marhale readyToPickdar setVases!!!" << endl;
+      if (vases[i].get_flowerStar()->get_name() == "kokab")
+      {
+        vases[i].set_vaseTexture("../image/flower1-3.png");
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "narges")
+      {
+        vases[i].set_vaseTexture("../image/flower2-3.png");
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "maryam")
+      {
+        vases[i].set_vaseTexture("../image/flower4-3.png");
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "sonbol")
+      {
+        vases[i].set_vaseTexture("../image/flower5-3.png");
+      }
+      else if (vases[i].get_flowerStar()->get_name() == "lale")
+      {
+        vases[i].set_vaseTexture("../image/flower3-3.png");
+      }
+        else if (vases[i].get_flowerStar()->get_name() == "magnolia")
+      {
+        vases[i].set_vaseTexture("../image/flower6-3.png");
+      }
+        else if (vases[i].get_flowerStar()->get_name() == "lilium")
+      {
+        vases[i].set_vaseTexture("../image/flower7-3.png");
+      }
+        else if (vases[i].get_flowerStar()->get_name() == "orkide")
+      {
+        vases[i].set_vaseTexture("../image/flower8-3.png");
+      }
     }
   }
   for (size_t i = 0; i < 10; i++)
@@ -1891,7 +2030,7 @@ void setProfile(sf::RenderWindow &window, sf::Texture &proTexture, sf::Sprite &p
 
 void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
                            Store *mainStore, sf::Font &font, sf::Text &userNameText, sf::Text &bioText, ofstream &storeFileWrite, ofstream &vaseFileWrite,
-                           ifstream &storeFileRead, ifstream &vaseFileRead, sf::Text *StoreMenuTexts, sf::Text *profileText)
+                           ifstream &storeFileRead, ifstream &vaseFileRead, sf::Text *StoreMenuTexts, sf::Text *profileText, Vase *vases)
 {
   bool clickOnPerson = false;
   // if user clicks on rectangle of profile picture, proWin will be opened
@@ -1966,7 +2105,8 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
         sf::Mouse::getPosition(window).y <= 622)
     {
       cout << "roye zakhire bazi click kardi!!!" << endl;
-      writeInFile(storeFileWrite, vaseFileWrite, mainStore);
+      writeInFile(storeFileWrite, vaseFileWrite, mainStore, vases);
+      readInFile(storeFileRead, vaseFileRead, mainStore, vases);
     }
   }
   // if user clicks on load game part, information of game will be read from the file
@@ -1978,7 +2118,10 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
         sf::Mouse::getPosition(window).y <= 622)
     {
       cout << "roye bargozari bazi click kardi!!!" << endl;
-      readInFile(storeFileRead, vaseFileRead, mainStore);
+      readInFile(storeFileRead, vaseFileRead, mainStore, vases);
+      //------------
+      setVases(window, event, vases);
+      //---------------
       ui x = mainStore->NumberOfWaterUnits;
       StoreMenuTexts[0].setString(to_string(x));
       x = mainStore->NumberOfSoilUnits;
@@ -2102,17 +2245,11 @@ void nameWindow(string str, Store *mainStore)
 }
 
 //write informations in 2 files
-void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, Store *mainStore)
+void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, Store *mainStore, Vase *vases)
 {
   storeFileWrite.open("../file/storeFile.txt", ios::trunc);
   cout << "we are in file write :D" << endl;
   storeFileWrite.seekp(0, ios::beg);
-  //storeFileWrite << "hi mina :D" << endl;
-  // Store &s=*mainStore;
-  // storeFileWrite.write(reinterpret_cast<const char *>(&s), sizeof(s));
-  // cout<<"write :D -> mainstore : "<<mainStore->get_userName()<<endl;
-
-  // cout << "Neveshtim" << endl;
   storeFileWrite << mainStore->NumberOfWaterUnits << " ";
   storeFileWrite << mainStore->NumberOfSoilUnits << " ";
   storeFileWrite << mainStore->spray << " ";
@@ -2134,21 +2271,72 @@ void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, St
   storeFileWrite << mainStore->plantedFlowers << endl;
   storeFileWrite << mainStore->userName << endl;
   storeFileWrite << mainStore->bio;
-
   storeFileWrite.close();
+  //------------------------
+  vaseFileWrite.open("../file/vaseFile.txt", ios::trunc);
+  vaseFileWrite.seekp(0, ios::beg);
+  OrdinaryFlower *ordinaryF;
+  RareFlower *rareF;
+  decorativeFlower *decorativeF;
+
+  for (size_t i = 0; i < 10; i++)
+  {
+    ordinaryF = nullptr;
+    rareF = nullptr;
+    decorativeF = nullptr;
+    // vaseFileWrite << vases[i].get_flowerStar() << " ";
+    vaseFileWrite << vases[i].get_locked() << " ";
+    vaseFileWrite << vases[i].get_empty() << " ";
+    vaseFileWrite << vases[i].get_growing() << " ";
+    vaseFileWrite << vases[i].get_readyToPick() << " ";
+    //---------------
+    ordinaryF = dynamic_cast<OrdinaryFlower *>(vases[i].get_flowerStar());
+    rareF = dynamic_cast<RareFlower *>(vases[i].get_flowerStar());
+    decorativeF = dynamic_cast<decorativeFlower *>(vases[i].get_flowerStar());
+    if (ordinaryF != nullptr)
+    {
+      vaseFileWrite << "Ordinary"
+                    << " ";
+      vaseFileWrite << ordinaryF->get_name() << " ";
+      vaseFileWrite << ordinaryF->get_water() << " ";
+      vaseFileWrite << ordinaryF->get_soil() << " ";
+    }
+    else if (rareF != nullptr)
+    {
+      vaseFileWrite << "Rare"
+                    << " ";
+      vaseFileWrite << rareF->get_name() << " ";
+      vaseFileWrite << rareF->get_water() << " ";
+      vaseFileWrite << rareF->get_soil() << " ";
+      vaseFileWrite << rareF->get_spray() << " ";
+    }
+    else if (decorativeF != nullptr)
+    {
+      vaseFileWrite << "Decorative"
+                    << " ";
+      vaseFileWrite << decorativeF->get_name() << " ";
+      vaseFileWrite << decorativeF->get_water() << " ";
+      vaseFileWrite << decorativeF->get_soil() << " ";
+      vaseFileWrite << decorativeF->get_extract() << " ";
+    }
+    vaseFileWrite << endl;
+  }
+
+  /*for (size_t i = 0; i < 10; i++)
+  {
+
+    vaseFileWrite.seekp(i * sizeof(Vase), ios::beg);
+    vaseFileWrite.write((const char *)&vases[i], sizeof(Vase));
+  }*/
+  cout << "*************" << endl;
+  vaseFileWrite.close();
 }
 
-void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store *mainStore)
+void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store *mainStore, Vase *vases)
 {
   storeFileRead.open("../file/storeFile.txt");
   cout << "we are in file Read :D" << endl;
   storeFileRead.seekg(0, ios::beg);
-  //storeFileRead << "hi mina :D" << endl;
-
-  // Store &s = *mainStore;
-  // storeFileRead.read(reinterpret_cast<char *>(&s), sizeof(s));
-  // cout << "reade :D -> mainstore : " << mainStore->get_userName() << endl;
-  // cout << "Neveshtim read " << endl;
   storeFileRead >> mainStore->NumberOfWaterUnits;
   storeFileRead >> mainStore->NumberOfSoilUnits;
   storeFileRead >> mainStore->spray;
@@ -2173,14 +2361,83 @@ void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store
   storeFileRead.ignore();
   storeFileRead.ignore();
 
-  // storeFileRead >> mainStore->plantedFlowers >> endl;
-  // storeFileRead >> mainStore->userName >> endl;
   getline(storeFileRead, mainStore->userName);
   getline(storeFileRead, mainStore->bio);
-
-  cout << "*****************" << endl;
-  cout << mainStore->bio << endl;
-  cout << "*****************" << endl;
-
   storeFileRead.close();
+  //---------------------
+  vaseFileRead.open("../file/vaseFile.txt", ios::out | ios::in);
+  /*for (size_t i = 0; i < 10; i++)
+  {
+    vaseFileRead.seekg(i * sizeof(Vase), ios::beg);
+    vaseFileRead.read((char *)&vases[i], sizeof(Vase));
+
+    cout << "i-> " << i << ": " << vases[i].get_empty() << "\t" << vases[i].get_flowerStar()->get_name() << endl;
+  }*/
+  bool x;
+  string Type;
+  string Name;
+  for (size_t i = 0; i < 10; i++)
+  {
+    vaseFileRead >> x;
+    vases[i].set_locked(x);
+    vaseFileRead >> x;
+    vases[i].set_empty(x);
+    vaseFileRead >> x;
+    vases[i].set_growing(x);
+    vaseFileRead >> x;
+    vases[i].set_readyToPick(x);
+    char ch[30];
+    if (vases[i].get_growing() || vases[i].get_readyToPick())
+    {
+      vaseFileRead >> Type;
+      if (Type == "Ordinary")
+      {
+        vaseFileRead >> Name;
+        vases[i].set_flower(1, Name);
+        vaseFileRead >> x;
+        vases[i].get_flowerStar()->set_water(x);
+        vaseFileRead >> x;
+        vases[i].get_flowerStar()->set_soil(x);
+      }
+      else if (Type == "Rare")
+      {
+        vaseFileRead >> Name;
+        vases[i].set_flower(2, Name);
+        vaseFileRead >> x;
+        vases[i].get_flowerStar()->set_water(x);
+        vaseFileRead >> x;
+        vases[i].get_flowerStar()->set_soil(x);
+        RareFlower *rareF = nullptr;
+        rareF = dynamic_cast<RareFlower *>(vases[i].get_flowerStar());
+        if (rareF != nullptr)
+        {
+          vaseFileRead >> x;
+          rareF->set_spray(x);
+        }
+      }
+      else
+      {
+        vaseFileRead >> Name;
+        vases[i].set_flower(3, Name);
+        vaseFileRead >> x;
+        vases[i].get_flowerStar()->set_water(x);
+        vaseFileRead >> x;
+        vases[i].get_flowerStar()->set_soil(x);
+        decorativeFlower *decorativeF = nullptr;
+        decorativeF = dynamic_cast<decorativeFlower *>(vases[i].get_flowerStar());
+        if (decorativeF != nullptr)
+        {
+          vaseFileRead >> x;
+          decorativeF->set_extract(x);
+        }
+      }
+    }
+    else
+    {
+      vaseFileRead.get(ch, 30);
+      vaseFileRead.good();
+    }
+    vaseFileRead.ignore();
+  }
+  vaseFileRead.close();
 }

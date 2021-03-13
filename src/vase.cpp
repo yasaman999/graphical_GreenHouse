@@ -8,7 +8,6 @@ void Vase::set_locked(bool b)
 void Vase::set_empty(bool b)
 {
   empty = b;
-  
 }
 void Vase::set_growing(bool b)
 {
@@ -73,3 +72,20 @@ Flower *Vase::get_flowerStar()
 {
   return flower;
 }
+
+// const Vase *Vase::operator=(const Vase &v)
+// {
+//   if (this != &v)
+//   {
+//     *flower = *(v.flower);
+//     locked = v.locked;
+//     empty = v.empty;
+//     growing = v.growing;
+//     readyToPick = v.readyToPick;
+//     vaseTexture = v.vaseTexture;
+//     vaseSprite = v.vaseSprite;
+//     stateTexture = v.stateTexture;
+//     stateSprite = v.stateSprite;
+//   }
+//   return this;
+// }

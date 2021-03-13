@@ -2,8 +2,12 @@
 #define FLOWER_HPP
 #include <iostream>
 typedef unsigned int ui;
+
 class Flower
 {
+//friend std::istream& operator>>(std::istream & cin, Flower& f);
+//friend std::ostream& operator<<(std::ostream & cout, Flower& f);
+
 private:
     bool soil = 0;
     bool water = 0;
@@ -36,6 +40,7 @@ protected:
 //endl of Flower class
 class OrdinaryFlower final : public Flower //be final class
 {
+
     // friend void manageVases(Vase &v, bool &, bool &, bool &clickOnLaboratory, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *, Store *, bool &, Vase *&);
 
 private:

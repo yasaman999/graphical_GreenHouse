@@ -6,6 +6,7 @@
 #include "vase.hpp"
 #include <cstdlib>
 #include <time.h>
+#include <iomanip>
 void setBackground(sf::RenderWindow &, sf::Texture &, sf::Sprite &);
 void setMenu(sf::RenderWindow &window, sf::Texture &, sf::Sprite &);
 void setElementsOfLabaratory(sf::RenderWindow &, sf::Event &, sf::Texture &, sf::Sprite &);
@@ -42,8 +43,8 @@ void setTitleOfTables(sf::Sprite *, sf::Text &, sf::Text &, sf::Font &);
 
 void setProfile(sf::RenderWindow &, sf::Texture &, sf::Sprite &, sf::Text *, Store *, sf::Font &);
 void clickOnItemsOfProfile(sf::RenderWindow &, sf::Event &, Store *, sf::Font &,
- sf::Text &, sf::Text &, std::ofstream &, std::ofstream &, std::ifstream &, std::ifstream &,sf::Text*,sf::Text*);
+ sf::Text &, sf::Text &, std::ofstream &, std::ofstream &, std::ifstream &, std::ifstream &,sf::Text*,sf::Text*,Vase*);
 void nameWindow(std::string, Store *);
-void writeInFile(std::ofstream &, std::ofstream &, Store *);
-void readInFile(std::ifstream &, std::ifstream &, Store *);
+void writeInFile(std::ofstream &, std::ofstream &, Store *,Vase*);
+void readInFile(std::ifstream &, std::ifstream &, Store *,Vase*);
 #endif // FUNCTIONS_HPP
