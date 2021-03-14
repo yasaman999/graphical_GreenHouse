@@ -1707,7 +1707,7 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
         RareFlower *rareF = nullptr;
         rareF = dynamic_cast<RareFlower *>(vases[i].get_flowerStar());
         if (!vases[i].get_flowerStar()->get_water())
-          vases[i].set_vaseTexture("../image/sonbo0.png");
+          vases[i].set_vaseTexture("../image/sonbol0.png");
         else if (!vases[i].get_flowerStar()->get_soil())
         {
           vases[i].set_vaseTexture("../image/sonbol1.png");
@@ -2140,6 +2140,7 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
       string name = mainStore->userName;
       userNameText.setFont(font);
       userNameText.setFillColor(sf::Color::Black);
+      userNameText.setOrigin(sf::Vector2f(userNameText.getGlobalBounds().width / 2, 0));
       userNameText.setPosition(sf::Vector2f(1040, 260));
       userNameText.setString(name);
       // for showing bio that read from file
@@ -2342,7 +2343,7 @@ void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store
 
   storeFileRead.ignore();
   // storeFileRead.ignore();
-  //storeFileRead.ignore();
+  // storeFileRead.ignore();
 
   getline(storeFileRead, mainStore->userName);
   getline(storeFileRead, mainStore->bio);
