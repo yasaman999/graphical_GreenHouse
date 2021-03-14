@@ -10,8 +10,6 @@ class Vase
 {
 friend void writeInFile(std::ofstream &, std::ofstream &, Store *,Vase* );
 friend void readInFile(std::ofstream &, std::ofstream &, Store *,Vase* );
-//friend std::istream& operator>>(std::istream & cin, Flower& f);
- 
 
 private:
     Flower *flower;
@@ -21,16 +19,13 @@ private:
     bool readyToPick = false;
     sf::Texture vaseTexture;
     sf::Sprite vaseSprite;
-    sf::Texture stateTexture;
-    sf::Sprite stateSprite;
-
 public:
     // set functions
     void set_locked(bool);
     void set_empty(bool);
     void set_growing(bool);
     void set_readyToPick(bool);
-    void set_vaseTexture(std::string);
+    void set_vaseTexture(std::string); // for load image(the parameter is path of image)
     void set_vaseSprite();
     void set_positionOfVaseSprite(float x, float y);
     void set_flower(int type, std::string name);

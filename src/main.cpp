@@ -5,16 +5,16 @@
 using namespace std;
 int main()
 {
-  //files
+  // files for writing
   ofstream storeFileWrite;
   ofstream vaseFileWrite;
-
+   // files for reading
   ifstream storeFileRead;
   ifstream vaseFileRead;
 
   //main window
   sf::RenderWindow mainWindow(sf::VideoMode(1401, 812), "Graphical_GreenHouse");
-  // event
+  // event for mainWindow
   sf::Event mainEvent;
   // font
   sf::Font font;
@@ -27,94 +27,97 @@ int main()
   sf::Texture menuTexture;
   sf::Sprite menuSprite;
   setMenu(mainWindow, menuTexture, menuSprite);
+  // for showing saving
+  sf::Text savingText;
+  savingText.setFont(font);
+  savingText.setString("100,000 Rial");
+  savingText.setPosition(sf::Vector2f(40, 8));
+  savingText.setFillColor(sf::Color::Black);
+  savingText.setCharacterSize(40);
   // vases of green house
   Vase vases[10];
   vases[0].set_locked(false);
   vases[0].set_empty(true);
 
-  //store menu
+  //bottom menu of store
   sf::Texture storeMenuTexture;
   sf::Sprite storeMenuSprite;
   setStoreMenu(mainWindow, storeMenuTexture, storeMenuSprite);
   //table elements of store and salesRoom
-  sf::Texture rectanglesTexture[14];
-  sf::Sprite rectanglesSprite[14];
-  sf::Text text1[20];      // for names of elements of sale room
-  sf::Text text2[14];      // for names of flowers store's elements
+  sf::Texture rectanglesTexture[14];// for rectangles of salesRoom and flower's store
+  sf::Sprite rectanglesSprite[14];// for rectangles of salesRoom and flower's store
+  sf::Text text1[20];// for names of elements of sale room
+  sf::Text text2[14];// for names of flowers store's elements
+  for (size_t i = 0; i < 14; i++)
+  {
+    text2[i].setFillColor(sf::Color(200, 100, 100));
+  }
+  sf::Text StoreMenuTexts[18];// for number of elements of store menu and flower's store
+  // set font
+  for (size_t i = 0; i < 18; i++)
+  {
+    StoreMenuTexts[i].setFont(font);
+  }
+  //set color
+  for (size_t i = 0; i < 4; i++)
+  {
+    StoreMenuTexts[i].setFillColor(sf::Color::Black);
+  }
+  for (size_t i = 4; i < 18; i++)
+  {
+    StoreMenuTexts[i].setFillColor(sf::Color(200, 100, 100));
+  }
+  //setPostion
+  StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
+  StoreMenuTexts[1].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 650, storeMenuSprite.getPosition().y + 12);
+  StoreMenuTexts[2].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 950, storeMenuSprite.getPosition().y + 12);
+  StoreMenuTexts[3].setPosition(sf::Vector2f(storeMenuSprite.getPosition().x + 80, storeMenuSprite.getPosition().y + 12));
+
   sf::Text profileText[6]; //for number elements of profile menu
-  // rectangle of lababoratory
-  sf::Texture labRectangleTexture;
-  sf::Sprite labRectangleSprite;
   //profile tecture and sprite
   sf::Texture proTexture;
   sf::Sprite proSprite;
   // for showing userName and bio in profile
   sf::Text userNameText;
   sf::Text bioText;
-
-  for (size_t i = 0; i < 14; i++)
-  {
-    text2[i].setFillColor(sf::Color(200, 100, 100));
-  }
+  // rectangle of laboratory
+  sf::Texture labRectangleTexture;
+  sf::Sprite labRectangleSprite;
   //make one object from Store class
   Store *mainStore = Store::oneStore();
-  //StoreMenuTexts
-  sf::Text StoreMenuTexts[18];
-  for (size_t i = 0; i < 18; i++)
-  {
-    StoreMenuTexts[i].setFont(font);
-  }
-      //setPostion
-      StoreMenuTexts[0].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 340, storeMenuSprite.getPosition().y + 12);
-      StoreMenuTexts[1].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 650, storeMenuSprite.getPosition().y + 12);
-      StoreMenuTexts[2].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 950, storeMenuSprite.getPosition().y + 12);
-      StoreMenuTexts[3].setPosition(sf::Vector2f(storeMenuSprite.getPosition().x + 80, storeMenuSprite.getPosition().y + 12));
-
-  for (size_t i = 0; i < 18; i++)
-  {
-    StoreMenuTexts[i].setFillColor(sf::Color::Black);
-  }
-  //------------------------------
-  for (size_t i = 4; i < 18; i++)
-  {
-    StoreMenuTexts[i].setFillColor(sf::Color(200, 100, 100));
-  }
-
-  //----------------------------------
+  // variables that specifiy part of game
   bool clickOnSalesRoom;
   bool clickOnLaboratory;
   bool clickOnGreenHouse;
   bool clickOnProfile;
-  bool fromGreenHouse = false;
+  bool fromGreenHouse = false;// going to salesRoom is directly
+  // The variable that specifies the vase that is clicked
   Vase selectedVase;
   Vase *vasePtr = &selectedVase;
-
-  sf::RectangleShape test;
-  //mesal--------
-  // sf::RectangleShape rec;
-  // rec.setSize(sf::Vector2f(200, 2));
-  // rec.setPosition(sf::Vector2f(400, 620));
-  //-------------
-
+  // while mainWindow is open
   while (mainWindow.isOpen())
   {
-
+    // for manage events of mainWindow
     while (mainWindow.pollEvent(mainEvent))
     {
+      // for close mainWindow
       if (mainEvent.type == sf::Event::Closed)
       {
         mainWindow.close();
       }
+      // for click on elements of menu
       clickOnItemsOfMenu(mainWindow, mainEvent, menuTexture, menuSprite, rectanglesTexture,
                          rectanglesSprite, text1, font, clickOnSalesRoom, clickOnLaboratory, clickOnGreenHouse, mainStore, StoreMenuTexts, text2, labRectangleTexture, labRectangleSprite, vases, fromGreenHouse, clickOnProfile, proTexture, proSprite, profileText);
-      if (clickOnProfile)
+      if (clickOnProfile) // profile part
       {
+        // for click on elements of profile
         clickOnItemsOfProfile(mainWindow, mainEvent, mainStore, font, userNameText, bioText, storeFileWrite, vaseFileWrite, storeFileRead, vaseFileRead,StoreMenuTexts,profileText,vases);
       }
-      if (clickOnSalesRoom)
+      if (clickOnSalesRoom) // salesRoom part
       {
+        // for click on elements of salesRoom
         clickOnItemsOfTable(mainWindow, rectanglesSprite, mainEvent, mainStore, StoreMenuTexts, storeMenuSprite, text2, font, fromGreenHouse, vasePtr);
-
+        // set getPosition of numbers of store
         for (size_t i = 4; i < 18; i++)
         {
           if (i % 2 == 0)
@@ -123,21 +126,19 @@ int main()
           }
           else
             StoreMenuTexts[i].setPosition(sf::Vector2f(rectanglesSprite[(i - 5) / 2].getPosition().x - rectanglesSprite[(i - 5) / 2].getGlobalBounds().width / 2 - 30, rectanglesSprite[(i - 5) / 2].getPosition().y + 2));
-        }
+        } // end of for
       }
-      if (clickOnLaboratory)
+      if (clickOnLaboratory) // laboratory part
       {
+        // for click on elements of laboratory
         clickOnItemsOfLaboratory(mainWindow, mainEvent, labRectangleSprite, mainStore, StoreMenuTexts, storeMenuSprite, text2);
       }
-      if (clickOnGreenHouse)
+      if (clickOnGreenHouse) //green house part
       {
-        // test.setPosition(sf::Vector2f(vases[5].get_vaseSprite().getPosition().x + vases[5].get_vaseSprite().getGlobalBounds().width - 1, vases[5].get_vaseSprite().getPosition().y+vases[5].get_vaseSprite().getGlobalBounds().height - 20));
-        // test.setSize(sf::Vector2f(2, 200));
-        // test.setFillColor(sf::Color::Black);
+        // for click on elements of greenHouse
         clickOnVases(mainWindow, mainEvent, vases, clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse, vasePtr);
       }
     }
-
     mainWindow.display();
     mainWindow.draw(backgroundSprite);
     mainWindow.draw(menuSprite);
@@ -197,9 +198,7 @@ int main()
       mainWindow.draw(bioText);
       // mainWindow.draw(rec);
     }
+    mainWindow.draw(savingText);
   }
-  cout << "user name -> " << mainStore->get_userName() << endl;
-  cout << "bio -> " << mainStore->get_bio() << endl;
-
   return 0;
 }

@@ -27,7 +27,7 @@ class Store // a singleton class
   friend void writeInFile(std::ofstream &, std::ofstream &, Store *,Vase*);
   friend void readInFile(std::ifstream &, std::ifstream &, Store *,Vase*);
   friend void clickOnItemsOfProfile(sf::RenderWindow &, sf::Event &, Store *, sf::Font &, sf::Text &, sf::Text &, std::ofstream &, std::ofstream &, std::ifstream &, std::ifstream &,sf::Text*,sf::Text*,Vase*);
-  
+
 public:
   static Store *oneStore();
   ~Store();
@@ -38,28 +38,27 @@ public:
 
 private:
   //private constructor for singleton
-  Store();
-
+  Store();// constructor
   static Store *storePtr;
 
   ui NumberOfWaterUnits = 0;
   ui NumberOfSoilUnits = 0;
   ui spray = 0;
+  // extracts
   ui orkideExtract = 0;
   ui liliumExtract = 0;
   ui magnoliaExtract = 0;
-
   // bulbs
   ui ordinaryBulb = 0;
   ui rareBulb = 0;
   ui decorativeBulb = 0;
   // flowers
-  ui kokab = 3;
-  ui narges = 3;
-  ui lale = 3;
-  ui maryam = 1;
-  ui sonbol = 2;
-  ui magnolia = 3;
+  ui kokab = 0;
+  ui narges = 0;
+  ui lale = 0;
+  ui maryam = 0;
+  ui sonbol = 0;
+  ui magnolia = 0;
   ui lilium = 0;
   ui orkide = 0;
   ui deletedFlowers = 0;

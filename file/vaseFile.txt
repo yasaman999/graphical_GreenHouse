@@ -1,10 +1,10 @@
 0 1 0 0 
 1 0 0 0 
-0 1 0 0 Ordinary kokab 1 1 
-0 1 0 0 
-0 0 1 0 Ordinary kokab 0 0 
+0 0 0 1 Rare lale 1 1 1 
+0 0 0 1 Ordinary kokab 1 1 
+0 1 0 0 Decorative magnolia 0 0 0 
+0 0 1 0 Decorative orkide 1 1 0 
 1 0 0 0 
 1 0 0 0 
 1 0 0 0 
-0 1 0 0 
 1 0 0 0 

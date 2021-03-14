@@ -3,19 +3,16 @@
 #include <iostream>
 typedef unsigned int ui;
 
-class Flower
+class Flower // an abstract class
 {
-//friend std::istream& operator>>(std::istream & cin, Flower& f);
-//friend std::ostream& operator<<(std::ostream & cout, Flower& f);
-
 private:
+    std::string name;// for keeping name of flower
     bool soil = 0;
     bool water = 0;
-    float purchasePriceOfBulb;
-    float salePriceOfBulb;
-    float returnPrice;
-    float salePriceOfFlowers;
-    std::string name;
+    float purchasePriceOfBulb;// for keeping purchase price of bulb
+    float salePriceOfBulb;// for keeping sale price of bulb
+    float returnPrice;// for keeping return price
+    float salePriceOfFlowers;// for keeping sale price of flowers
 
 public:
     Flower() {}  //constructor
@@ -26,6 +23,7 @@ public:
     virtual void set_soil(bool);
     virtual bool get_water() const;
     virtual bool get_soil() const;
+    virtual void printFlowerInfo() const = 0;// abstract class
 
 protected:
     virtual float get_PurchasePriceOfBulb() const;
@@ -37,32 +35,27 @@ protected:
     virtual void set_returnPrice(float);
     virtual void set_salePriceOfFlowers(float);
 };
-//endl of Flower class
-class OrdinaryFlower final : public Flower //be final class
+//end of Flower class
+class OrdinaryFlower final : public Flower //this is final class
 {
-
-    // friend void manageVases(Vase &v, bool &, bool &, bool &clickOnLaboratory, sf::Texture &, sf::RenderWindow &, sf::Event &, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *, Store *, bool &, Vase *&);
-
-private:
 public:
     OrdinaryFlower() {}  //constructor
     ~OrdinaryFlower() {} //destructor
     virtual void set_name(std::string) override;
     virtual std::string get_name() const override;
-
+    virtual void printFlowerInfo() const override{}
 protected:
-    virtual void set_PurchasePriceOfBulb();
-    virtual void set_salePriceOfBulb();
-    virtual void set_returnPrice();
-    virtual void set_salePriceOfFlowers();
+    virtual void set_PurchasePriceOfBulb() ;
+    virtual void set_salePriceOfBulb() ;
+    virtual void set_returnPrice() ;
+    virtual void set_salePriceOfFlowers() ;
 };
 //end of OrdinaryFlower class
 
 class RareFlower final : public Flower //be final class
 {
 private:
-    bool spray = false;
-
+    bool spray = 0;
 public:
     RareFlower() {}
     ~RareFlower() {}
@@ -70,18 +63,19 @@ public:
     bool get_spray();
     virtual void set_name(std::string) override;
     virtual std::string get_name() const override;
+    virtual void printFlowerInfo() const override{}
 
 protected:
-    virtual void set_PurchasePriceOfBulb();
-    virtual void set_salePriceOfBulb();
-    virtual void set_returnPrice();
-    virtual void set_salePriceOfFlowers();
+    virtual void set_PurchasePriceOfBulb() ;
+    virtual void set_salePriceOfBulb() ;
+    virtual void set_returnPrice() ;
+    virtual void set_salePriceOfFlowers() ;
 };
 //end of RareFlower class
 class decorativeFlower final : public Flower
 {
 private:
-    bool extract = false;
+    bool extract = 0;
 
 public:
     decorativeFlower() {}
@@ -90,6 +84,7 @@ public:
     bool get_extract();
     virtual void set_name(std::string) override;
     virtual std::string get_name() const override;
+    virtual void printFlowerInfo() const override{}
 
 protected:
     virtual void set_PurchasePriceOfBulb();

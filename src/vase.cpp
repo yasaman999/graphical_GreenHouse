@@ -17,10 +17,6 @@ void Vase::set_readyToPick(bool b)
 {
   readyToPick = b;
 }
-sf::Sprite Vase::get_vaseSprite()
-{
-  return vaseSprite;
-}
 
 void Vase::set_vaseTexture(string path)
 {
@@ -67,25 +63,11 @@ bool Vase::get_readyToPick()
 {
   return readyToPick;
 }
-//--------------------------
+sf::Sprite Vase::get_vaseSprite()
+{
+  return vaseSprite;
+}
 Flower *Vase::get_flowerStar()
 {
   return flower;
 }
-
-// const Vase *Vase::operator=(const Vase &v)
-// {
-//   if (this != &v)
-//   {
-//     *flower = *(v.flower);
-//     locked = v.locked;
-//     empty = v.empty;
-//     growing = v.growing;
-//     readyToPick = v.readyToPick;
-//     vaseTexture = v.vaseTexture;
-//     vaseSprite = v.vaseSprite;
-//     stateTexture = v.stateTexture;
-//     stateSprite = v.stateSprite;
-//   }
-//   return this;
-// }

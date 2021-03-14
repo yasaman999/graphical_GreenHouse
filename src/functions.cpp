@@ -28,7 +28,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         sf::Mouse::getPosition(window).y >= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 100 &&
         sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 20)
     {
-      cout << "osare gole orkide!!!!!!!!" << endl;
+      // click on orkide extract
       if ((mainStore->NumberOfWaterUnits) > 0 && (mainStore->sonbol) > 0)
       {
         (mainStore->NumberOfWaterUnits)--;
@@ -47,6 +47,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
       }
       else
       {
+        // if there is not enough material
         errorWindow("../image/errorWindowBack.png");
       }
     }
@@ -55,7 +56,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
              sf::Mouse::getPosition(window).y >= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 100 &&
              sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 20)
     {
-      cout << "osare gole lilium!!!!!!!!" << endl;
+      // lilium extract
       if ((mainStore->maryam) > 0 && (mainStore->narges) > 0 && (mainStore->NumberOfWaterUnits) > 0)
       {
         (mainStore->maryam)--;
@@ -72,11 +73,10 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         StoreMenuTexts[16].setString(to_string(y));
         StoreMenuTexts[16].setFillColor(sf::Color::White);
         text2[12].setFillColor(sf::Color::White);
-
-        cout << "lilium Bozorg tare !" << endl;
       }
       else
       {
+        // if there is not enough material
         errorWindow("../image/errorWindowBack.png");
       }
     }
@@ -86,7 +86,7 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
              sf::Mouse::getPosition(window).y >= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 100 &&
              sf::Mouse::getPosition(window).y <= labRectangleSprite.getPosition().y + labRectangleSprite.getGlobalBounds().height - 20)
     {
-      cout << "osare gole magnolia!!!!!!!!" << endl;
+      // magnolia extract
       if ((mainStore->lale) > 0 && (mainStore->kokab) > 0 && (mainStore->NumberOfWaterUnits) > 0)
       {
         (mainStore->lale)--;
@@ -103,11 +103,10 @@ void clickOnItemsOfLaboratory(sf::RenderWindow &window, sf::Event &event, sf::Sp
         StoreMenuTexts[15].setString(to_string(y));
         StoreMenuTexts[15].setFillColor(sf::Color::White);
         text2[11].setFillColor(sf::Color::White);
-
-        cout << "magnolia Bozorg tare !" << endl;
       }
       else
       {
+        // if there is not enough material
         errorWindow("../image/errorWindowBack.png");
       }
     }
@@ -127,15 +126,13 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y >= 0 &&
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
-      cout << "profile" << endl;
+      // profile part
       clickOnProfile = true;
       clickOnSalesRoom = false;
       clickOnLaboratory = false;
       clickOnGreenHouse = false;
-
       menuTexture.loadFromFile("../image/menu/menu0.png");
       setProfile(window, protexture, proSprite, profileText, mainStore, font);
-      //clickOnprofile();
     }
   }
   if (event.type == sf::Event::MouseButtonPressed)
@@ -145,7 +142,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y >= 0 &&
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
-      cout << "greenhouse!!" << endl;
+      // green house part
       clickOnProfile = false;
       clickOnSalesRoom = false;
       clickOnLaboratory = false;
@@ -161,9 +158,8 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y >= 0 &&
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
-      cout << "froshgah!!" << endl;
+      // salesRoom part
       clickOnProfile = false;
-
       clickOnSalesRoom = true;
       clickOnLaboratory = false;
       clickOnGreenHouse = false;
@@ -179,7 +175,7 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
         sf::Mouse::getPosition(window).y >= 0 &&
         sf::Mouse::getPosition(window).y <= menuSprite.getGlobalBounds().height)
     {
-      cout << "azmayeshgah!!" << endl;
+      // laboratory part
       clickOnProfile = false;
       clickOnSalesRoom = false;
       clickOnLaboratory = true;
@@ -189,24 +185,24 @@ void clickOnItemsOfMenu(sf::RenderWindow &window, sf::Event &event, sf::Texture 
       setElementsOfLabaratory(window, event, labRectangleTexture, labRectangleSprite);
     }
   }
-}
+} // end of clickOnItemsOfMenu function
 void setStoreMenu(sf::RenderWindow &window, sf::Texture &storeMenuTexture, sf::Sprite &storeMenuSprite)
 {
   storeMenuTexture.loadFromFile("../image/strip6.png");
   storeMenuSprite.setTexture(storeMenuTexture);
   storeMenuSprite.setPosition(sf::Vector2f(50.5, 650));
-}
+} // end of setStoreMenu function
 
 void setRectangles(sf::RenderWindow &window, sf::Texture *rectanglesTexture,
                    sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore)
 {
 
   //set elements of Sale room
-  for (size_t i = 0; i < 24; i++)
+  for (size_t i = 0; i < 20; i++)
   {
     text1[i].setFont(font);
   }
-  for (size_t i = 0; i < 24; i++)
+  for (size_t i = 0; i < 20; i++)
   {
     text1[i].setFillColor(sf::Color::White);
   }
@@ -219,22 +215,23 @@ void setRectangles(sf::RenderWindow &window, sf::Texture *rectanglesTexture,
   {
     rectanglesSprite[i].setTexture(rectanglesTexture[i]);
   }
+  // left column of rectangles(salesRoom)
   for (size_t i = 0; i < 7; i++)
   {
     rectanglesSprite[i].setOrigin(sf::Vector2f(rectanglesSprite[i].getGlobalBounds().width, 0));
     rectanglesSprite[i].setPosition(sf::Vector2f(window.getSize().x / 2 - 35, 200 + ((i) * (rectanglesSprite[i].getGlobalBounds().height + 10))));
   }
-
+  // right column of rectangles(flowers store)
   for (size_t i = 7; i < 14; i++)
   {
     rectanglesSprite[i].setPosition(sf::Vector2f(window.getSize().x / 2 + 35, 200 + ((i - 7) * (rectanglesSprite[i].getGlobalBounds().height + 10))));
   }
-  text1[14].setString("piaz gol addi  1000");
-  text1[15].setString("piaz gol nader  5000");
-  text1[16].setString("piaz gol zinati  20000");
-  text1[17].setString("made sam pashi 500");
-  text1[18].setString("khak  450");
-  text1[19].setString("abb   250");
+  text1[14].setString("Piaz gol addi  1000");
+  text1[15].setString("Piaz gol nader  5000");
+  text1[16].setString("Piaz gol zinati  20000");
+  text1[17].setString("Made sam pashi 500");
+  text1[18].setString("Khak   450");
+  text1[19].setString("Abb    250");
   for (size_t i = 14; i <= 19; i++)
   {
     if (i % 2 == 0)
@@ -246,11 +243,7 @@ void setRectangles(sf::RenderWindow &window, sf::Texture *rectanglesTexture,
       text1[i].setPosition(sf::Vector2f(rectanglesSprite[(i - 1) / 2].getPosition().x + 5, rectanglesSprite[i / 2].getPosition().y + 2));
     }
   }
-  //set elements of Flower Store
-  // for (size_t i = 4; i < 18; i++)
-  // {
-  //   StoreMenuTexts[i].setString("0");
-  // }
+  // set string for number of elements of flower store
   ui x = mainStore->magnolia;
   StoreMenuTexts[4].setString(to_string(x));
   x = mainStore->lilium;
@@ -291,8 +284,8 @@ void setRectangles(sf::RenderWindow &window, sf::Texture *rectanglesTexture,
       StoreMenuTexts[i].setFillColor(sf::Color(200, 100, 100));
       text2[i - 4].setFillColor(sf::Color(200, 100, 100));
     }
-  }
-
+  }// end of for
+  // set font
   for (size_t i = 0; i < 14; i++)
   {
     text2[i].setFont(font);
@@ -337,7 +330,6 @@ void rightColumnOfSalesRoom(sf::RenderWindow &window, sf::Event &event, sf::Spri
       if (index == 7)
       {
         (mainStore->ordinaryBulb)++;
-        cout << "ordinary : " << mainStore->ordinaryBulb << endl;
         ui x = mainStore->ordinaryBulb;
         StoreMenuTexts[12].setString(to_string(x));
         StoreMenuTexts[12].setPosition(sf::Vector2f(rectanglesSprite[4].getPosition().x - 30, rectanglesSprite[4].getPosition().y + 2));
@@ -347,7 +339,6 @@ void rightColumnOfSalesRoom(sf::RenderWindow &window, sf::Event &event, sf::Spri
       else if (index == 8)
       {
         (mainStore->decorativeBulb)++;
-        cout << "decorativeBulb : " << mainStore->decorativeBulb << endl;
         ui x = mainStore->decorativeBulb;
         StoreMenuTexts[14].setString(to_string(x));
         StoreMenuTexts[14].setPosition(sf::Vector2f(rectanglesSprite[5].getPosition().x - 30, rectanglesSprite[5].getPosition().y + 2));
@@ -357,7 +348,6 @@ void rightColumnOfSalesRoom(sf::RenderWindow &window, sf::Event &event, sf::Spri
       else if (index == 9)
       {
         (mainStore->NumberOfSoilUnits)++;
-        cout << "NumberOfSoilUnits : " << mainStore->NumberOfSoilUnits << endl;
         ui x = mainStore->NumberOfSoilUnits;
         StoreMenuTexts[1].setString(to_string(x));
         StoreMenuTexts[1].setPosition(storeMenuSprite.getPosition().x + storeMenuSprite.getGlobalBounds().width - 650, storeMenuSprite.getPosition().y + 12);
@@ -407,7 +397,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
                               int index, Store *mainStore, sf::Text *StoreMenuTexts,
                               sf::Text *text2, sf::Font &font, bool &fromGreenHouse, bool &checkCallFunction, Vase *&vasePtr)
 {
-  // cout<<"hello rightColumnOfFlowerStore function . "<<endl;
+  // if click on a rectangle
   if (event.type == sf::Event::MouseButtonPressed)
   {
     if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x - rectanglesSprite[index].getGlobalBounds().width / 2 + 6 &&
@@ -415,7 +405,6 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
         sf::Mouse::getPosition(window).y >= rectanglesSprite[index].getPosition().y &&
         sf::Mouse::getPosition(window).y <= rectanglesSprite[index].getPosition().y + rectanglesSprite[index].getGlobalBounds().height)
     {
-      cout << "toye rightim alan" << endl;
       checkCallFunction = true;
       if (index == 0)
       {
@@ -436,9 +425,10 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
               StoreMenuTexts[4].setFillColor(sf::Color::White);
               text2[0].setFillColor(sf::Color::White);
             }
-          }
+          } // enf of if(mainStore->magnolia > 0)
           else
           {
+            // number of magnolia is zero
             errorWindow("../image/errorWindow2.png");
           }
         }
@@ -452,7 +442,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             (mainStore->orkide--);
             ui x = (mainStore->orkide);
             StoreMenuTexts[6].setString(to_string(x));
-            if (mainStore->orkide == 0)
+            if (mainStore->orkide == 0) // change color to pink
             {
               StoreMenuTexts[6].setFillColor(sf::Color(200, 100, 100));
               text2[2].setFillColor(sf::Color(200, 100, 100));
@@ -468,7 +458,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             errorWindow("../image/errorWindow2.png");
           }
         }
-      }
+      } // end of if(mainStore->orkide > 0)
       else if (index == 2)
       {
         if (confirmWindow())
@@ -494,7 +484,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             errorWindow("../image/errorWindow2.png");
           }
         }
-      }
+      } // end of if(mainStore->maryam > 0)
       else if (index == 3)
       {
         if (confirmWindow())
@@ -520,7 +510,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             errorWindow("../image/errorWindow2.png");
           }
         }
-      }
+      } // end of if(mainStore->kokab > 0)
       else if (index == 4)
       {
         if (fromGreenHouse == false)
@@ -547,15 +537,13 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             {
               errorWindow("../image/errorWindow2.png");
             }
-          }
+          } // end of if(mainStore->orkide > 0)
         }
         else if (fromGreenHouse == true)
         {
-          cout << "in right , fromGreenHouse==true , index==4" << endl;
           int confirmWindow2_output = confirmWindow2();
-          if (confirmWindow2_output == 1)
+          if (confirmWindow2_output == 1) // planting
           {
-            cout << "mikham bekaram!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
             {
               ++mainStore->plantedFlowers;
@@ -578,13 +566,11 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
               int randomFlower = rand() % 2 + 1;
               if (randomFlower == 1) // kokab flower will be planted
               {
-                cout << "kokab flower" << endl;
                 vasePtr->set_vaseTexture("../image/kokab0.png");
                 vasePtr->set_flower(1, "kokab");
               }
               else // narges flower will be planted
               {
-                cout << "narges flower" << endl;
                 vasePtr->set_vaseTexture("../image/narges0.png");
                 vasePtr->set_flower(1, "narges");
               }
@@ -592,12 +578,12 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of ordinary bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
-          else if (confirmWindow2_output == 2)
+          else if (confirmWindow2_output == 2) // saling
           {
-            cout << "mikham befrosham!!!(right 4)" << endl;
             if (mainStore->ordinaryBulb > 0)
             {
               (mainStore->ordinaryBulb)--;
@@ -616,6 +602,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of ordinary bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
@@ -647,6 +634,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of decorative bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
@@ -655,9 +643,8 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
         {
           int confirmWindow2_output = confirmWindow2();
 
-          if (confirmWindow2_output == 1)
+          if (confirmWindow2_output == 1) // planting
           {
-            cout << "mikham bekaram!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
             {
               ++mainStore->plantedFlowers;
@@ -702,12 +689,12 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of decorative bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
-          else if (confirmWindow2_output == 2)
+          else if (confirmWindow2_output == 2) // saling
           {
-            cout << "mikham befrosham!!!(right 5)" << endl;
             if (mainStore->decorativeBulb > 0)
             {
               (mainStore->decorativeBulb)--;
@@ -726,6 +713,7 @@ void rightColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of decorative bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
@@ -740,7 +728,6 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
                              int index, Store *mainStore, sf::Text *StoreMenuTexts,
                              sf::Text *text2, sf::Font &font, bool &fromGreenHouse, bool &checkCallFunction, Vase *&vasePtr)
 {
-  // cout<<"hello rightColumnOfFlowerStore function . "<<endl;
   if (event.type == sf::Event::MouseButtonPressed)
   {
     if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= rectanglesSprite[index].getPosition().x - rectanglesSprite[index].getGlobalBounds().width &&
@@ -771,6 +758,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
+            // if number of lilium was zero
             errorWindow("../image/errorWindow2.png");
           }
         }
@@ -797,6 +785,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
+            // if number of lale was zero
             errorWindow("../image/errorWindow2.png");
           }
         }
@@ -823,6 +812,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
+            // if number of sonbol was zero
             errorWindow("../image/errorWindow2.png");
           }
         }
@@ -849,6 +839,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
           }
           else
           {
+            // if number of sonbol was zero
             errorWindow("../image/errorWindow2.png");
           }
         }
@@ -877,6 +868,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of rare bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
@@ -884,9 +876,8 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
         else if (fromGreenHouse == true)
         {
           int confirmWindow2_output = confirmWindow2();
-          if (confirmWindow2_output == 1)
+          if (confirmWindow2_output == 1) // planting
           {
-            cout << "mikham bekaram!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
             {
               ++mainStore->plantedFlowers;
@@ -909,7 +900,6 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
               int randomFlower = rand() % 3 + 1;
               if (randomFlower == 1) // lale flower will be planted
               {
-                cout << "lale flower" << endl;
                 vasePtr->set_vaseTexture("../image/lale0.png");
                 vasePtr->set_vaseSprite();
                 vasePtr->set_flower(2, "lale");
@@ -929,12 +919,12 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of rare bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
-          else if (confirmWindow2_output == 2)
+          else if (confirmWindow2_output == 2) // saling
           {
-            cout << "mikham befrosham!!!(left 4)" << endl;
             if (mainStore->rareBulb > 0)
             {
               (mainStore->rareBulb)--;
@@ -953,6 +943,7 @@ void leftColumnOfFlowerStore(sf::RenderWindow &window,
             }
             else
             {
+              // if number of rare bulb was zero
               errorWindow("../image/errorWindow2.png");
             }
           }
@@ -970,7 +961,6 @@ bool confirmWindow()
   // background of ConfirmWindoww
 
   sf::Texture backgroundTexture;
-
   sf::Sprite backgroundSprite;
   backgroundTexture.loadFromFile("../image/confirmWindowBackground.png");
 
@@ -1023,7 +1013,7 @@ bool confirmWindow()
     ConfirmWindoww.display();
   } // end of while(window.isOpen())
   return check;
-} // end of manage_window function
+} // end of confirmWindow function
 
 int confirmWindow2()
 {
@@ -1031,7 +1021,6 @@ int confirmWindow2()
   // background of ConfirmWindoww
 
   sf::Texture backgroundTexture;
-
   sf::Sprite backgroundSprite;
   backgroundTexture.loadFromFile("../image/confirmWindow2.png");
 
@@ -1139,6 +1128,7 @@ bool waterWindow(Vase &v, Store *mainStore)
           check = true;
           waterWin.close();
         }
+        // click on trash
         if (waterEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(waterWin).x >= waterWin.getSize().x - 42 &&
             sf::Mouse::getPosition(waterWin).x <= waterWin.getSize().x &&
             sf::Mouse::getPosition(waterWin).y >= waterWin.getSize().y - 42 &&
@@ -1334,7 +1324,6 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 {
   if (waterWindow(v, mainStore))
   {
-    cout << "aab dadan :)" << endl;
     if (mainStore->NumberOfWaterUnits > 0)
     {
       --(mainStore->NumberOfWaterUnits);
@@ -1395,6 +1384,7 @@ void giveWater(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
     }
     else
     {
+      // if NumberOfWaterUnits was zero
       errorWindow("../image/errorWindow2.png");
     }
   }
@@ -1405,7 +1395,6 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
 {
   if (soilWindow(v, mainStore))
   {
-    cout << "khaak dadan :)" << endl;
     if (mainStore->NumberOfSoilUnits > 0)
     {
       --(mainStore->NumberOfSoilUnits);
@@ -1497,6 +1486,7 @@ void giveSoil(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts, ui type)
     } // end of if (mainStore->NumberOfSoilUnits > 0)
     else
     {
+      // if NumberOfSoilUnits was zero
       errorWindow("../image/errorWindow2.png");
     }
   } // end of if (soilWindow())
@@ -1505,7 +1495,6 @@ void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
 {
   if (sprayWindow(v, mainStore))
   {
-    cout << "spray dadan :)" << endl;
     if (mainStore->spray > 0)
     {
       --(mainStore->spray);
@@ -1526,11 +1515,12 @@ void giveSpray(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       v.set_vaseSprite();
       RareFlower *rarePtr = dynamic_cast<RareFlower *>(v.get_flowerStar());
       rarePtr->set_spray(true);
-      v.set_readyToPick(true);
       v.set_growing(false);
+      v.set_readyToPick(true);
     } // end of if (mainStore->spray > 0)
     else
     {
+      // if number of spray was zero
       errorWindow("../image/errorWindow2.png");
     }
   } // end of if (sprayWindow())
@@ -1557,6 +1547,7 @@ void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       }
       else
       {
+        // if number of magnolia extract was zero
         errorWindow("../image/errorWindow2.png");
       }
     } // end of if (v.get_flowerStar()->get_name() == "magnolia")
@@ -1579,6 +1570,7 @@ void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       }
       else
       {
+        // if number of lilium extract was zero
         errorWindow("../image/errorWindow2.png");
       }
     } // end of else if (v.get_flowerStar()->get_name() == "lilium")
@@ -1601,6 +1593,7 @@ void giveExtract(Vase &v, Store *mainStore, sf::Text *StoreMenuTexts)
       }
       else
       {
+        // if number of orkide extract was zero
         errorWindow("../image/errorWindow2.png");
       }
     } // end of else if (v.get_flowerStar()->get_name() == "orkide")
@@ -1664,22 +1657,20 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
 
   for (size_t i = 0; i < 10; i++)
   {
-    cout << "index -> " << i << endl;
     if (vases[i].get_locked())
     {
-      cout << "marhale locked dar setVases!!!" << endl;
+      //locked level in setVases function
       vases[i].set_vaseTexture("../image/lock.png");
     }
     else if (vases[i].get_empty())
     {
-      cout << "marhale empty dar setVases!!!" << endl;
-
+      //empty level in setVases function
       vases[i].set_vaseTexture("../image/empty.png");
     }
     else if (vases[i].get_growing())
     {
-      // contain 3 if (for levels of growing)
-      cout << "marhale growing dar setVases!!!" << endl;
+      //growing level in setVases function
+      // ordinary flowers :
       if (vases[i].get_flowerStar()->get_name() == "kokab")
       {
         if (!vases[i].get_flowerStar()->get_water())
@@ -1694,6 +1685,8 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
         else if (!vases[i].get_flowerStar()->get_soil())
           vases[i].set_vaseTexture("../image/narges1.png");
       }
+      // end of ordinary flowers
+      // rare flowers :
       else if (vases[i].get_flowerStar()->get_name() == "maryam")
       {
         RareFlower *rareF = nullptr;
@@ -1739,6 +1732,8 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
           vases[i].set_vaseTexture("../image/lale2.png");
         }
       }
+      // end of rare flowers
+      // decorative flowers :
       else if (vases[i].get_flowerStar()->get_name() == "magnolia")
       {
         decorativeFlower *decorativeF = nullptr;
@@ -1787,7 +1782,7 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
     }
     else if (vases[i].get_readyToPick())
     {
-      cout << "marhale readyToPickdar setVases!!!" << endl;
+      // readyToPick level in  setVases function
       if (vases[i].get_flowerStar()->get_name() == "kokab")
       {
         vases[i].set_vaseTexture("../image/flower1-3.png");
@@ -1821,7 +1816,8 @@ void setVases(sf::RenderWindow &window, sf::Event &event, Vase *vases)
         vases[i].set_vaseTexture("../image/flower8-3.png");
       }
     }
-  }
+  }// end of readyToPick level
+  // setTexture all of sprite vases
   for (size_t i = 0; i < 10; i++)
   {
     vases[i].set_vaseSprite();
@@ -1852,7 +1848,6 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
             sf::Mouse::getPosition(window).y >= vases[0].get_vaseSprite().getPosition().y + vases[0].get_vaseSprite().getGlobalBounds().height - 23 &&
             sf::Mouse::getPosition(window).y <= vases[0].get_vaseSprite().getPosition().y + vases[0].get_vaseSprite().getGlobalBounds().height - 5)
         {
-          cout << "hora roye dokmeye goldone " << i << " om click kardi!!!" << endl;
           manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse, vasePtr);
         }
       }    // end of if(i < 5)
@@ -1863,7 +1858,6 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
             sf::Mouse::getPosition(window).y >= vases[5].get_vaseSprite().getPosition().y + vases[5].get_vaseSprite().getGlobalBounds().height - 23 &&
             sf::Mouse::getPosition(window).y <= vases[5].get_vaseSprite().getPosition().y + vases[5].get_vaseSprite().getGlobalBounds().height - 5)
         {
-          cout << "hora roye dokmeye goldone " << i << " om click kardi!!!" << endl;
           manageVases(vases[i], clickOnSalesRoom, clickOnGreenHouse, clickOnLaboratory, menuTexture, window, event, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore, fromGreenHouse, vasePtr);
         }
 
@@ -1873,10 +1867,9 @@ void clickOnVases(sf::RenderWindow &window, sf::Event &event, Vase *vases, bool 
 } // end of clickOnVases function
 void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool &clickOnLaboratory, sf::Texture &menuTexture, sf::RenderWindow &window, sf::Event &event, sf::Texture *rectanglesTexture, sf::Sprite *rectanglesSprite, sf::Font &font, sf::Text *text1, sf::Text *text2, sf::Text *StoreMenuTexts, Store *mainStore, bool &fromGreenHouse, Vase *&vasePtr)
 {
-  cout << "manageVases function!!!!!" << endl;
   if (v.get_locked())
   {
-    cout << "marhale locked" << endl;
+    // locked level
     v.set_locked(false);
     v.set_empty(true);
     v.set_vaseTexture("../image/empty.png");
@@ -1884,20 +1877,18 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
   }
   else if (v.get_empty())
   {
-    cout << "marhale empty!!!" << endl;
+     // empty level
     clickOnSalesRoom = true;
     clickOnLaboratory = false;
     clickOnGreenHouse = false;
     fromGreenHouse = true;
     menuTexture.loadFromFile("../image/menu/menu2.png");
     setRectangles(window, rectanglesTexture, rectanglesSprite, font, text1, text2, StoreMenuTexts, mainStore);
-    cout << "manageVases -> v -> get_locked : " << v.get_locked() << endl;
     vasePtr = &v;
-    cout << "manageVases -> vasePtr -> get_locked : " << vasePtr->get_locked() << endl;
   }
   else if (v.get_growing())
   {
-    cout << "marhale growing!!!" << endl;
+    // growing level
     OrdinaryFlower *ordinaryPtr = nullptr;
     RareFlower *rarePtr = nullptr;
     decorativeFlower *decorativePtr = nullptr;
@@ -1948,7 +1939,7 @@ void manageVases(Vase &v, bool &clickOnSalesRoom, bool &clickOnGreenHouse, bool 
   }
   else if (v.get_readyToPick())
   {
-    cout << "marhale readyToPick!!!" << endl;
+    // readyToPick level
     v.set_vaseTexture("../image/empty.png");
     v.set_empty(true);
     v.set_readyToPick(false);
@@ -1994,10 +1985,12 @@ void setProfile(sf::RenderWindow &window, sf::Texture &proTexture, sf::Sprite &p
   proSprite.setTexture(proTexture);
   proSprite.setOrigin(sf::Vector2f(proSprite.getGlobalBounds().width / 2, 0));
   proSprite.setPosition(sf::Vector2f(window.getSize().x / 2, 140));
+  //set color
   for (size_t i = 0; i < 6; i++)
   {
     profileText[i].setFillColor(sf::Color::Black);
   }
+  // set font
   for (size_t i = 0; i < 6; i++)
   {
     profileText[i].setFont(font);
@@ -2032,8 +2025,9 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
                            Store *mainStore, sf::Font &font, sf::Text &userNameText, sf::Text &bioText, ofstream &storeFileWrite, ofstream &vaseFileWrite,
                            ifstream &storeFileRead, ifstream &vaseFileRead, sf::Text *StoreMenuTexts, sf::Text *profileText, Vase *vases)
 {
+  // specifies whether the person is clicked or not
   bool clickOnPerson = false;
-  // if user clicks on rectangle of profile picture, proWin will be opened
+  // if user clicks on rectangle of profile picture, proWin will be open
   if (event.type == sf::Event::MouseButtonPressed)
   {
     if (event.key.code == sf::Mouse::Left && sf::Mouse::getPosition(window).x >= 1015 &&
@@ -2043,6 +2037,7 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
     {
 
       clickOnPerson = true;
+      // making a RenderWindow
       sf::RenderWindow proWin(sf::VideoMode(504, 340), "Person Information");
       sf::Event proEvent;
       // set font for userNameText and bioText
@@ -2064,6 +2059,7 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
           {
             proWin.close();
           }
+          // if user click on user name
           if (proEvent.type == sf::Event::MouseButtonPressed)
           {
 
@@ -2072,14 +2068,15 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
                 sf::Mouse::getPosition(proWin).y >= 125 &&
                 sf::Mouse::getPosition(proWin).y <= 188)
             {
-              nameWindow("name", mainStore);
+              nameWindow("name", mainStore);// getting user name from input
             }
+            // if user clicks on bio
             if (proEvent.key.code == sf::Mouse::Left && sf::Mouse::getPosition(proWin).x >= 65 &&
                 sf::Mouse::getPosition(proWin).x <= 240 &&
                 sf::Mouse::getPosition(proWin).y >= 125 &&
                 sf::Mouse::getPosition(proWin).y <= 188)
             {
-              nameWindow("bio", mainStore);
+              nameWindow("bio", mainStore);// getting bio from input
             }
           }
         }
@@ -2093,9 +2090,9 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
         bioText.setPosition(sf::Vector2f(255, 160));
         proWin.display();
         proWin.draw(proSprite);
-      }
+      } // end of while(proWin.isOpen())
     }
-  }
+  } // end of click on profile picture
   // if user clicks on save game part, information of game will be write in the file
   if (event.type == sf::Event::MouseButtonPressed)
   {
@@ -2104,9 +2101,7 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
         sf::Mouse::getPosition(window).y >= 570 &&
         sf::Mouse::getPosition(window).y <= 622)
     {
-      cout << "roye zakhire bazi click kardi!!!" << endl;
       writeInFile(storeFileWrite, vaseFileWrite, mainStore, vases);
-      readInFile(storeFileRead, vaseFileRead, mainStore, vases);
     }
   }
   // if user clicks on load game part, information of game will be read from the file
@@ -2117,11 +2112,9 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
         sf::Mouse::getPosition(window).y >= 570 &&
         sf::Mouse::getPosition(window).y <= 622)
     {
-      cout << "roye bargozari bazi click kardi!!!" << endl;
       readInFile(storeFileRead, vaseFileRead, mainStore, vases);
-      //------------
       setVases(window, event, vases);
-      //---------------
+      // set string for 4 first elements of StoreMenuTexts
       ui x = mainStore->NumberOfWaterUnits;
       StoreMenuTexts[0].setString(to_string(x));
       x = mainStore->NumberOfSoilUnits;
@@ -2130,7 +2123,7 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
       StoreMenuTexts[2].setString(to_string(x));
       x = mainStore->liliumExtract + mainStore->magnoliaExtract + mainStore->orkideExtract;
       StoreMenuTexts[3].setString(to_string(x));
-      //setPostion
+      //set string for elements of profileText
       x = mainStore->kokab + mainStore->narges;
       profileText[0].setString(to_string(x));
       x = mainStore->lale + mainStore->maryam + mainStore->sonbol;
@@ -2143,12 +2136,13 @@ void clickOnItemsOfProfile(sf::RenderWindow &window, sf::Event &event,
       profileText[4].setString(to_string(x));
       x = mainStore->magnoliaExtract + mainStore->liliumExtract + mainStore->orkideExtract;
       profileText[5].setString(to_string(x));
-      //------------------
+      // for showing user name that read from file
       string name = mainStore->userName;
       userNameText.setFont(font);
       userNameText.setFillColor(sf::Color::Black);
       userNameText.setPosition(sf::Vector2f(1040, 260));
       userNameText.setString(name);
+      // for showing bio that read from file
       name = mainStore->bio;
       bioText.setFont(font);
       bioText.setFillColor(sf::Color::Black);
@@ -2173,11 +2167,11 @@ void nameWindow(string str, Store *mainStore)
   sf::Font font;
 
   string s, userName = "";
-  if (str == "name")
+  if (str == "name") // when the function is called for getting user name
   {
     s = "Please enter your user name :\n";
   }
-  else if (str == "bio")
+  else if (str == "bio") // when the function is called for getting bio
   {
     s = "Please enter your bio :\n";
   }
@@ -2187,7 +2181,6 @@ void nameWindow(string str, Store *mainStore)
   messages.setString(s);
   messages.setFillColor(sf::Color::Black);
   messages.setCharacterSize(50);
-  //cout << "ghabl az while" << endl;
   while (nameWin.isOpen())
   {
     while (nameWin.pollEvent(event))
@@ -2196,7 +2189,7 @@ void nameWindow(string str, Store *mainStore)
       {
         nameWin.close();
       }
-      if (event.type == sf::Event::TextEntered) // for get input
+      if (event.type == sf::Event::TextEntered) // for getting input
       {
         if (event.text.unicode < 128)
         {
@@ -2222,7 +2215,7 @@ void nameWindow(string str, Store *mainStore)
               userName += '\n';
             }
           }
-          else // if size of userName greater than 100
+          else // if size of userName greater than 155
           {
             errorWindow("../image/errorWindow3.png");
           }
@@ -2233,7 +2226,7 @@ void nameWindow(string str, Store *mainStore)
     nameWin.display();
     nameWin.draw(nameWinSprite);
     nameWin.draw(messages);
-  }
+  } // window is opened
   if (str == "name")
   {
     mainStore->set_userName(userName);
@@ -2247,9 +2240,8 @@ void nameWindow(string str, Store *mainStore)
 //write informations in 2 files
 void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, Store *mainStore, Vase *vases)
 {
-  storeFileWrite.open("../file/storeFile.txt", ios::trunc);
-  cout << "we are in file write :D" << endl;
-  storeFileWrite.seekp(0, ios::beg);
+  storeFileWrite.open("../file/storeFile.txt", ios::trunc);// open file
+  storeFileWrite.seekp(0, ios::beg); // changing place of pointer of file
   storeFileWrite << mainStore->NumberOfWaterUnits << " ";
   storeFileWrite << mainStore->NumberOfSoilUnits << " ";
   storeFileWrite << mainStore->spray << " ";
@@ -2271,10 +2263,10 @@ void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, St
   storeFileWrite << mainStore->plantedFlowers << endl;
   storeFileWrite << mainStore->userName << endl;
   storeFileWrite << mainStore->bio;
-  storeFileWrite.close();
+  storeFileWrite.close(); // close file
   //------------------------
-  vaseFileWrite.open("../file/vaseFile.txt", ios::trunc);
-  vaseFileWrite.seekp(0, ios::beg);
+  vaseFileWrite.open("../file/vaseFile.txt", ios::trunc);// open vaseFile
+  vaseFileWrite.seekp(0, ios::beg);// changing place of pointer of file to first of file
   OrdinaryFlower *ordinaryF;
   RareFlower *rareF;
   decorativeFlower *decorativeF;
@@ -2284,7 +2276,7 @@ void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, St
     ordinaryF = nullptr;
     rareF = nullptr;
     decorativeF = nullptr;
-    // vaseFileWrite << vases[i].get_flowerStar() << " ";
+
     vaseFileWrite << vases[i].get_locked() << " ";
     vaseFileWrite << vases[i].get_empty() << " ";
     vaseFileWrite << vases[i].get_growing() << " ";
@@ -2320,23 +2312,14 @@ void writeInFile(std::ofstream &storeFileWrite, std::ofstream &vaseFileWrite, St
       vaseFileWrite << decorativeF->get_extract() << " ";
     }
     vaseFileWrite << endl;
-  }
-
-  /*for (size_t i = 0; i < 10; i++)
-  {
-
-    vaseFileWrite.seekp(i * sizeof(Vase), ios::beg);
-    vaseFileWrite.write((const char *)&vases[i], sizeof(Vase));
-  }*/
-  cout << "*************" << endl;
+  } // end of for loop
   vaseFileWrite.close();
 }
 
 void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store *mainStore, Vase *vases)
 {
-  storeFileRead.open("../file/storeFile.txt");
-  cout << "we are in file Read :D" << endl;
-  storeFileRead.seekg(0, ios::beg);
+  storeFileRead.open("../file/storeFile.txt"); // open file
+  storeFileRead.seekg(0, ios::beg);// changing place of pointer of file to first of file
   storeFileRead >> mainStore->NumberOfWaterUnits;
   storeFileRead >> mainStore->NumberOfSoilUnits;
   storeFileRead >> mainStore->spray;
@@ -2358,21 +2341,14 @@ void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store
   storeFileRead >> mainStore->plantedFlowers;
 
   storeFileRead.ignore();
-  storeFileRead.ignore();
-  storeFileRead.ignore();
+  // storeFileRead.ignore();
+  //storeFileRead.ignore();
 
   getline(storeFileRead, mainStore->userName);
   getline(storeFileRead, mainStore->bio);
   storeFileRead.close();
   //---------------------
   vaseFileRead.open("../file/vaseFile.txt", ios::out | ios::in);
-  /*for (size_t i = 0; i < 10; i++)
-  {
-    vaseFileRead.seekg(i * sizeof(Vase), ios::beg);
-    vaseFileRead.read((char *)&vases[i], sizeof(Vase));
-
-    cout << "i-> " << i << ": " << vases[i].get_empty() << "\t" << vases[i].get_flowerStar()->get_name() << endl;
-  }*/
   bool x;
   string Type;
   string Name;
@@ -2387,7 +2363,7 @@ void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store
     vaseFileRead >> x;
     vases[i].set_readyToPick(x);
     char ch[30];
-    if (vases[i].get_growing() || vases[i].get_readyToPick())
+    if (vases[i].get_growing() || vases[i].get_readyToPick())// growing or readyToPick level
     {
       vaseFileRead >> Type;
       if (Type == "Ordinary")
@@ -2415,7 +2391,7 @@ void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store
           rareF->set_spray(x);
         }
       }
-      else
+      else // decorative flowers
       {
         vaseFileRead >> Name;
         vases[i].set_flower(3, Name);
@@ -2439,5 +2415,5 @@ void readInFile(std::ifstream &storeFileRead, std::ifstream &vaseFileRead, Store
     }
     vaseFileRead.ignore();
   }
-  vaseFileRead.close();
+  vaseFileRead.close(); // close file
 }
